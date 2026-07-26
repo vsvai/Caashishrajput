@@ -3,16 +3,112 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact — CA Ashish Rajput</title>
-  <meta name="description" content="Contact CA Ashish Rajput, Chartered Accountant in Sahibabad, Ghaziabad. Phone, WhatsApp, email, and office address.">
+  <title>Contact — Ashish Jayalata &amp; Associates | Chartered Accountant, Sahibabad, Ghaziabad</title>
+  <meta name="description" content="Contact Ashish Jayalata &amp; Associates, Chartered Accountant in Sahibabad, Ghaziabad. Phone, WhatsApp, email, and office address.">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .map-clickable {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+    .map-clickable::after {
+      content: 'Click to open in Google Maps';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .map-clickable:hover::after {
+      opacity: 0.8;
+    }
+    .map-clickable iframe {
+      pointer-events: none;
+    }
+    .map-clickable:hover iframe {
+      pointer-events: none;
+    }
+
+    .lead-form-section {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+    .lead-form-section h2 {
+      font-size: 1.35rem;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+    .lead-form-section .subtitle {
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+    .service-checkboxes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .service-checkboxes label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .service-checkboxes label:hover {
+      border-color: var(--primary-light);
+    }
+    .service-checkboxes input[type="checkbox"] {
+      accent-color: var(--primary);
+      width: 16px;
+      height: 16px;
+    }
+    .service-checkboxes input[type="checkbox"]:checked + span {
+      font-weight: 600;
+    }
+    .btn-whatsapp {
+      background: #25d366;
+      color: #fff;
+      width: 100%;
+      justify-content: center;
+      font-size: 1rem;
+      padding: 0.85rem;
+    }
+    .btn-whatsapp:hover {
+      background: #20bd5a;
+      color: #fff;
+    }
+    @media (max-width: 500px) {
+      .service-checkboxes {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
 
   <!-- Header -->
   <header class="header">
     <div class="container">
-      <a href="index.html" class="logo">CA <span>Ashish Rajput</span></a>
+      <a href="index.html" class="logo">Ashish Jayalata <span>&amp; Associates</span></a>
       <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav').classList.toggle('open')">&#9776;</button>
       <nav class="nav">
         <a href="index.html">Home</a>
@@ -20,7 +116,7 @@
         <a href="services.html">Services</a>
         <a href="resources.html">Resources</a>
         <a href="contact.html" class="active">Contact</a>
-        <a href="tel:918802586988" class="nav-cta">Call Now</a>
+        <a href="tel:+918802586988" class="nav-cta">Call Now</a>
       </nav>
     </div>
   </header>
@@ -37,53 +133,56 @@
   <section class="section">
     <div class="container">
       <div class="contact-grid">
-        <!-- Contact Form -->
+        <!-- Lead Generation Form -->
         <div>
-          <h2 class="section-title" style="margin-bottom:1.5rem;">Send an Enquiry</h2>
-          <form class="contact-form" action="https://formspree.io/f/[YOUR_FORMSPREE_ID]" method="POST">
+          <h2 class="section-title" style="margin-bottom:0.25rem;">Send an Enquiry</h2>
+          <p style="color:var(--text-light); margin-bottom:1.5rem; font-size:0.95rem;">Fill in your details and we'll get back to you on WhatsApp.</p>
+          <form id="leadForm" class="contact-form" onsubmit="return sendWhatsAppLead(event)">
             <div class="form-group">
-              <label for="name">Full Name *</label>
-              <input type="text" id="name" name="name" required placeholder="Your full name">
+              <label for="leadName">Full Name *</label>
+              <input type="text" id="leadName" name="name" required placeholder="Your full name">
             </div>
             <div class="form-group">
-              <label for="phone">Phone *</label>
-              <input type="tel" id="phone" name="phone" required placeholder="Your phone number">
+              <label for="leadPhone">Phone *</label>
+              <input type="tel" id="leadPhone" name="phone" required placeholder="Your phone number">
             </div>
             <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="Your email address">
+              <label for="leadEmail">Email</label>
+              <input type="email" id="leadEmail" name="email" placeholder="Your email address">
             </div>
             <div class="form-group">
-              <label for="service">Service Required</label>
-              <select id="service" name="service">
-                <option value="">Select a service</option>
-                <option value="income-tax">Income Tax — ITR Filing</option>
-                <option value="income-tax-assessment">Income Tax — Assessment / Notice</option>
-                <option value="gst">GST — Registration / Returns</option>
-                <option value="gst-audit">GST — Audit / Annual Return</option>
-                <option value="audit">Audit &amp; Assurance</option>
-                <option value="company-registration">Company / LLP Registration</option>
-                <option value="accounting">Accounting &amp; Bookkeeping</option>
-                <option value="advisory">Business Advisory</option>
-                <option value="other">Other</option>
-              </select>
+              <label>Service Required *</label>
+              <div class="service-checkboxes">
+                <label><input type="checkbox" name="services" value="Income Tax — ITR Filing"><span>Income Tax — ITR</span></label>
+                <label><input type="checkbox" name="services" value="Income Tax — Assessment/Notice"><span>IT — Assessment</span></label>
+                <label><input type="checkbox" name="services" value="GST — Registration/Returns"><span>GST — Returns</span></label>
+                <label><input type="checkbox" name="services" value="GST — Audit/Annual Return"><span>GST — Audit</span></label>
+                <label><input type="checkbox" name="services" value="Audit & Assurance"><span>Audit</span></label>
+                <label><input type="checkbox" name="services" value="Company/LLP Registration"><span>Company/LLP</span></label>
+                <label><input type="checkbox" name="services" value="Accounting & Bookkeeping"><span>Accounting</span></label>
+                <label><input type="checkbox" name="services" value="Business Advisory"><span>Advisory</span></label>
+                <label><input type="checkbox" name="services" value="Business Plan/Projections"><span>Business Plan</span></label>
+                <label><input type="checkbox" name="services" value="Asset Valuation"><span>Valuation</span></label>
+                <label><input type="checkbox" name="services" value="Charities/Trust Audit"><span>Trust Audit</span></label>
+                <label><input type="checkbox" name="services" value="Corporate Representation"><span>Corp. Rep.</span></label>
+              </div>
             </div>
             <div class="form-group">
-              <label for="message">Message *</label>
-              <textarea id="message" name="message" required placeholder="Briefly describe your requirement..."></textarea>
+              <label for="leadMessage">Message *</label>
+              <textarea id="leadMessage" name="message" required placeholder="Briefly describe your requirement..."></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send Enquiry &rarr;</button>
+            <button type="submit" class="btn btn-whatsapp">&#128172; Send on WhatsApp</button>
           </form>
         </div>
 
-        <!-- Contact Details -->
+        <!-- Contact Details + Map -->
         <div>
           <div class="contact-details-card">
             <h3>Office Address</h3>
             <div class="detail-row">
               <span class="icon">&#128205;</span>
               <div class="text">
-                <strong>CA Ashish Rajput</strong>
+                <strong>Ashish Jayalata &amp; Associates</strong>
                 Shop No. LG-3, Plot No. S-14,<br>
                 near Dhamija TVS Showroom,<br>
                 Vrindavan Garden, Hakikat Marg,<br>
@@ -95,7 +194,7 @@
               <span class="icon">&#9742;</span>
               <div class="text">
                 <strong>Phone</strong>
-                <a href="tel:918802586988">918802586988</a>
+                <a href="tel:+918802586988">+91 88025 86988</a>
               </div>
             </div>
             <div class="detail-row">
@@ -129,11 +228,11 @@
             </div>
           </div>
 
-          <!-- Map -->
+          <!-- Clickable Map -->
           <div style="margin-top:1.5rem;">
-            <div class="contact-map" style="height:300px;">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.5!2d77.359!3d28.676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDQwJzMzLjYiTiA3N8KwMjEnMzIuNCJF!5e0!3m2!1sen!2sin!4v1" allowfullscreen="" loading="lazy"></iframe>
-            </div>
+            <a href="https://maps.google.com/?q=Shop+No+LG-3+Plot+No+S-14+Shalimar+Garden+Sahibabad+201005" target="_blank" rel="noopener" class="map-clickable" style="display:block; height:300px;">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.5!2d77.359!3d28.676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDQwJzMzLjYiTiA3N8KwMjEnMzIuNCJF!5e0!3m2!1sen!2sin!4v1" allowfullscreen="" loading="lazy" style="width:100%;height:100%;border:0;"></iframe>
+            </a>
           </div>
         </div>
       </div>
@@ -145,9 +244,9 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <h4>CA Ashish Rajput</h4>
-          <p>Chartered Accountant based in Sahibabad, Ghaziabad. Providing Income Tax, GST, Audit, and Business Advisory services.</p>
-          <p class="disclaimer">The information on this website is for general informational purposes only and does not constitute professional advice. It is not intended to solicit clients or advertise professional attainments.</p>
+          <h4>Ashish Jayalata &amp; Associates</h4>
+          <p>Chartered Accountant based in Sahibabad, Ghaziabad. Providing income tax, GST, audit, accounting, and company registration services for individuals and businesses.</p>
+          <p class="disclaimer">The information on this website is for general informational purposes only and does not constitute professional advice. It is not intended to solicit clients or advertise professional attainments. Visitors are advised to seek independent professional advice before acting on any information herein.</p>
         </div>
         <div>
           <h4>Quick Links</h4>
@@ -181,13 +280,46 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>&copy; 2026 CA Ashish Rajput. All rights reserved.</span>
-        <span>ICAI Membership No. [MEMBERSHIP NO.] &middot; <a href="https://www.icai.org" target="_blank" rel="noopener">icai.org</a></span>
+        <span>&copy; 2026 Ashish Jayalata &amp; Associates. All rights reserved.</span>
+        <span><a href="https://www.icai.org" target="_blank" rel="noopener">icai.org</a></span>
       </div>
     </div>
   </footer>
 
   <a href="https://wa.me/918802586988" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">&#128172;</a>
+  <script>
+    function sendWhatsAppLead(e) {
+      e.preventDefault();
+      var name = document.getElementById('leadName').value.trim();
+      var phone = document.getElementById('leadPhone').value.trim();
+      var email = document.getElementById('leadEmail').value.trim();
+      var message = document.getElementById('leadMessage').value.trim();
+
+      if (!name || !phone || !message) {
+        alert('Please fill in your name, phone, and message.');
+        return false;
+      }
+
+      var services = [];
+      document.querySelectorAll('input[name="services"]:checked').forEach(function(cb) {
+        services.push(cb.value);
+      });
+
+      var msg = 'Hello, I would like to enquire about the following service(s):\n\n';
+      if (services.length > 0) {
+        msg += 'Service(s): ' + services.join(', ') + '\n';
+      }
+      msg += '\nName: ' + name;
+      msg += '\nPhone: ' + phone;
+      if (email) msg += '\nEmail: ' + email;
+      msg += '\n\nMessage: ' + message;
+      msg += '\n\n---\nSent via caashishrajput.com';
+
+      var url = 'https://wa.me/918802586988?text=' + encodeURIComponent(msg);
+      window.open(url, '_blank');
+      return false;
+    }
+  </script>
   <script src="js/main.js"></script>
 </body>
 </html>
