@@ -1,39 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caashish Rajput</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: #0d1117;
-            color: #c9d1d9;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-        }
-        .container {
-            text-align: center;
-        }
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #58a6ff;
-        }
-        p {
-            font-size: 1.2rem;
-            color: #8b949e;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CA Ashish Rajput — Chartered Accountant, Sahibabad Ghaziabad</title>
+  <meta name="description" content="CA Ashish Rajput, Chartered Accountant in Sahibabad, Ghaziabad. Income Tax, GST, Audit, Company Registration & Business Advisory services.">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AccountingService",
+    "name": "CA Ashish Rajput",
+    "description": "Chartered Accountant providing Income Tax, GST, Audit, Company Registration and Business Advisory services in Sahibabad, Ghaziabad.",
+    "url": "https://caashishrajput.com",
+    "telephone": "[PHONE]",
+    "email": "[EMAIL]",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Shop No. LG-3, Plot No. S-14, near Dhamija TVS Showroom, Vrindavan Garden, Hakikat Marg",
+      "addressLocality": "Shalimar Garden, Sahibabad",
+      "addressRegion": "Uttar Pradesh",
+      "postalCode": "201005",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "28.6756",
+      "longitude": "77.3591"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "10:00",
+        "closes": "19:00"
+      }
+    ],
+    "priceRange": "$$",
+    "sameAs": [
+      "https://www.instagram.com/aja_ghaziabad/",
+      "https://www.facebook.com/ajaca2023",
+      "https://www.linkedin.com/company/aja-ca"
+    ]
+  }
+  </script>
 </head>
 <body>
+
+  <!-- Header -->
+  <header class="header">
     <div class="container">
-        <h1>Caashish Rajput</h1>
-        <p>Work in progress...</p>
+      <a href="index.html" class="logo">CA <span>Ashish Rajput</span></a>
+      <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav').classList.toggle('open')">&#9776;</button>
+      <nav class="nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="resources.html">Resources</a>
+        <a href="contact.html">Contact</a>
+        <a href="tel:[PHONE]" class="nav-cta">Call Now</a>
+      </nav>
     </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-text">
+        <h1>CA Ashish Rajput</h1>
+        <div class="credential">Chartered Accountant &middot; Sahibabad, Ghaziabad</div>
+        <p>Focused on Income Tax, GST compliance, Audit &amp; Assurance, and Business Advisory for individuals, SMEs, and growing companies across the NCR region.</p>
+        <div class="hero-buttons">
+          <a href="tel:[PHONE]" class="btn btn-primary">&#9742; Call Now</a>
+          <a href="https://wa.me/[PHONE]" class="btn btn-whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://maps.google.com/?q=Shop+No+LG-3+Plot+No+S-14+Shalimar+Garden+Sahibabad+201005" class="btn btn-outline" target="_blank" rel="noopener">Find Us on Google</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <span class="placeholder-icon">&#128100;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Services</h2>
+      <p class="section-subtitle">Professional services tailored to individuals, businesses, and organizations.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="icon">&#128176;</div>
+          <h3>Income Tax</h3>
+          <p>ITR filing, tax planning, assessments, appeals, and compliance for individuals and businesses.</p>
+          <a href="services.html#income-tax">Learn more &rarr;</a>
+        </div>
+        <div class="service-card">
+          <div class="icon">&#128196;</div>
+          <h3>GST</h3>
+          <p>GST registration, monthly/quarterly returns, annual audit, and litigation support.</p>
+          <a href="services.html#gst">Learn more &rarr;</a>
+        </div>
+        <div class="service-card">
+          <div class="icon">&#128202;</div>
+          <h3>Audit &amp; Assurance</h3>
+          <p>Statutory audit, internal audit, tax audit, and compliance reviews.</p>
+          <a href="services.html#audit">Learn more &rarr;</a>
+        </div>
+        <div class="service-card">
+          <div class="icon">&#127970;</div>
+          <h3>Company &amp; LLP Registration</h3>
+          <p>Incorporation, ROC compliance, annual filings, and company law advisory.</p>
+          <a href="services.html#company">Learn more &rarr;</a>
+        </div>
+        <div class="service-card">
+          <div class="icon">&#128221;</div>
+          <h3>Accounting &amp; Bookkeeping</h3>
+          <p>Day-to-day accounting, financial statements, and reconciliation services.</p>
+          <a href="services.html#accounting">Learn more &rarr;</a>
+        </div>
+        <div class="service-card">
+          <div class="icon">&#128161;</div>
+          <h3>Business Advisory</h3>
+          <p>Virtual CFO, budgeting, business planning, fund-raising support, and strategic guidance.</p>
+          <a href="services.html#advisory">Learn more &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Snapshot -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="about-snapshot">
+        <div>
+          <h2 class="section-title">About CA Ashish Rajput</h2>
+          <p style="margin-bottom:1rem;">A practicing Chartered Accountant based in Sahibabad, Ghaziabad, providing end-to-end financial, tax, and compliance services. The practice focuses on building long-term relationships with individuals, proprietorships, partnerships, and small-to-medium enterprises.</p>
+          <p style="margin-bottom:1.5rem; color: var(--text-light);">Member of the Institute of Chartered Accountants of India (ICAI). Certificate of Practice holder. Available for consultations Monday through Saturday.</p>
+          <a href="about.html" class="btn btn-primary">Read Full Profile &rarr;</a>
+        </div>
+        <div class="stats">
+          <div class="stat-card">
+            <div class="number">3+</div>
+            <div class="label">Years of Practice</div>
+          </div>
+          <div class="stat-card">
+            <div class="number">ICAI</div>
+            <div class="label">Registered Member</div>
+          </div>
+          <div class="stat-card">
+            <div class="number">GST</div>
+            <div class="label">Certified Consultant</div>
+          </div>
+          <div class="stat-card">
+            <div class="number">ITR</div>
+            <div class="label">Filing &amp; Advisory</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Updates -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Latest Updates</h2>
+      <p class="section-subtitle">Practical tax and compliance updates to help you stay informed.</p>
+      <div class="blog-grid">
+        <div class="blog-card">
+          <div class="date">July 2026</div>
+          <h3>Key GST Due Dates for July 2026</h3>
+          <p>A summary of GST return filing deadlines including GSTR-1, GSTR-3B, and GSTR-9 for the current period.</p>
+          <a href="resources.html">Read more &rarr;</a>
+        </div>
+        <div class="blog-card">
+          <div class="date">June 2026</div>
+          <h3>Income Tax Advance Tax instalments</h3>
+          <p>Important dates and计算 guidelines for advance tax payments for FY 2025-26.</p>
+          <a href="resources.html">Read more &rarr;</a>
+        </div>
+        <div class="blog-card">
+          <div class="date">May 2026</div>
+          <h3>New ROC Filing Requirements for LLPs</h3>
+          <p>An overview of updated MCA requirements for Limited Liability Partnership annual compliance.</p>
+          <a href="resources.html">Read more &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Strip -->
+  <section class="contact-strip">
+    <div class="container">
+      <div class="contact-info">
+        <h3>Get in Touch</h3>
+        <div class="contact-item">
+          <span class="icon">&#128205;</span>
+          <span>Shop No. LG-3, Plot No. S-14, near Dhamija TVS Showroom, Vrindavan Garden, Hakikat Marg, Shalimar Garden, Sahibabad &ndash; 201005, UP</span>
+        </div>
+        <div class="contact-item">
+          <span class="icon">&#9742;</span>
+          <span><a href="tel:[PHONE]" style="color:rgba(255,255,255,0.85);">[PHONE]</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="icon">&#9993;</span>
+          <span><a href="mailto:[EMAIL]" style="color:rgba(255,255,255,0.85);">[EMAIL]</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="icon">&#128337;</span>
+          <span>Mon &ndash; Sat: 10:00 AM &ndash; 7:00 PM</span>
+        </div>
+      </div>
+      <div class="contact-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.5!2d77.359!3d28.676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDQwJzMzLjYiTiA3N8KwMjEnMzIuNCJF!5e0!3m2!1sen!2sin!4v1" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>CA Ashish Rajput</h4>
+          <p>Chartered Accountant based in Sahibabad, Ghaziabad. Providing Income Tax, GST, Audit, and Business Advisory services.</p>
+          <p class="disclaimer">The information on this website is for general informational purposes only and does not constitute professional advice. It is not intended to solicit clients or advertise professional attainments. Visitors are advised to seek independent professional advice before acting on any information herein.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="services.html#income-tax">Income Tax</a></li>
+            <li><a href="services.html#gst">GST</a></li>
+            <li><a href="services.html#audit">Audit &amp; Assurance</a></li>
+            <li><a href="services.html#company">Company Registration</a></li>
+            <li><a href="services.html#accounting">Accounting</a></li>
+            <li><a href="services.html#advisory">Business Advisory</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Connect</h4>
+          <ul class="footer-links">
+            <li><a href="https://www.instagram.com/aja_ghaziabad/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.facebook.com/ajaca2023" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="https://www.linkedin.com/company/aja-ca" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://wa.me/[PHONE]" target="_blank" rel="noopener">WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 CA Ashish Rajput. All rights reserved.</span>
+        <span>ICAI Membership No. [MEMBERSHIP NO.] &middot; <a href="https://www.icai.org" target="_blank" rel="noopener">icai.org</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/[PHONE]" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">&#128172;</a>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
