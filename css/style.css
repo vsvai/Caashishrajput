@@ -49,7 +49,8 @@ a:hover { color: var(--accent); }
   padding-bottom: 0.75rem;
 }
 
-.logo { font-size: 1.25rem; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.logo { font-size: 1.25rem; font-weight: 700; color: #fff; letter-spacing: 0.5px; display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+.logo img { height: 40px; width: 40px; border-radius: 6px; object-fit: cover; }
 .logo span { color: var(--accent); }
 
 .nav-toggle {
@@ -145,6 +146,8 @@ a:hover { color: var(--accent); }
 
 .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
 .hero-photo .placeholder-icon { font-size: 4rem; color: rgba(255,255,255,0.3); }
+
+.footer-logo { height: 48px; width: 48px; border-radius: 8px; object-fit: cover; margin-bottom: 0.75rem; }
 
 /* ===== Sections ===== */
 .section { padding: 4rem 0; }
