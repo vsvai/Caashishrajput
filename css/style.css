@@ -2,15 +2,16 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --primary: #1a3a5c;
-  --primary-light: #2c5282;
+  --primary: #15354f;
+  --primary-light: #2b5a8f;
   --accent: #c8a951;
-  --accent-strong: #8a6f1f;
-  --text: #2d3748;
-  --text-light: #57697f;
+  --accent-text: #7d5f14;
+  --accent-strong: #7d5f14;
+  --text: #22303f;
+  --text-light: #4a5b6e;
   --bg: #ffffff;
-  --bg-alt: #f7fafc;
-  --border: #e2e8f0;
+  --bg-alt: #f1f5f9;
+  --border: #d6dee9;
   --radius: 8px;
   --shadow: 0 2px 8px rgba(0,0,0,0.08);
   --max-w: 1140px;
@@ -28,7 +29,7 @@ body {
 
 img { max-width: 100%; display: block; }
 a { color: var(--primary-light); text-decoration: none; }
-a:hover { color: var(--accent); }
+a:hover { color: var(--accent-text); }
 
 .icon-svg { width: 1.1em; height: 1.1em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vertical-align: -0.15em; }
 .service-card .icon-svg { width: 2rem; height: 2rem; }
@@ -162,10 +163,10 @@ a:hover { color: var(--accent); }
   cursor: pointer;
 }
 
-.btn-primary { background: var(--accent); color: var(--primary); }
-.btn-primary:hover { background: #d4b55e; color: var(--primary); }
+.btn-primary { background: linear-gradient(135deg, #d6b25a 0%, var(--accent) 50%, #b08a36 100%); color: var(--primary); }
+.btn-primary:hover { background: linear-gradient(135deg, #dfbe6b 0%, #d0ab55 50%, #bc963f 100%); color: var(--primary); }
 
-.btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4); }
+.btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.55); }
 .btn-outline:hover { border-color: #fff; color: #fff; }
 
 .btn-whatsapp { background: #25d366; color: #fff; }
@@ -510,7 +511,7 @@ a:hover { color: var(--accent); }
   font-size: 0.95rem;
 }
 
-.detail-row .icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; color: var(--accent); }
+.detail-row .icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; color: var(--accent-text); }
 .detail-row .text { line-height: 1.5; }
 .detail-row .text strong { display: block; margin-bottom: 0.15rem; }
 
@@ -647,7 +648,7 @@ a:hover { color: var(--accent); }
 }
 
 .breadcrumbs a:hover {
-  color: var(--accent);
+  color: var(--accent-text);
   text-decoration: underline;
 }
 
@@ -738,7 +739,7 @@ a:hover { color: var(--accent); }
 
 .docs-checklist li::before {
   content: '\2713';
-  color: var(--accent);
+  color: var(--accent-text);
   font-weight: 700;
   margin-right: 0.5rem;
 }
@@ -821,7 +822,7 @@ a:hover { color: var(--accent); }
 }
 
 .related-services a:hover {
-  border-color: var(--accent);
+  border-color: var(--accent-text);
   background: #fdf8e8;
 }
 
@@ -882,7 +883,7 @@ a:hover { color: var(--accent); }
 }
 
 .blog-listing-card h2 a:hover {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .blog-listing-card .blog-excerpt {
@@ -1164,9 +1165,9 @@ a:hover { color: var(--accent); }
 
 .founder-photo {
   flex-shrink: 0;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
+  width: 220px;
+  height: 276px;
+  border-radius: 14px;
   overflow: hidden;
   border: 3px solid var(--accent);
 }
@@ -1175,6 +1176,7 @@ a:hover { color: var(--accent); }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 15%;
   display: block;
 }
 
