@@ -56,4 +56,23 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+
+  // Services accordion: click pins a group open (hover opens on desktop)
+  document.querySelectorAll('.acc-group').forEach(function(group) {
+    var head = group.querySelector('.acc-head');
+    var body = group.querySelector('.acc-body');
+    if (!head || !body) return;
+    head.addEventListener('click', function() {
+      var wasPinned = group.classList.contains('pinned');
+      document.querySelectorAll('.acc-group.pinned').forEach(function(g) {
+        g.classList.remove('pinned');
+        var h = g.querySelector('.acc-head');
+        if (h) h.setAttribute('aria-expanded', 'false');
+      });
+      if (!wasPinned) {
+        group.classList.add('pinned');
+        head.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
 });
