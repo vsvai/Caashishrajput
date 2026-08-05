@@ -85,4 +85,37 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 150);
     }
   }
+
+  // Homepage logo slideshow
+  document.querySelectorAll('[data-slideshow]').forEach(function(slideshow) {
+    var slides = slideshow.querySelectorAll('.slideshow-slide');
+    var dots = slideshow.querySelectorAll('.slideshow-dot');
+    var prev = slideshow.querySelector('.slideshow-prev');
+    var next = slideshow.querySelector('.slideshow-next');
+    if (!slides.length) return;
+    var idx = 0;
+    var timer = null;
+
+    function go(i) {
+      idx = (i + slides.length) % slides.length;
+      slides.forEach(function(s, j) { s.classList.toggle('is-active', j === idx); });
+      dots.forEach(function(d, j) { d.classList.toggle('is-active', j === idx); });
+    }
+
+    function restart() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(function() { go(idx + 1); }, 4000);
+    }
+
+    if (prev) prev.addEventListener('click', function() { go(idx - 1); restart(); });
+    if (next) next.addEventListener('click', function() { go(idx + 1); restart(); });
+    dots.forEach(function(d, j) {
+      d.addEventListener('click', function() { go(j); restart(); });
+    });
+    slideshow.addEventListener('mouseenter', function() { if (timer) clearInterval(timer); });
+    slideshow.addEventListener('mouseleave', restart);
+    slideshow.addEventListener('focusin', function() { if (timer) clearInterval(timer); });
+    slideshow.addEventListener('focusout', restart);
+    restart();
+  });
 });
