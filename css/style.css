@@ -310,7 +310,7 @@ a:hover { color: var(--accent-text); }
 }
 .acc-chevron .icon-svg { width: 1.3rem; height: 1.3rem; }
 
-.acc-group:hover .acc-chevron,
+.acc-group:focus-within .acc-chevron,
 .acc-group.pinned .acc-chevron { transform: rotate(180deg); }
 
 .acc-body {
@@ -319,8 +319,13 @@ a:hover { color: var(--accent-text); }
   transition: max-height 0.35s ease;
 }
 
-.acc-group:hover .acc-body,
+.acc-group:focus-within .acc-body,
 .acc-group.pinned .acc-body { max-height: 760px; }
+
+@media (hover: hover) and (pointer: fine) {
+  .acc-group:hover .acc-chevron { transform: rotate(180deg); }
+  .acc-group:hover .acc-body { max-height: 760px; }
+}
 
 .acc-item {
   display: flex;
