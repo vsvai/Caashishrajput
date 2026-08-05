@@ -30,6 +30,7 @@
   </script>
 </head>
 <body data-depth="0" data-active="about">
+  <main>
 
   <!-- Page Hero -->
   <section class="page-hero">
@@ -87,7 +88,14 @@
         </div>
 
         <div class="about-sidebar">
-          <h3>At a Glance</h3>
+          <div class="about-photo">
+            <picture>
+              <source srcset="images/hero.avif" type="image/avif">
+              <source srcset="images/hero.webp" type="image/webp">
+              <img src="images/logo.png" alt="CA Ashish Rajput, Chartered Accountant" width="160" height="160" loading="lazy">
+            </picture>
+          </div>
+          <h3 style="text-align:center;">At a Glance</h3>
           <ul class="credential-list">
             <li><span class="label">Name</span><span class="value">Ashish Jayalata &amp; Associates</span></li>
             <li><span class="label">Qualification</span><span class="value">B.Com, CA</span></li>
@@ -106,7 +114,9 @@
     </div>
   </section>
 
-  <script src="js/components.js"></script>
-  <script src="js/main.js"></script>
+  
+  </main>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/main.js"></script>
 </body>
 </html>

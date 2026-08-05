@@ -10,7 +10,7 @@
   header.className = 'header';
   header.innerHTML = '<div class="container">' +
     '<a href="' + prefix + 'index.html" class="logo">' +
-      '<img src="' + prefix + 'images/logo.png" alt="Ashish Jayalata & Associates Logo">' +
+      '<img src="' + prefix + 'images/logo.webp" alt="Ashish Jayalata & Associates Logo" width="36" height="36">' +
       '<span class="logo-text">Ashish Jayalata <span>&amp; Associates</span></span>' +
     '</a>' +
     '<button class="nav-toggle" aria-label="Menu" onclick="document.querySelector(\'.nav\').classList.toggle(\'open\')">' +
@@ -67,7 +67,7 @@
   footer.innerHTML = '<div class="container">' +
     '<div class="footer-grid">' +
       '<div>' +
-        '<img src="' + prefix + 'images/logo.png" alt="Ashish Jayalata & Associates" class="footer-logo">' +
+        '<img src="' + prefix + 'images/logo.webp" alt="Ashish Jayalata & Associates" class="footer-logo" width="40" height="40">' +
         '<h4>Ashish Jayalata &amp; Associates</h4>' +
         '<p>Chartered Accountant based in Sahibabad, Ghaziabad. Providing income tax, GST, audit, accounting, and company registration services for individuals and businesses.</p>' +
         '<p class="disclaimer">The information on this website is for general informational purposes only and does not constitute professional advice. It is not intended to solicit clients or advertise professional attainments. Visitors are advised to seek independent professional advice before acting on any information herein.</p>' +
@@ -78,9 +78,18 @@
           '<li><a href="' + prefix + 'index.html">Home</a></li>' +
           '<li><a href="' + prefix + 'about.html">About</a></li>' +
           '<li><a href="' + prefix + 'services.html">Services</a></li>' +
+          '<li><a href="' + prefix + 'case-studies.html">Case Studies</a></li>' +
           '<li><a href="' + prefix + 'blog.html">Blog</a></li>' +
           '<li><a href="' + prefix + 'resources.html">Resources</a></li>' +
           '<li><a href="' + prefix + 'contact.html">Contact</a></li>' +
+        '</ul>' +
+      '</div>' +
+      '<div>' +
+        '<h4>Locations</h4>' +
+        '<ul class="footer-links">' +
+          '<li><a href="' + prefix + 'index.html#service-areas">Service Areas</a></li>' +
+          '<li><a href="' + prefix + 'index.html#reviews">Client Feedback</a></li>' +
+          '<li><a href="' + prefix + 'services.html">All Services</a></li>' +
         '</ul>' +
       '</div>' +
       '<div>' +

@@ -17,16 +17,19 @@
   <meta name="twitter:description" content="Chartered Accountancy practice in Sahibabad, Ghaziabad offering income tax, GST, audit, accounting, and company registration services for individuals and businesses in Ghaziabad and NCR.">
 
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="icon" type="image/png" href="images/logo-96.png">
+  <link rel="preload" as="image" href="images/hero.webp" type="image/webp" fetchpriority="high">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "AccountingService",
+    "@id": "https://caashishrajput.com/#practice",
     "name": "Ashish Jayalata & Associates",
     "description": "Chartered Accountancy practice in Sahibabad, Ghaziabad offering income tax, GST, audit, accounting, and company registration services.",
     "url": "https://caashishrajput.com",
     "telephone": "+918802586988",
     "email": "ca.ashishrajput@outlook.com",
+    "priceRange": "Reasonable and transparent; fees quoted per engagement",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Shop No. LG-3, Plot No. S-14, near Dhamija TVS Showroom, Vrindavan Garden, Hakikat Marg",
@@ -40,6 +43,27 @@
       "latitude": "28.6756",
       "longitude": "77.3591"
     },
+    "areaServed": [
+      {"@type":"City","name":"Ghaziabad"},
+      {"@type":"Place","name":"Sahibabad"},
+      {"@type":"Place","name":"Shalimar Garden"},
+      {"@type":"Place","name":"Indirapuram"},
+      {"@type":"Place","name":"Vaishali"},
+      {"@type":"Place","name":"Vasundhara"},
+      {"@type":"Place","name":"Kaushambi"},
+      {"@type":"Place","name":"Raj Nagar"},
+      {"@type":"Place","name":"Pratap Vihar"},
+      {"@type":"Place","name":"Crossings Republik"},
+      {"@type":"Place","name":"Lal Kuan"},
+      {"@type":"Place","name":"Ghukna"},
+      {"@type":"Place","name":"Dasna"},
+      {"@type":"Place","name":"Muradnagar"},
+      {"@type":"Place","name":"Modinagar"},
+      {"@type":"Place","name":"Noida"},
+      {"@type":"Place","name":"Greater Noida"},
+      {"@type":"City","name":"Delhi"},
+      {"@type":"Place","name":"NCR"}
+    ],
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
@@ -49,14 +73,19 @@
       }
     ],
     "sameAs": [
+      "https://www.google.com/maps/search/?api=1&query=Ashish+Jayalata+and+Associates+Shalimar+Garden+Sahibabad",
       "https://www.instagram.com/aja_ghaziabad/",
       "https://www.facebook.com/ajaca2023",
-      "https://www.linkedin.com/company/aja-ca"
+      "https://www.linkedin.com/company/aja-ca",
+      "[GOOGLE_BUSINESS_PROFILE_URL]",
+      "[JUSTDIAL_URL]",
+      "[SULEKHA_URL]"
     ]
   }
   </script>
 </head>
 <body data-depth="0" data-active="home">
+  <main>
 
   <!-- Hero -->
   <section class="hero">
@@ -92,7 +121,11 @@
         </div>
       </div>
       <div class="hero-photo">
-        <img src="images/logo.png" alt="Ashish Jayalata & Associates">
+        <picture>
+          <source srcset="images/hero.avif" type="image/avif">
+          <source srcset="images/hero.webp" type="image/webp">
+          <img src="images/logo.png" alt="CA Ashish Rajput, Chartered Accountant at Ashish Jayalata &amp; Associates" width="220" height="220" fetchpriority="high">
+        </picture>
       </div>
     </div>
   </section>
@@ -107,61 +140,61 @@
           <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent);"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
           <h3>Income Tax</h3>
           <p>Preparation and filing of income tax returns for individuals, proprietorships, and companies; tax planning; support during assessments, notices, and appeals.</p>
-          <a href="services/income-tax.html">Learn more &rarr;</a>
+          <a href="services/income-tax.html" aria-label="Learn more about the Income Tax service">Learn more &rarr;</a>
         </div>
         <div class="service-card">
           <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent);"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></div>
           <h3>GST</h3>
           <p>GST registration, monthly/quarterly return filing, reconciliation, and advisory; support during GST audits and departmental queries.</p>
-          <a href="services/gst.html">Learn more &rarr;</a>
+          <a href="services/gst.html" aria-label="Learn more about the GST service">Learn more &rarr;</a>
         </div>
         <div class="service-card">
           <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent);"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
           <h3>Audit &amp; Assurance</h3>
           <p>Statutory audit, tax audit under Section 44AB, internal audit, and bank audit assignments carried out per applicable auditing standards.</p>
-          <a href="services/statutory-audit.html">Learn more &rarr;</a>
+          <a href="services/statutory-audit.html" aria-label="Learn more about the Audit and Assurance service">Learn more &rarr;</a>
         </div>
         <div class="service-card">
           <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent);"><path d="M6 22V4a2 2 0 012-2h8a2 2 0 012 2v18zM6 12H4a2 2 0 00-2 2v6a2 2 0 002 2h2M18 9h2a2 2 0 012 2v9a2 2 0 01-2 2h-2M10 6h4M10 10h4M10 14h4M10 18h4"/></svg></div>
           <h3>Company &amp; LLP Registration</h3>
           <p>Incorporation of private limited companies and LLPs, including ROC compliance, annual filings, and related company law matters.</p>
-          <a href="services/company-llp-registration.html">Learn more &rarr;</a>
+          <a href="services/company-llp-registration.html" aria-label="Learn more about the Company and LLP Registration service">Learn more &rarr;</a>
         </div>
         <div class="service-card">
           <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent);"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
           <h3>Accounting &amp; Bookkeeping</h3>
           <p>Maintenance of books of accounts, ledger reconciliation, and periodic financial statements for proprietorships, partnerships, and small companies.</p>
-          <a href="services/accounting-bookkeeping.html">Learn more &rarr;</a>
+          <a href="services/accounting-bookkeeping.html" aria-label="Learn more about the Accounting and Bookkeeping service">Learn more &rarr;</a>
         </div>
         <div class="service-card">
           <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent);"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg></div>
           <h3>Business Advisory</h3>
           <p>Virtual CFO services, budgeting, business planning, and strategic financial guidance for growing businesses.</p>
-          <a href="services/business-advisory.html">Learn more &rarr;</a>
+          <a href="services/business-advisory.html" aria-label="Learn more about the Business Advisory service">Learn more &rarr;</a>
         </div>
         <div class="service-card">
           <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent);"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
           <h3>Business Plan &amp; Financial Projections</h3>
           <p>Preparation of financial projections and business plans for loan applications, business setup, or internal planning.</p>
-          <a href="services/business-plan-financial-projections.html">Learn more &rarr;</a>
+          <a href="services/business-plan-financial-projections.html" aria-label="Learn more about the Business Plan and Financial Projections service">Learn more &rarr;</a>
         </div>
         <div class="service-card">
           <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent);"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
           <h3>Asset Inventory &amp; Valuation</h3>
           <p>Valuation and inventory assessment of business assets for accounting, loan, or transaction purposes.</p>
-          <a href="services/asset-valuation.html">Learn more &rarr;</a>
+          <a href="services/asset-valuation.html" aria-label="Learn more about the Asset Inventory and Valuation service">Learn more &rarr;</a>
         </div>
         <div class="service-card">
           <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent);"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
           <h3>Charities &amp; Trust Audits</h3>
           <p>Audit and compliance support for societies, trusts, and not-for-profit organisations, including 12A/80G-related filings.</p>
-          <a href="services/charities-trust-audits.html">Learn more &rarr;</a>
+          <a href="services/charities-trust-audits.html" aria-label="Learn more about the Charities and Trust Audits service">Learn more &rarr;</a>
         </div>
         <div class="service-card">
           <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent);"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
           <h3>Corporate Representation</h3>
           <p>Representation before tax and regulatory authorities on behalf of clients in relation to assessments, notices, and compliance matters.</p>
-          <a href="services/corporate-representation.html">Learn more &rarr;</a>
+          <a href="services/corporate-representation.html" aria-label="Learn more about the Corporate Representation service">Learn more &rarr;</a>
         </div>
       </div>
       <div style="text-align:center; margin-top:2rem;">
@@ -233,6 +266,75 @@
     </div>
   </section>
 
+  <!-- Case Studies -->
+  <section class="section section-alt" id="case-studies">
+    <div class="container">
+      <h2 class="section-title">Client Case Studies</h2>
+      <p class="section-subtitle">A selection of the kind of engagements the practice handles — described factually and without client identification.</p>
+      <div class="case-grid">
+        <div class="case-card">
+          <span class="case-tag">Income Tax</span>
+          <h3>Assessment Response for a Small Retail Business</h3>
+          <p>A retail business in Ghaziabad received a scrutiny notice under Section 143(2). The practice reviewed the books, reconciled bank statements with the return, and prepared a structured response with supporting evidence, leading to completion of the assessment without further adverse query.</p>
+          <div class="case-outcome"><strong>Outcome</strong> Assessment completed; response submitted within the prescribed timeline.</div>
+        </div>
+        <div class="case-card">
+          <span class="case-tag">GST</span>
+          <h3>GST Reconciliation for a Trading Firm</h3>
+          <p>A trading firm in Sahibabad had mismatched ITC between GSTR-2B and its books. The practice performed a line-by-line reconciliation, identified duplicate and ineligible credits, and filed revised returns for the affected periods.</p>
+          <div class="case-outcome"><strong>Outcome</strong> Clean ITC position; returns filed on time with late-fee exposure minimised.</div>
+        </div>
+        <div class="case-card">
+          <span class="case-tag">Company Law</span>
+          <h3>LLP Incorporation &amp; First-Year Compliance</h3>
+          <p>Two partners wanted to formalise an existing business as an LLP. The practice handled the incorporation, drafting of the LLP Agreement, DIN/DPIN filing, and set up the first year's compliance calendar including Form 11 and Form 8.</p>
+          <div class="case-outcome"><strong>Outcome</strong> LLP incorporated on schedule; annual compliance filed before the due dates.</div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:2rem;">
+        <a href="case-studies.html" class="btn btn-primary">View All Case Studies &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Reviews -->
+  <section class="section" id="reviews">
+    <div class="container">
+      <h2 class="section-title">Client Reviews</h2>
+      <p class="section-subtitle">Feedback from clients, as published on our Google Business Profile.</p>
+      <div class="reviews-embed">
+        <iframe title="Client reviews on the Google Business Profile of Ashish Jayalata &amp; Associates" src="https://www.google.com/maps?q=Ashish+Jayalata+%26+Associates,+Shalimar+Garden,+Sahibabad,+Ghaziabad,+Uttar+Pradesh+201005&output=embed" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <p class="reviews-note">Ratings and reviews shown are published by Google on the business's public profile. If you have used our services, you are welcome to leave a review on our Google Business Profile.</p>
+    </div>
+  </section>
+
+  <!-- Service Areas -->
+  <section class="section section-alt" id="service-areas">
+    <div class="container">
+      <h2 class="section-title">Service Areas</h2>
+      <p class="section-subtitle">The practice serves Sahibabad, Ghaziabad, and the surrounding NCR neighbourhoods.</p>
+      <div class="loc-areas">
+        <div class="loc-area">Indirapuram</div>
+        <div class="loc-area">Vaishali</div>
+        <div class="loc-area">Sahibabad</div>
+        <div class="loc-area">Shalimar Garden</div>
+        <div class="loc-area">Vasundhara</div>
+        <div class="loc-area">Kaushambi</div>
+        <div class="loc-area">Raj Nagar</div>
+        <div class="loc-area">Pratap Vihar</div>
+        <div class="loc-area">Crossings Republik</div>
+        <div class="loc-area">Lal Kuan</div>
+        <div class="loc-area">Ghukna</div>
+        <div class="loc-area">Dasna</div>
+        <div class="loc-area">Muradnagar</div>
+        <div class="loc-area">Modinagar</div>
+        <div class="loc-area">Noida &amp; Greater Noida</div>
+        <div class="loc-area">Delhi NCR</div>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact Strip -->
   <section class="contact-strip">
     <div class="container">
@@ -261,7 +363,9 @@
     </div>
   </section>
 
-  <script src="js/components.js"></script>
-  <script src="js/main.js"></script>
+  
+  </main>
+  <script defer src="js/components.js"></script>
+  <script defer src="js/main.js"></script>
 </body>
 </html>
