@@ -552,7 +552,7 @@ a:hover { color: var(--accent); }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
   gap: 2rem;
   margin-bottom: 2rem;
 }

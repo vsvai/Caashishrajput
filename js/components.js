@@ -81,13 +81,7 @@
           '<li><a href="' + prefix + 'blog.html">Blog</a></li>' +
           '<li><a href="' + prefix + 'resources.html">Resources</a></li>' +
           '<li><a href="' + prefix + 'contact.html">Contact</a></li>' +
-        '</ul>' +
-      '</div>' +
-      '<div>' +
-        '<h4>Locations</h4>' +
-        '<ul class="footer-links">' +
           '<li><a href="' + prefix + 'index.html#reviews">Client Feedback</a></li>' +
-          '<li><a href="' + prefix + 'services.html">All Services</a></li>' +
         '</ul>' +
       '</div>' +
       '<div>' +
@@ -102,6 +96,19 @@
           '<li><a href="' + prefix + 'services/accounting-bookkeeping.html">Accounting &amp; Bookkeeping</a></li>' +
           '<li><a href="' + prefix + 'services/business-advisory.html">Business Advisory</a></li>' +
           '<li><a href="' + prefix + 'services.html#more">View all &rarr;</a></li>' +
+        '</ul>' +
+      '</div>' +
+      '<div>' +
+        '<h4>Important Links</h4>' +
+        '<ul class="footer-links">' +
+          '<li><a href="https://www.icai.org" target="_blank" rel="noopener">ICAI</a></li>' +
+          '<li><a href="https://www.incometax.gov.in" target="_blank" rel="noopener">Income Tax e-Filing</a></li>' +
+          '<li><a href="https://www.gst.gov.in" target="_blank" rel="noopener">GST Portal</a></li>' +
+          '<li><a href="https://www.dgft.gov.in" target="_blank" rel="noopener">DGFT</a></li>' +
+          '<li><a href="https://www.epfindia.gov.in" target="_blank" rel="noopener">EPFO (PF)</a></li>' +
+          '<li><a href="https://www.esic.gov.in" target="_blank" rel="noopener">ESIC (ESI)</a></li>' +
+          '<li><a href="https://www.mca.gov.in" target="_blank" rel="noopener">MCA</a></li>' +
+          '<li><a href="https://www.tdscpc.gov.in" target="_blank" rel="noopener">TRACES (TDS)</a></li>' +
         '</ul>' +
       '</div>' +
       '<div>' +
