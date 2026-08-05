@@ -1167,61 +1167,6 @@ a:hover { color: var(--accent); }
   display: block;
 }
 
-/* ===== Case Studies ===== */
-.case-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-
-.case-card {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.75rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.case-card .case-tag {
-  display: inline-block;
-  align-self: flex-start;
-  padding: 0.2rem 0.7rem;
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--primary-light);
-  margin-bottom: 0.75rem;
-}
-
-.case-card h3 {
-  font-size: 1.1rem;
-  color: var(--primary);
-  margin-bottom: 0.75rem;
-}
-
-.case-card p {
-  font-size: 0.92rem;
-  color: var(--text-light);
-  line-height: 1.6;
-  flex: 1;
-}
-
-.case-card .case-outcome {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border);
-  font-size: 0.9rem;
-}
-
-.case-card .case-outcome strong {
-  display: block;
-  color: var(--accent-strong);
-  margin-bottom: 0.25rem;
-}
-
 /* ===== Location Pages ===== */
 .loc-intro {
   max-width: 820px;

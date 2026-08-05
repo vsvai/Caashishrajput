@@ -78,7 +78,6 @@
           '<li><a href="' + prefix + 'index.html">Home</a></li>' +
           '<li><a href="' + prefix + 'about.html">About</a></li>' +
           '<li><a href="' + prefix + 'services.html">Services</a></li>' +
-          '<li><a href="' + prefix + 'case-studies.html">Case Studies</a></li>' +
           '<li><a href="' + prefix + 'blog.html">Blog</a></li>' +
           '<li><a href="' + prefix + 'resources.html">Resources</a></li>' +
           '<li><a href="' + prefix + 'contact.html">Contact</a></li>' +
