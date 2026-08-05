@@ -1166,7 +1166,7 @@ a:hover { color: var(--accent-text); }
 .founder-photo {
   flex-shrink: 0;
   width: 220px;
-  height: 276px;
+  aspect-ratio: 800 / 1029;
   border-radius: 14px;
   overflow: hidden;
   border: 3px solid var(--accent);
@@ -1176,7 +1176,6 @@ a:hover { color: var(--accent-text); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 15%;
   display: block;
 }
 
