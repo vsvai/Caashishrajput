@@ -86,7 +86,6 @@
       '<div>' +
         '<h4>Locations</h4>' +
         '<ul class="footer-links">' +
-          '<li><a href="' + prefix + 'index.html#service-areas">Service Areas</a></li>' +
           '<li><a href="' + prefix + 'index.html#reviews">Client Feedback</a></li>' +
           '<li><a href="' + prefix + 'services.html">All Services</a></li>' +
         '</ul>' +
