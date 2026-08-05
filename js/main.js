@@ -67,4 +67,22 @@ document.addEventListener('DOMContentLoaded', function() {
       head.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
   });
+
+  // Deep-link: expand + scroll to a specific service row (services.html#svc-...)
+  var hash = window.location.hash ? window.location.hash.slice(1) : '';
+  if (hash) {
+    var row = document.getElementById(hash);
+    if (row && row.classList.contains('acc-item')) {
+      var group = row.closest('.acc-group');
+      if (group) {
+        group.classList.add('pinned');
+        var h = group.querySelector('.acc-head');
+        if (h) h.setAttribute('aria-expanded', 'true');
+      }
+      setTimeout(function() {
+        row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        row.classList.add('acc-item-flash');
+      }, 150);
+    }
+  }
 });

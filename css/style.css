@@ -342,6 +342,12 @@ a:hover { color: var(--accent-text); }
 
 .acc-item:hover { background: #fdf8e8; }
 
+@keyframes accFlash {
+  0%   { background: #f3e3b0; }
+  100% { background: transparent; }
+}
+.acc-item-flash { animation: accFlash 2.4s ease-out; }
+
 .acc-item .icon-svg {
   flex-shrink: 0;
   width: 1.3rem;
