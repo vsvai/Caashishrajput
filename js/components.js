@@ -70,6 +70,15 @@
         '<img src="' + prefix + 'images/logo.webp" alt="Ashish Jayalata & Associates" class="footer-logo" width="40" height="40">' +
         '<h4>Ashish Jayalata &amp; Associates</h4>' +
         '<p>Chartered Accountant based in Sahibabad, Ghaziabad. Providing income tax, GST, audit, accounting, and company registration services for individuals and businesses.</p>' +
+        '<address class="nap" style="font-style:normal; line-height:1.8; margin-top:1rem;">' +
+          '<strong class="nap-name">Ashish Jayalata &amp; Associates</strong><br>' +
+          '<span class="nap-street">LG-3, S-14, Krishna Plaza</span><br>' +
+          '<span class="nap-locality">Vrindavan Garden, Sahibabad</span><br>' +
+          '<span class="nap-region">Ghaziabad, Uttar Pradesh 201005</span><br>' +
+          'Phone: <a href="tel:+918802586988" class="nap-phone">+91 88025 86988</a><br>' +
+          'Email: <a href="mailto:ca.ashishrajput@outlook.com" class="nap-email">ca.ashishrajput@outlook.com</a><br>' +
+          'Hours: Monday &ndash; Saturday, 10:00 AM &ndash; 7:00 PM' +
+        '</address>' +
         '<p class="disclaimer">The information on this website is for general informational purposes only and does not constitute professional advice. It is not intended to solicit clients or advertise professional attainments. Visitors are advised to seek independent professional advice before acting on any information herein.</p>' +
       '</div>' +
       '<div>' +
