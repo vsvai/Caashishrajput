@@ -28,35 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // FAQ toggle animation
-  document.querySelectorAll('.faq-item summary').forEach(function(summary) {
-    summary.addEventListener('click', function() {
-      var details = this.parentElement;
-      var answer = details.querySelector('.faq-answer');
-      if (answer) {
-        if (details.open) {
-          answer.style.maxHeight = answer.scrollHeight + 'px';
-          requestAnimationFrame(function() {
-            answer.style.maxHeight = '0';
-            answer.style.overflow = 'hidden';
-            answer.style.transition = 'max-height 0.25s ease';
-          });
-        } else {
-          answer.style.overflow = 'hidden';
-          answer.style.maxHeight = '0';
-          requestAnimationFrame(function() {
-            answer.style.transition = 'max-height 0.3s ease';
-            answer.style.maxHeight = answer.scrollHeight + 'px';
-            setTimeout(function() {
-              answer.style.overflow = '';
-              answer.style.maxHeight = '';
-            }, 300);
-          });
-        }
-      }
-    });
-  });
-
   // Services accordion: click/tap toggles a category independently
   document.querySelectorAll('.acc-group').forEach(function(group) {
     var head = group.querySelector('.acc-head');
