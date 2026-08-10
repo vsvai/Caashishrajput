@@ -12,7 +12,7 @@ module.exports = [
     file: 'index.html',
     title: 'Chartered Accountant Sahibabad, Ghaziabad | CA Ashish Rajput',
     description: 'Chartered Accountant in Sahibabad, Ghaziabad (201005). GST registration, ITR filing and tax audit handled by a practising CA. Call +91 88025 86988.',
-    h1: 'Chartered Accountant in Sahibabad, Ghaziabad',
+    h1: 'Ashish Jayalata & Associates',
     ogType: 'website',
     breadcrumbs: null,
     faq: null
@@ -21,7 +21,7 @@ module.exports = [
     file: 'services.html',
     title: 'CA Services in Sahibabad, Ghaziabad | GST, ITR, Audit & ROC',
     description: 'CA services in Sahibabad, Ghaziabad: GST registration, ITR filing, tax audit, company registration and accounting in Ghaziabad. Call +91 88025 86988.',
-    h1: 'CA Services in Sahibabad, Ghaziabad',
+    h1: 'Our Services',
     ogType: 'website',
     breadcrumbs: [{ label: 'Home', href: 'index.html' }, { label: 'Services' }],
     faq: [
@@ -66,7 +66,7 @@ module.exports = [
     file: 'about.html',
     title: 'About CA Ashish Rajput | Chartered Accountant, Sahibabad',
     description: 'About CA Ashish Rajput, practising Chartered Accountant in Sahibabad, Ghaziabad. ICAI member handling GST, ITR, audit and compliance. Call +91 88025 86988.',
-    h1: 'About CA Ashish Rajput, Chartered Accountant in Sahibabad',
+    h1: 'About',
     ogType: 'website',
     breadcrumbs: [{ label: 'Home', href: 'index.html' }, { label: 'About' }]
   },
@@ -74,7 +74,7 @@ module.exports = [
     file: 'contact.html',
     title: 'Contact CA Ashish Rajput | Chartered Accountant Sahibabad',
     description: 'Contact CA Ashish Rajput, Chartered Accountant in Sahibabad, Ghaziabad. LG-3, S-14, Krishna Plaza, Vrindavan Garden, Sahibabad. Call +91 88025 86988.',
-    h1: 'Contact Our Sahibabad, Ghaziabad Office',
+    h1: 'Contact',
     ogType: 'website',
     breadcrumbs: [{ label: 'Home', href: 'index.html' }, { label: 'Contact' }],
     faq: [
@@ -114,7 +114,7 @@ module.exports = [
     file: 'blog.html',
     title: 'Tax, GST & Compliance Updates | CA in Sahibabad, Ghaziabad',
     description: 'Tax, GST and compliance updates from a Chartered Accountant in Sahibabad, Ghaziabad. Due dates, filing guides and practical advice. Call +91 88025 86988.',
-    h1: 'Tax, GST & Compliance Updates',
+    h1: 'Blog',
     ogType: 'website',
     breadcrumbs: [{ label: 'Home', href: 'index.html' }, { label: 'Blog' }]
   },
@@ -122,7 +122,7 @@ module.exports = [
     file: 'resources.html',
     title: 'Tax & GST Resources | CA in Sahibabad, Ghaziabad',
     description: 'Tax, GST and compliance resources from a Chartered Accountant in Sahibabad, Ghaziabad: due date calendars, tables and official links. Call +91 88025 86988.',
-    h1: 'Tax, GST & Compliance Resources in Sahibabad, Ghaziabad',
+    h1: 'Resources',
     ogType: 'website',
     breadcrumbs: [{ label: 'Home', href: 'index.html' }, { label: 'Resources' }]
   },
@@ -134,7 +134,7 @@ module.exports = [
     file: 'services/gst.html',
     title: 'GST Registration & Return Filing in Sahibabad, Ghaziabad',
     description: 'GST registration and return filing in Sahibabad, Ghaziabad by a practising Chartered Accountant. GSTR-1, GSTR-3B and GSTR-9 filing. Call +91 88025 86988.',
-    h1: 'GST Registration & Return Filing in Sahibabad, Ghaziabad',
+    h1: 'GST Registration & Return Filing',
     ogType: 'website',
     serviceType: 'GST registration, return filing and compliance',
     breadcrumbs: [
@@ -195,7 +195,7 @@ module.exports = [
     file: 'services/income-tax.html',
     title: 'Income Tax Return (ITR) Filing in Sahibabad, Ghaziabad',
     description: 'Income tax return (ITR) filing in Sahibabad, Ghaziabad by a practising Chartered Accountant. ITR-1 to ITR-7 before 31 July 2026. Call +91 88025 86988.',
-    h1: 'Income Tax Return (ITR) Filing in Sahibabad, Ghaziabad',
+    h1: 'Income Tax Filing & Advisory',
     ogType: 'website',
     serviceType: 'Income tax return filing, tax planning and assessment support',
     breadcrumbs: [
@@ -256,7 +256,7 @@ module.exports = [
     file: 'services/tax-audit.html',
     title: 'Tax Audit under Section 44AB in Sahibabad, Ghaziabad',
     description: 'Tax audit under Section 44AB in Sahibabad, Ghaziabad by a practising Chartered Accountant. Form 3CA/3CB for turnover over Rs 1 crore. Call +91 88025 86988.',
-    h1: 'Tax Audit under Section 44AB in Sahibabad, Ghaziabad',
+    h1: 'Tax Audit Under Section 44AB',
     ogType: 'website',
     serviceType: 'Tax audit under Section 44AB with Form 3CA/3CB/3CD reporting',
     breadcrumbs: [
@@ -312,7 +312,7 @@ module.exports = [
     file: 'services/statutory-audit.html',
     title: 'Statutory Audit Services in Sahibabad, Ghaziabad',
     description: 'Statutory audit services in Sahibabad, Ghaziabad by a practising Chartered Accountant. Companies Act 2013 audit reports on time. Call +91 88025 86988.',
-    h1: 'Statutory Audit Services in Sahibabad, Ghaziabad',
+    h1: 'Statutory Audit',
     ogType: 'website',
     serviceType: 'Statutory audit of companies, LLPs and trusts under applicable law',
     breadcrumbs: [
@@ -363,7 +363,7 @@ module.exports = [
     file: 'services/internal-audit.html',
     title: 'Internal Audit Services in Sahibabad, Ghaziabad',
     description: 'Internal audit services in Sahibabad, Ghaziabad by a practising Chartered Accountant. Process reviews and internal controls testing. Call +91 88025 86988.',
-    h1: 'Internal Audit Services in Sahibabad, Ghaziabad',
+    h1: 'Internal Audit',
     ogType: 'website',
     serviceType: 'Internal audit, process review and controls testing',
     breadcrumbs: [
@@ -418,7 +418,7 @@ module.exports = [
     file: 'services/company-llp-registration.html',
     title: 'Company & LLP Registration in Sahibabad, Ghaziabad',
     description: 'Company and LLP registration in Sahibabad, Ghaziabad by a practising Chartered Accountant. Incorporation with ROC annual compliance. Call +91 88025 86988.',
-    h1: 'Company & LLP Registration in Sahibabad, Ghaziabad',
+    h1: 'Company & LLP Registration',
     ogType: 'website',
     serviceType: 'Company and LLP incorporation with ROC compliance',
     breadcrumbs: [
@@ -474,7 +474,7 @@ module.exports = [
     file: 'services/trust-society-ngo-registration.html',
     title: 'Trust, Society & NGO Registration in Ghaziabad | 12A, 80G',
     description: 'Trust, society and NGO registration in Sahibabad, Ghaziabad by a practising Chartered Accountant. 12A and 80G registration support. Call +91 88025 86988.',
-    h1: 'Trust, Society & NGO Registration in Ghaziabad',
+    h1: 'Trust, Society & NGO Registration',
     ogType: 'website',
     serviceType: 'Trust, society and Section 8 company registration with 12A/80G support',
     breadcrumbs: [
@@ -524,7 +524,7 @@ module.exports = [
     file: 'services/msme-udyam-registration.html',
     title: 'MSME Udyam Registration in Sahibabad, Ghaziabad',
     description: 'MSME Udyam registration in Sahibabad, Ghaziabad by a practising Chartered Accountant. Udyam certificate with MSME scheme benefits. Call +91 88025 86988.',
-    h1: 'MSME Udyam Registration in Sahibabad, Ghaziabad',
+    h1: 'MSME / Udyam Registration',
     ogType: 'website',
     serviceType: 'MSME Udyam registration and classification',
     breadcrumbs: [
@@ -579,7 +579,7 @@ module.exports = [
     file: 'services/import-export-code-iec.html',
     title: 'Import Export Code (IEC) Registration in Ghaziabad',
     description: 'Import export code (IEC) registration in Sahibabad, Ghaziabad by a practising Chartered Accountant. DGFT IEC in 2-3 working days. Call +91 88025 86988.',
-    h1: 'Import Export Code (IEC) Registration in Ghaziabad',
+    h1: 'Import Export Code (IEC)',
     ogType: 'website',
     serviceType: 'Import Export Code (IEC) registration and modification with DGFT',
     breadcrumbs: [
@@ -634,7 +634,7 @@ module.exports = [
     file: 'services/fssai-registration.html',
     title: 'FSSAI Registration & Food License in Ghaziabad',
     description: 'FSSAI registration in Sahibabad, Ghaziabad by a practising Chartered Accountant. State and central food business licences. Call +91 88025 86988.',
-    h1: 'FSSAI Registration & Food License in Ghaziabad',
+    h1: 'FSSAI Registration',
     ogType: 'website',
     serviceType: 'FSSAI registration and food business licence',
     breadcrumbs: [
@@ -689,7 +689,7 @@ module.exports = [
     file: 'services/lei-certificate.html',
     title: 'LEI Certificate Registration & Renewal in Ghaziabad',
     description: 'LEI certificate registration in Sahibabad, Ghaziabad by a practising Chartered Accountant. LEI for RBI and bank transactions. Call +91 88025 86988.',
-    h1: 'LEI Certificate Registration & Renewal in Ghaziabad',
+    h1: 'LEI Certificate',
     ogType: 'website',
     serviceType: 'LEI registration, renewal and annual update',
     breadcrumbs: [
@@ -739,7 +739,7 @@ module.exports = [
     file: 'services/accounting-bookkeeping.html',
     title: 'Accounting & Bookkeeping Services in Sahibabad, Ghaziabad',
     description: 'Accounting and bookkeeping services in Sahibabad, Ghaziabad by a practising Chartered Accountant. Monthly books, ledgers and reports. Call +91 88025 86988.',
-    h1: 'Accounting & Bookkeeping Services in Sahibabad, Ghaziabad',
+    h1: 'Accounting and Bookkeeping',
     ogType: 'website',
     serviceType: 'Accounting and bookkeeping with monthly financial reporting',
     breadcrumbs: [
@@ -795,7 +795,7 @@ module.exports = [
     file: 'services/business-advisory.html',
     title: 'Virtual CFO & Business Advisory in Ghaziabad, NCR',
     description: 'Virtual CFO and business advisory in Sahibabad, Ghaziabad by a practising Chartered Accountant. Budgeting, cash flow and MIS reporting. Call +91 88025 86988.',
-    h1: 'Virtual CFO & Business Advisory in Ghaziabad',
+    h1: 'Business Advisory',
     ogType: 'website',
     serviceType: 'Virtual CFO, budgeting, cash flow and management reporting',
     breadcrumbs: [
@@ -850,7 +850,7 @@ module.exports = [
     file: 'services/business-plan-financial-projections.html',
     title: 'Business Plan & Financial Projections in Ghaziabad',
     description: 'Business plans and financial projections in Sahibabad, Ghaziabad by a practising Chartered Accountant. Bank and investor-ready plans. Call +91 88025 86988.',
-    h1: 'Business Plan & Financial Projections in Ghaziabad',
+    h1: 'Business Plan and Financial Projections',
     ogType: 'website',
     serviceType: 'Business plan and financial projection preparation',
     breadcrumbs: [
@@ -905,7 +905,7 @@ module.exports = [
     file: 'services/asset-valuation.html',
     title: 'Asset Inventory & Valuation Services in Ghaziabad',
     description: 'Asset valuation services in Sahibabad, Ghaziabad by a practising Chartered Accountant. Asset registers and valuations for loans. Call +91 88025 86988.',
-    h1: 'Asset Inventory & Valuation Services in Ghaziabad',
+    h1: 'Asset Inventory and Valuation',
     ogType: 'website',
     serviceType: 'Asset inventory and valuation reporting',
     breadcrumbs: [
@@ -960,7 +960,7 @@ module.exports = [
     file: 'services/charities-trust-audits.html',
     title: 'Trust & NGO Audit Services in Ghaziabad | 12A, 80G, FCRA',
     description: 'Trust and NGO audit services in Sahibabad, Ghaziabad by a practising Chartered Accountant. 12A, 80G and FCRA compliance support. Call +91 88025 86988.',
-    h1: 'Trust & NGO Audit Services in Ghaziabad',
+    h1: 'Charities, Trust and NGO Audits',
     ogType: 'website',
     serviceType: 'Audit of trusts and NGOs with Form 10B/10BB reporting',
     breadcrumbs: [
@@ -1015,7 +1015,7 @@ module.exports = [
     file: 'services/corporate-representation.html',
     title: 'Tax Notice & Assessment Representation in Ghaziabad',
     description: 'Tax notice and assessment representation in Sahibabad, Ghaziabad by a practising Chartered Accountant. Notice replies and appeals. Call +91 88025 86988.',
-    h1: 'Tax Notice & Assessment Representation in Ghaziabad',
+    h1: 'Corporate Representation',
     ogType: 'website',
     serviceType: 'Representation before tax and regulatory authorities',
     breadcrumbs: [
