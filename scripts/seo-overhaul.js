@@ -295,7 +295,7 @@ function applyFaq(content, entry) {
     // Replace existing FAQ items with the canonical set (first block -> all,
     // any extra blocks removed).
     let first = true;
-    content = content.replace(/<details class="faq-item">[\s\S]*?<\/details>/g, function () {
+    content = content.replace(/<details class="faq-item"[^>]*>[\s\S]*?<\/details>/g, function () {
       if (first) { first = false; return itemsHtml; }
       return '';
     });

@@ -96,7 +96,7 @@ module.exports = [
       {
         id: 'faq-contact-form',
         q: 'How quickly do you respond to enquiries?',
-        a: 'We respond to enquiries within one working day, and usually much sooner during office hours. The enquiry form sends your message to us on WhatsApp, so it reaches us immediately. If your matter is urgent, calling us directly is the fastest option.'
+        a: 'We respond to enquiries within one working day, and usually much sooner during office hours. The enquiry form can send your message to us on WhatsApp or by email, so it reaches us immediately. If your matter is urgent, calling us directly is the fastest option.'
       },
       {
         id: 'faq-contact-services-enquiry',
