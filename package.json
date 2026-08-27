@@ -1,0 +1,18 @@
+{
+  "name": "caashishrajput-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Weekly blog content pipeline for caashishrajput.com (static GitHub Pages site)",
+  "scripts": {
+    "blog:new": "node scripts/blog-build.js new",
+    "blog:preview": "node scripts/blog-build.js preview",
+    "blog:publish": "node scripts/blog-build.js publish",
+    "blog:rebuild": "node scripts/blog-build.js rebuild",
+    "blog:list": "node scripts/blog-build.js list",
+    "seo:overhaul": "node scripts/seo-overhaul.js",
+    "seo:validate": "node scripts/validate-seo.js"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
