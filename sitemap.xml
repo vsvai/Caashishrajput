@@ -142,45 +142,41 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <!-- Blog Posts -->
   <url>
+    <loc>https://caashishrajput.com/blog/gst-registration-turnover-limits-up-2026.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://caashishrajput.com/blog/gst-annual-return-gstr9-fy2025-26.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://caashishrajput.com/blog/gst-due-dates-july-2026.html</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://caashishrajput.com/blog/income-tax-advance-tax-instalments-fy2025-26.html</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://caashishrajput.com/blog/llp-annual-compliance-requirements-2026.html</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://caashishrajput.com/blog/icai-code-of-ethics-2026-website-rules.html</loc>
-    <lastmod>2026-08-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://caashishrajput.com/blog/gst-annual-return-gstr9-fy2025-26.html</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Utility Pages -->
-  <url>
-    <loc>https://caashishrajput.com/pages/privacy-policy.html</loc>
-    <lastmod>2026-08-10</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
 </urlset>
