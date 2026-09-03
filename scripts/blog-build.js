@@ -326,9 +326,9 @@ function buildPostHtml(post) {
     '      <div class="author-bio">\n' +
     '        <div class="author-photo">\n' +
     '          <picture>\n' +
-    '            <source srcset="../images/hero.avif" type="image/avif">\n' +
-    '            <source srcset="../images/hero.webp" type="image/webp">\n' +
-    '            <img src="../images/logo.png" alt="CA Ashish Rajput, Chartered Accountant" width="72" height="72" loading="lazy">\n' +
+    '            <source srcset="../images/author-avatar.avif" type="image/avif">\n' +
+    '            <source srcset="../images/author-avatar.webp" type="image/webp">\n' +
+    '            <img src="../images/author-avatar.jpg" alt="CA Ashish Rajput, Chartered Accountant" width="72" height="72" loading="lazy">\n' +
     '          </picture>\n' +
     '        </div>\n' +
     '        <div class="author-info">\n' +
