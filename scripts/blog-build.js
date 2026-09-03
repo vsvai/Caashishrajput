@@ -387,15 +387,16 @@ function readPublishedPosts() {
 
 function cardHtml(post) {
   const monthYear = post.date ? monthLabel(post.date) : '';
-  return '        <div class="blog-listing-card">\n' +
+  const href = 'blog/' + post.slug + '.html';
+  return '        <a href="' + href + '" class="blog-listing-card" aria-label="Read: ' + htmlEsc(stripHtml(post.h1)) + '">\n' +
     '          <div class="blog-meta">\n' +
     '            <span class="blog-date">' + monthYear + '</span>\n' +
     '            <span class="blog-category">' + htmlEsc(post.category) + '</span>\n' +
     '          </div>\n' +
-    '          <h2><a href="blog/' + post.slug + '.html">' + htmlEsc(stripHtml(post.h1)) + '</a></h2>\n' +
+    '          <h2>' + htmlEsc(stripHtml(post.h1)) + '</h2>\n' +
     '          <p class="blog-excerpt">' + htmlEsc(cleanExcerpt(post.excerpt)) + '</p>\n' +
-    '          <a href="blog/' + post.slug + '.html" class="read-more">Read more &rarr;</a>\n' +
-    '        </div>';
+    '          <span class="read-more">Read more <span class="card-arrow" aria-hidden="true">&rarr;</span></span>\n' +
+    '        </a>';
 }
 
 function monthLabel(iso) {
