@@ -385,9 +385,25 @@ function readPublishedPosts() {
   return posts;
 }
 
+// Descriptive "read more" labels per post slug (kept in sync with blog.html grid).
+// Falls back to generic "Read more" for posts without a bespoke label.
+const READ_MORE = {
+  'advance-tax-guide-due-dates-instalments-2026': 'Due dates, calculations and interest rules explained',
+  'ccfs-2026-extended-to-15-september-2026': 'ROC filing relief scheme deadline and fee waivers',
+  'itr-filing-business-income-due-date-ay-2026-27': '31 August 2026 deadline for ITR-3/ITR-4 filers',
+  'gst-registration-turnover-limits-up-2026': 'When GST registration is mandatory in UP',
+  'gst-annual-return-gstr9-fy2025-26': 'GSTR-9 filing guide with deadlines and errors',
+  'gst-due-dates-july-2026': 'Complete GST filing calendar for July 2026',
+  'income-tax-advance-tax-instalments-fy2025-26': 'Advance tax dates and interest calculation guide',
+  'llp-annual-compliance-requirements-2026': 'Form 8, Form 11 and MCA deadlines explained',
+  'icai-code-of-ethics-2026-website-rules': 'New CA website and advertising rules under ICAI',
+  'delhi-hc-biometric-aadhaar-gst-registration': 'Delhi HC ruling makes biometric Aadhaar mandatory'
+};
+
 function cardHtml(post) {
   const monthYear = post.date ? monthLabel(post.date) : '';
   const href = 'blog/' + post.slug + '.html';
+  const readMore = READ_MORE[post.slug] || 'Read more';
   return '        <a href="' + href + '" class="blog-listing-card" aria-label="Read: ' + htmlEsc(stripHtml(post.h1)) + '">\n' +
     '          <div class="blog-meta">\n' +
     '            <span class="blog-date">' + monthYear + '</span>\n' +
@@ -395,7 +411,7 @@ function cardHtml(post) {
     '          </div>\n' +
     '          <h2>' + htmlEsc(stripHtml(post.h1)) + '</h2>\n' +
     '          <p class="blog-excerpt">' + htmlEsc(cleanExcerpt(post.excerpt)) + '</p>\n' +
-    '          <span class="read-more">Read more <span class="card-arrow" aria-hidden="true">&rarr;</span></span>\n' +
+    '          <span class="read-more">' + readMore + ' <span class="card-arrow" aria-hidden="true">&rarr;</span></span>\n' +
     '        </a>';
 }
 
@@ -418,6 +434,19 @@ function cleanExcerpt(s) {
   return (brk > 0 ? cut.slice(0, brk) : cut) + ' \u2026';
 }
 
+function findMatchingDiv(content, openTagStart) {
+  // Returns the index of the < in the </div> that closes the <div> opened at openTagStart.
+  const re = /<div\b[^>]*>|<\/div>/g;
+  re.lastIndex = openTagStart;
+  let depth = 0;
+  let m;
+  while ((m = re.exec(content)) !== null) {
+    depth += m[0].charAt(1) === '/' ? -1 : 1;
+    if (depth === 0) return m.index;
+  }
+  return -1;
+}
+
 function rebuildBlogHtml(posts) {
   let content = fs.readFileSync(BLOG_HTML, 'utf8');
 
@@ -438,16 +467,17 @@ function rebuildBlogHtml(posts) {
 
   // Replace the blog listing grid contents (between <div class="blog-listing-grid"> and its closing </div>)
   const start = content.indexOf('<div class="blog-listing-grid">');
-  const end = content.indexOf('</div>', start);
-  if (start !== -1 && end !== -1) {
-    const close = content.indexOf('\n    </div>', start);
-    const gridBlock = content.slice(start, close !== -1 ? close : end) + '\n';
-    // We'll rebuild inner cards only
-    const innerStart = content.indexOf('>', content.indexOf('<div class="blog-listing-grid">')) + 1;
-    const innerEnd = content.lastIndexOf('\n', end);
-    content = content.slice(0, innerStart) + '\n' +
-      posts.map(cardHtml).join('\n\n') + '\n\n' +
-      content.slice(innerEnd);
+  if (start !== -1) {
+    const openEnd = content.indexOf('>', start) + 1;
+    const closeEnd = findMatchingDiv(content, start);
+    if (closeEnd !== -1) {
+      content = content.slice(0, openEnd) + '\n' +
+        posts.map(cardHtml).join('\n\n') + '\n\n' +
+        content.slice(closeEnd);
+    } else {
+      // No closing tag found — leave listing untouched rather than corrupt it.
+      console.warn('  ! Could not find the closing </div> for .blog-listing-grid in blog.html — listing not auto-updated.');
+    }
   } else {
     // No grid found — find the <section class="section"> after hero and insert grid
     console.warn('  ! Could not locate .blog-listing-grid in blog.html — listing not auto-updated.');
