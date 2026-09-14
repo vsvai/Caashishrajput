@@ -1122,23 +1122,6 @@ module.exports = [
     ]
   },
   {
-    file: 'blog/icai-code-of-ethics-2026-website-rules.html',
-    title: 'ICAI Code of Ethics 2026 Website Rules | CA, Ghaziabad',
-    description: 'ICAI Code of Ethics 13th edition website rules effective 1 April 2026: what changed for CA websites, explained by a CA in Ghaziabad. Call +91 88025 86988.',
-    h1: 'ICAI Code of Ethics — Updated Website & Advertising Rules (2026)',
-    ogType: 'article',
-    article: {
-      headline: 'ICAI Code of Ethics — Updated Website & Advertising Rules (2026)',
-      datePublished: '2026-04-01',
-      dateModified: '2026-08-10'
-    },
-    breadcrumbs: [
-      { label: 'Home', href: 'index.html' },
-      { label: 'Blog', href: 'blog.html' },
-      { label: 'ICAI Code of Ethics — Updated Website & Advertising Rules (2026)' }
-    ]
-  },
-  {
     file: 'blog/gst-annual-return-gstr9-fy2025-26.html',
     title: 'GSTR-9 Annual Return FY 2025-26 | CA Ashish Rajput',
     description: 'GSTR-9 annual return for FY 2025-26: who must file, due date of 31 December, key sections and common errors, from a CA in Ghaziabad. Call +91 88025 86988.',
