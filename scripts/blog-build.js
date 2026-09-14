@@ -565,7 +565,7 @@ function cmdNew(args) {
     '\n' +
     '## How We Can Help\n' +
     '\n' +
-    'End with a short paragraph on how clients can reach out, and include the phone number +91 88025 86988 once.\n';
+    'End with a short paragraph on how clients can reach out. Use the clickable links on the phone number and WhatsApp messenger: call [ +91 88025 86988](tel:+918802586988) or [Chat on WhatsApp](https://wa.me/918802586988?text=Hi%2C%20I%20would%20like%20to%20enquire%20about%20CA%20services.).\n';
   fs.writeFileSync(file, tmpl, 'utf8');
   console.log('Created draft: ' + file);
 }
