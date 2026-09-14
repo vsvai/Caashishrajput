@@ -397,7 +397,8 @@ const READ_MORE = {
   'income-tax-advance-tax-instalments-fy2025-26': 'Advance tax dates and interest calculation guide',
   'llp-annual-compliance-requirements-2026': 'Form 8, Form 11 and MCA deadlines explained',
   'icai-code-of-ethics-2026-website-rules': 'New CA website and advertising rules under ICAI',
-  'delhi-hc-biometric-aadhaar-gst-registration': 'Delhi HC ruling makes biometric Aadhaar mandatory'
+  'delhi-hc-biometric-aadhaar-gst-registration': 'Delhi HC ruling makes biometric Aadhaar mandatory',
+  'mca-incorporation-amendment-rules-2026': 'MCA draft rules: fewer forms, faster company registration'
 };
 
 function cardHtml(post) {
