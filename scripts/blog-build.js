@@ -398,7 +398,8 @@ const READ_MORE = {
   'llp-annual-compliance-requirements-2026': 'Form 8, Form 11 and MCA deadlines explained',
   'delhi-hc-biometric-aadhaar-gst-registration': 'Delhi HC ruling makes biometric Aadhaar mandatory',
   'mca-incorporation-amendment-rules-2026': 'MCA draft rules: fewer forms, faster company registration',
-  'fssai-registration-licensing-guide-2026': 'FSSAI tiers, fees and KoB-wise process explained'
+  'fssai-registration-licensing-guide-2026': 'FSSAI tiers, fees and KoB-wise process explained',
+  'which-business-structure-should-you-register': 'Proprietorship vs LLP vs OPC vs Pvt Ltd: which fits you'
 };
 
 function cardHtml(post) {
