@@ -10,6 +10,10 @@ description: EPFO wage ceiling raised from Rs. 15,000 to Rs. 25,000: who gets co
 
 The Union Cabinet has approved a major change to India's retirement savings framework — raising the wage ceiling for mandatory EPFO coverage from Rs. 15,000 to Rs. 25,000 per month. Here's a quick, clear breakdown of what changed and why it matters. If you run payroll or employment compliance for your business, our [business advisory services](../services/business-advisory.html) can help you apply the updated ceiling correctly from day one.
 
+<figure class="blog-figure">
+  <img src="../images/epfo-wage-ceiling-25000-2026.jpeg" alt="EPFO wage ceiling raised from Rs. 15,000 to Rs. 25,000 in 2026" width="1441" height="871" loading="lazy">
+</figure>
+
 ## What Was Decided
 
 The Ministry of Labour & Employment's proposal to enhance the EPFO wage ceiling has been approved by the Cabinet, chaired by Prime Minister Narendra Modi. In simple terms: the salary limit that decides who must be covered under the Employees' Provident Fund Organisation (EPFO) has gone up.
