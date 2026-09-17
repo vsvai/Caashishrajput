@@ -126,7 +126,7 @@
   <section class="section">
     <div class="container">
       <h2 class="section-title">FY 2026-27 Compliance Calendar</h2>
-      <p class="section-subtitle">All the important due dates for the financial year 2026-27 (April 2026 – March 2027) across income tax, GST, PF, ESI, companies law (ROC/MCA) and the LLP Act &mdash; at a glance.</p>
+      <p class="section-subtitle">All the important due dates for the financial year 2026-27 (April 2026 &ndash; March 2027) across income tax, GST, PF, ESI, companies law (ROC/MCA) and the LLP Act. Pick a month below to see its deadlines at a glance.</p>
 
       <div class="cal-legend">
         <span class="cal-legend-item"><span class="cal-dot" style="background:#2563eb;"></span>Income Tax</span>
@@ -137,9 +137,28 @@
         <span class="cal-legend-item"><span class="cal-dot" style="background:#c2410c;"></span>LLP Act</span>
       </div>
 
-      <div class="cal-grid">
+      <div class="cal-picker" id="calPicker">
+        <button type="button" class="cal-nav-btn" id="calPrev" aria-label="Previous month">&lsaquo;</button>
+        <div class="cal-tabs" id="calTabs" role="tablist" aria-label="Select a month">
+          <button type="button" role="tab" class="cal-tab" data-index="0" aria-selected="false">Apr &rsquo;26</button>
+          <button type="button" role="tab" class="cal-tab" data-index="1" aria-selected="false">May &rsquo;26</button>
+          <button type="button" role="tab" class="cal-tab" data-index="2" aria-selected="false">Jun &rsquo;26</button>
+          <button type="button" role="tab" class="cal-tab" data-index="3" aria-selected="false">Jul &rsquo;26</button>
+          <button type="button" role="tab" class="cal-tab" data-index="4" aria-selected="false">Aug &rsquo;26</button>
+          <button type="button" role="tab" class="cal-tab" data-index="5" aria-selected="false">Sep &rsquo;26</button>
+          <button type="button" role="tab" class="cal-tab" data-index="6" aria-selected="false">Oct &rsquo;26</button>
+          <button type="button" role="tab" class="cal-tab" data-index="7" aria-selected="false">Nov &rsquo;26</button>
+          <button type="button" role="tab" class="cal-tab" data-index="8" aria-selected="false">Dec &rsquo;26</button>
+          <button type="button" role="tab" class="cal-tab" data-index="9" aria-selected="false">Jan &rsquo;27</button>
+          <button type="button" role="tab" class="cal-tab" data-index="10" aria-selected="false">Feb &rsquo;27</button>
+          <button type="button" role="tab" class="cal-tab" data-index="11" aria-selected="false">Mar &rsquo;27</button>
+        </div>
+        <button type="button" class="cal-nav-btn" id="calNext" aria-label="Next month">&rsaquo;</button>
+      </div>
 
-        <div class="cal-month">
+      <div class="cal-stage">
+
+        <div class="cal-month active">
           <div class="cal-month-head"><h3>April 2026</h3><span class="cal-count">10 items</span></div>
           <ul class="cal-items">
             <li class="cal-item"><span class="cal-date">7</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>TDS/TCS payment</strong> &mdash; March 2026</span></li>
@@ -307,6 +326,35 @@
         </div>
 
       </div>
+
+      <script>
+        (function () {
+          var tabs = document.querySelectorAll('#calTabs .cal-tab');
+          var cards = document.querySelectorAll('.cal-stage .cal-month');
+          var cur = -1;
+          function show(i) {
+            if (i === cur) return;
+            cur = i;
+            for (var k = 0; k < tabs.length; k++) {
+              tabs[k].classList.toggle('active', k === i);
+              tabs[k].setAttribute('aria-selected', k === i ? 'true' : 'false');
+              cards[k].classList.toggle('active', k === i);
+            }
+            var activeTab = tabs[i];
+            if (activeTab.scrollIntoView) activeTab.scrollIntoView({ inline: 'nearest', block: 'nearest' });
+          }
+          for (var k = 0; k < tabs.length; k++) {
+            tabs[k].addEventListener('click', (function (idx) { return function () { show(idx); }; })(k));
+          }
+          var prev = document.getElementById('calPrev');
+          var next = document.getElementById('calNext');
+          if (prev) prev.addEventListener('click', function () { show((cur + 11) % 12); });
+          if (next) next.addEventListener('click', function () { show((cur + 1) % 12); });
+          var now = new Date();
+          var currentIndex = ((now.getMonth() - 3 + 12) % 12); /* Apr=0 ... Mar=11 */
+          show(currentIndex);
+        })();
+      </script>
 
       <div class="cal-note">
         <p><strong>How to read this:</strong> monthly entries refer to returns/payments of the previous month unless otherwise stated. Statutory dates may change by notification &mdash; always confirm on the official portal (GST, income tax, EPFO/ESI, MCA) before filing.</p>
