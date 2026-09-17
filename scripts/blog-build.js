@@ -399,7 +399,8 @@ const READ_MORE = {
   'delhi-hc-biometric-aadhaar-gst-registration': 'Delhi HC ruling makes biometric Aadhaar mandatory',
   'mca-incorporation-amendment-rules-2026': 'MCA draft rules: fewer forms, faster company registration',
   'fssai-registration-licensing-guide-2026': 'FSSAI tiers, fees and KoB-wise process explained',
-  'which-business-structure-should-you-register': 'Proprietorship vs LLP vs OPC vs Pvt Ltd: which fits you'
+  'which-business-structure-should-you-register': 'Proprietorship vs LLP vs OPC vs Pvt Ltd: which fits you',
+  'epfo-wage-ceiling-raised-to-25000': 'EPFO ceiling up to Rs. 25,000: new coverage and what changes'
 };
 
 function cardHtml(post) {
