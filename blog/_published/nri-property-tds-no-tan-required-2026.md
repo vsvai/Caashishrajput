@@ -125,10 +125,10 @@ If you are buying property from an NRI in Ghaziabad or elsewhere, our team can h
 
 ## References
 
-- Ministry of Finance, Budget Speech 2026-27, para 110
-- Ministry of Finance, Memorandum explaining the provisions of the Finance Bill, 2026 — amendment to section 397(1)(c), effective 1 October 2026
-- Income Tax Department, Income-tax Act, 2025 as amended by Finance Act, 2026
-- CBDT Notification No. 121/2026 (G.S.R. 830(E)) dated 22 September 2026 — Income-tax (Fifth Amendment) Rules, 2026
+- Ministry of Finance, <a href="https://www.indiabudget.gov.in/doc/budget_speech.pdf" target="_blank" rel="noopener">Budget Speech 2026-27, para 110</a>
+- Ministry of Finance, <a href="https://www.indiabudget.gov.in/doc/memo.pdf" target="_blank" rel="noopener">Memorandum explaining the provisions of the Finance Bill, 2026</a> — amendment to section 397(1)(c), effective 1 October 2026
+- Income Tax Department, <a href="https://www.incometaxindia.gov.in/documents/d/guest/income_tax_act_2025_as_amended_by_fa_act_2026-pdf" target="_blank" rel="noopener">Income-tax Act, 2025 as amended by Finance Act, 2026</a>
+- <a href="https://www.incometax.gov.in/iec/foportal/sites/default/files/2026-09/Notification-no-121-2026.pdf" target="_blank" rel="noopener">CBDT Notification No. 121/2026 (G.S.R. 830(E)) dated 22 September 2026</a> — Income-tax (Fifth Amendment) Rules, 2026
 
 ## How We Can Help
 
