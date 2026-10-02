@@ -1,20 +1,30 @@
 // js/careers-config.js — Careers & Recruitment module configuration.
 //
 // ============================================================================
-//  SET THIS UP ONCE
+//  STATUS: credentials set. Migrations still need to be run.
 // ============================================================================
-//  1. Supabase dashboard -> Project Settings -> API
-//  2. Copy the Project URL and the `anon` public key into the two constants
-//     below.
-//  3. Run the three SQL files in supabase/migrations/ in order (SQL editor).
+//  DONE
+//    1. Project URL and publishable key filled in below.
+//    2. Auth email provider confirmed enabled (mailer_autoconfirm is false, so
+//       the six-digit confirmation code is required).
 //
-//  The `anon` key is designed to be public: it only grants what Row Level
-//  Security and the SECURITY DEFINER RPCs in the migrations allow. Never put
-//  the service_role key in this file — it would expose every applicant's CV.
+//  STILL TODO — without this the pages show a setup notice:
+//    3. Run the three SQL files in supabase/migrations/ in order, then promote
+//       your own account with the raw_app_meta_data update in
+//       CAREERS-MODULE.md §1.5.
+//
+//  The publishable key below is designed to be public: it grants only what Row
+//  Level Security and the SECURITY DEFINER RPCs in the migrations allow, and
+//  those policies are the real security boundary. Never put a secret or
+//  service_role key in this file — it bypasses RLS and would expose every
+//  applicant's CV.
 // ============================================================================
 
-export const SUPABASE_URL = 'https://YOUR-PROJECT-REF.supabase.co';
-export const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+export const SUPABASE_URL = 'https://npcpucisiabntaryccnt.supabase.co';
+
+// The publishable (`sb_publishable_`) key, safe to ship: it only grants what
+// Row Level Security allows. Never put a secret/service_role key in this file.
+export const SUPABASE_ANON_KEY = 'sb_publishable_eFbi4n6rT5aRKqu1Rb5lrQ_8xrIG07N';
 
 // CV rules. The database enforces the same limits independently
 // (begin_cv_upload / submit_application), so changing these only changes the

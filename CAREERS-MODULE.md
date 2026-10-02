@@ -33,17 +33,19 @@ reference `public.is_admin()`.
 
 Each file is self-contained and safe to re-run.
 
+**Status: not yet applied.** Verified against the project — calling
+`public_list_vacancies` over PostgREST currently returns HTTP 404, which is what
+an absent function looks like. Run all three before testing anything else.
+
 ### 1.3 Add the credentials
 
-Edit the two constants at the top of `js/careers-config.js`:
+**Done.** `js/careers-config.js` now holds the real project URL and publishable
+key for `npcpucisiabntaryccnt`. The Auth email provider is enabled and
+`mailer_autoconfirm` is `false`, so the six-digit confirmation code is
+required rather than auto-confirming.
 
-```js
-export const SUPABASE_URL = 'https://YOUR-PROJECT-REF.supabase.co';
-export const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
-```
-
-Then push. Until both are real, every page shows a "not configured" notice and
-no form will submit.
+Until the migrations are run the module cannot work: the RPCs the pages call do
+not exist yet, so every request 404s and each page shows its setup notice.
 
 ### 1.4 Enable email OTP
 
