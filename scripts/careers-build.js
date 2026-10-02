@@ -175,7 +175,14 @@ function jobPostingJson(v) {
       sameAs: BASE_URL
     },
     url: BASE_URL + '/career/' + v.slug + '.html',
-    directApply: true,
+    // Applications are taken by email, so the contact is published instead of
+    // directApply — there is no application form on the site to point at.
+    applicationContact: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      email: 'ca.ashishrajput@outlook.com',
+      telephone: '+918802586988'
+    },
     jobLocation: {
       '@type': 'Place',
       address: {
@@ -366,11 +373,27 @@ function sectionHtml(heading, markdownBlock, className) {
 }
 
 function applyPanelHtml(v) {
+  // Applications are plain email, so the page needs no server, no account and no
+  // JavaScript. Every link and address below is static.
   const isOpen = v.status === 'published';
-  const label = isOpen ? 'Apply Now' : (v.status === 'closed' ? 'Applications Closed' : 'Not Yet Published');
-  const href = 'apply.html?slug=' + encodeURIComponent(v.slug);
+  const label = isOpen ? 'Email Your CV' : (v.status === 'closed' ? 'Applications Closed' : 'Not Yet Published');
+  const subject = 'Application — ' + v.title + ' (' + v.location + ')';
+  const body = [
+    'I am applying for the ' + v.title + ' position in ' + v.location + '.',
+    '',
+    'Please find my CV attached.',
+    '',
+    'Name:',
+    'Email:',
+    'Mobile:',
+    'Years of experience:',
+    ''
+  ].join('\n');
+  const href = 'mailto:ca.ashishrajput@outlook.com' +
+    '?subject=' + encodeURIComponent(subject) +
+    '&body=' + encodeURIComponent(body);
   const note = isOpen
-    ? 'Applications close automatically on ' + htmlEsc(longDateLabel(v.closing_date)) + '.'
+    ? 'We are accepting applications until ' + htmlEsc(longDateLabel(v.closing_date)) + '.'
     : 'Applications for this position are now closed.';
 
   return '' +
@@ -380,8 +403,9 @@ function applyPanelHtml(v) {
         ? '<a class="btn btn-primary" href="' + href + '">' + label + '</a>'
         : '<button type="button" class="btn btn-ghost" disabled aria-disabled="true">' + label + '</button>') +
       '<p>' + note + '</p>' +
-      '<noscript><p class="text-small muted">Enable JavaScript to apply online, or email ' +
-        '<a href="mailto:ca.ashishrajput@outlook.com">ca.ashishrajput@outlook.com</a> with your CV.</p></noscript>' +
+      '<p class="text-small muted" style="margin:0;">Attach your CV as a PDF and send it to ' +
+        '<a href="mailto:ca.ashishrajput@outlook.com">ca.ashishrajput@outlook.com</a>. ' +
+        'You can also call <a href="tel:+918802586988">+91 88025 86988</a>.</p>' +
     '</div>';
 }
 
@@ -507,13 +531,6 @@ function buildVacancyHtml(v) {
     '          </div>' +
     '        </aside>\n' +
     '      </div>\n' +
-    '    </div>\n' +
-    '  </section>\n' +
-    '\n' +
-    '  <section class="section section-alt">\n' +
-    '    <div class="container">\n' +
-    '      <h2 class="section-title">Other Positions</h2>\n' +
-    '      <div id="career-related" class="related-services"><!--careers:related--></div>\n' +
     '    </div>\n' +
     '  </section>\n' +
     '\n' +
