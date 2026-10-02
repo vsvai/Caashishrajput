@@ -1,0 +1,35 @@
+# _redirects — Cloudflare Pages / Netlify rewrite rules.
+#
+# Canonical URLs are the real .html files (see <link rel="canonical"> and
+# sitemap.xml). These rules make the extensionless forms work as conveniences
+# without duplicating content: /career/apply and /career/apply.html both serve
+# the same page, and the canonical tag keeps search engines on the .html URL.
+#
+# GitHub Pages ignores this file. There, only the .html forms exist — which is
+# exactly why the .html URLs are canonical. Deploy through Cloudflare Pages to
+# get the pretty URLs.
+#
+# ---------------------------------------------------------------- careers ---
+/career                       /career/index.html          301
+/career/                      /career/index.html          301
+/career/login                 /career/login.html           301
+/career/register              /career/register.html        301
+/career/apply                 /career/apply.html           301
+/career/dashboard             /career/dashboard.html       301
+/career/article-assistant     /career/article-assistant.html 301
+
+# ------------------------------------------------------------------ admin ---
+# Not linked from the public site; the 301s exist so a typed /admin/... URL
+# lands on the right page instead of a 404.
+/admin                        /admin/index.html           301
+/admin/                       /admin/index.html           301
+/admin/vacancies              /admin/vacancies.html        301
+/admin/applications           /admin/applications.html    301
+/admin/login                  /admin/login.html            301
+
+# ----------------------------------------------------------------- safety ---
+# Markdown vacancy sources live in /careers/drafts and /careers/_published and
+# are build inputs, not pages. On GitHub Pages a .md file would be served as a
+# downloadable raw file, exposing the text of a vacancy before it is published.
+# Block the whole /careers tree.
+/careers/*                    /404                         404

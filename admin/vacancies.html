@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vacancies | Admin | CA Ashish Rajput, Ghaziabad</title>
+  <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/careers.css">
+  <link rel="icon" type="image/png" href="../images/logo-96.png">
+</head>
+<body data-depth="1" data-root="../" data-breadcrumbs='[{"label":"Home","href":"index.html"},{"label":"Admin"},{"label":"Vacancies"}]'>
+
+  <main>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="admin-topbar">
+        <div>
+          <h1 class="admin-title">Vacancies</h1>
+          <p class="admin-sub">Create, edit, publish and close roles</p>
+        </div>
+        <div class="admin-topbar-actions">
+          <button type="button" class="btn btn-ghost" id="admin-signout">Sign out</button>
+        </div>
+      </div>
+
+      <nav class="admin-nav" id="admin-nav" aria-label="Admin sections"></nav>
+
+      <div id="alert" class="form-alert" hidden></div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div class="filter-bar">
+            <div class="form-group">
+              <label for="filter-search">Search</label>
+              <input type="search" id="filter-search" placeholder="Title or slug">
+            </div>
+            <div class="form-group">
+              <label for="filter-status">Status</label>
+              <select id="filter-status">
+                <option value="">All statuses</option>
+                <option value="published">Published</option>
+                <option value="draft">Draft</option>
+                <option value="closed">Closed</option>
+                <option value="archived">Archived</option>
+              </select>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary" id="new-btn">New vacancy</button>
+        </div>
+
+        <div id="list-body" class="table-wrap" aria-live="polite">
+          <p class="muted">Loading…</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  </main>
+
+  <!-- Create / edit dialog -->
+  <dialog id="vacancy-dialog" class="dialog">
+    <form method="dialog" id="vacancy-form" novalidate>
+      <div class="dialog-head">
+        <h2 id="dialog-title">New vacancy</h2>
+        <button type="button" class="icon-btn" id="dialog-close" aria-label="Close">&times;</button>
+      </div>
+
+      <div class="dialog-body">
+
+        <input type="hidden" id="v-id">
+
+        <div class="field-error" id="form-error" hidden></div>
+
+        <div class="form-group">
+          <label for="v-title">Job title <span aria-hidden="true">*</span></label>
+          <input type="text" id="v-title" required maxlength="200" aria-describedby="v-title-error">
+          <p class="field-error" id="v-title-error" hidden></p>
+        </div>
+
+        <div class="form-group">
+          <label for="v-slug">URL slug <span aria-hidden="true">*</span></label>
+          <input type="text" id="v-slug" required maxlength="200"
+                 placeholder="article-assistant" aria-describedby="v-slug-help v-slug-error">
+          <p class="field-hint" id="v-slug-help">Changing this changes the public page path and breaks existing links.</p>
+          <p class="field-error" id="v-slug-error" hidden></p>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="v-location">Location</label>
+            <input type="text" id="v-location" maxlength="150" placeholder="Sahibabad, Ghaziabad">
+          </div>
+          <div class="form-group">
+            <label for="v-employment-type">Employment type</label>
+            <input type="text" id="v-employment-type" maxlength="80" placeholder="Full Time">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="v-experience">Experience required</label>
+            <input type="text" id="v-experience" maxlength="200" placeholder="0–1 year">
+          </div>
+          <div class="form-group">
+            <label for="v-salary">Stipend or salary</label>
+            <input type="text" id="v-salary" maxlength="150" placeholder="Negotiable">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="v-description">Summary <span aria-hidden="true">*</span></label>
+          <textarea id="v-description" rows="4" required maxlength="4000" aria-describedby="v-description-error"></textarea>
+          <p class="field-error" id="v-description-error" hidden></p>
+        </div>
+
+        <div class="form-group">
+          <label for="v-responsibilities">Responsibilities</label>
+          <textarea id="v-responsibilities" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="v-skills">Skills required</label>
+          <textarea id="v-skills" rows="3"></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="v-qualification">Qualification</label>
+            <textarea id="v-qualification" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="v-benefits">Benefits</label>
+            <textarea id="v-benefits" rows="3"></textarea>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="v-opening">Opening date <span aria-hidden="true">*</span></label>
+            <input type="date" id="v-opening" required aria-describedby="v-opening-error">
+            <p class="field-error" id="v-opening-error" hidden></p>
+          </div>
+          <div class="form-group">
+            <label for="v-closing">Closing date <span aria-hidden="true">*</span></label>
+            <input type="date" id="v-closing" required aria-describedby="v-closing-error">
+            <p class="field-error" id="v-closing-error" hidden></p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="v-status">Status</label>
+          <select id="v-status">
+            <option value="draft">Draft</option>
+            <option value="published">Published</option>
+            <option value="closed">Closed</option>
+            <option value="archived">Archived</option>
+          </select>
+          <p class="field-hint">Published vacancies stay live until their closing date passes.</p>
+        </div>
+
+      </div>
+
+      <div class="dialog-foot">
+        <button type="button" class="btn btn-ghost" id="dialog-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="save-btn">Save vacancy</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Confirm delete -->
+  <dialog id="confirm-dialog" class="dialog dialog-sm">
+    <div class="dialog-head"><h2>Delete vacancy</h2></div>
+    <div class="dialog-body">
+      <p id="confirm-text">This cannot be undone.</p>
+      <p class="field-hint">Applications already received for this vacancy will also be removed.</p>
+    </div>
+    <div class="dialog-foot">
+      <button type="button" class="btn btn-ghost" id="confirm-cancel">Cancel</button>
+      <button type="button" class="btn btn-danger" id="confirm-ok">Delete</button>
+    </div>
+  </dialog>
+
+  <script defer src="../js/components.js"></script>
+  <script defer src="../js/main.js"></script>
+  <script type="module" src="../js/admin-vacancies.js"></script>
+</body>
+</html>

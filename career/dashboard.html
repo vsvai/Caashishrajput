@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Applications | CA Ashish Rajput, Ghaziabad</title>
+  <meta name="description" content="Track your applications, view your uploaded CV and follow your application status at our Chartered Accountancy practice in Sahibabad, Ghaziabad.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="googlebot" content="noindex, nofollow, noarchive">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/careers.css">
+  <link rel="icon" type="image/png" href="../images/logo-96.png">
+</head>
+<body data-depth="1" data-active="career" data-root="../" data-breadcrumbs='[{"label":"Home","href":"index.html"},{"label":"Careers","href":"index.html"},{"label":"My Applications"}]'>
+
+  <main>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="dashboard-head">
+        <h1>My Applications</h1>
+        <p class="who" id="hero-email"></p>
+      </div>
+
+      <div id="alert" class="form-alert" hidden></div>
+
+      <div id="dashboard" hidden>
+        <div class="dashboard-grid">
+
+          <div class="dashboard-main">
+            <h2 class="section-title">Your applications</h2>
+            <div id="applications" class="application-list">
+              <div class="loading-state">
+                <div class="spinner" aria-hidden="true"></div>
+                <p>Loading your applications…</p>
+              </div>
+            </div>
+          </div>
+
+          <aside class="dashboard-aside">
+            <div class="panel">
+              <h3>Your details</h3>
+              <div id="profile-box"></div>
+              <a href="register.html" class="btn btn-ghost btn-sm btn-block">Edit profile</a>
+            </div>
+
+            <div class="panel">
+              <h3>Need help?</h3>
+              <p class="text-small muted" style="margin-top:0;">
+                Call <a href="tel:+918802586988">+91 88025 86988</a> or email
+                <a href="mailto:ca.ashishrajput@outlook.com">ca.ashishrajput@outlook.com</a>,
+                quoting your reference number.
+              </p>
+              <button type="button" class="btn btn-ghost btn-sm btn-block" id="signout-btn">Sign out</button>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+
+      <div id="empty" class="empty-state" hidden>
+        <h3>You have not applied for anything yet</h3>
+        <p>Browse our current vacancies to submit your CV.</p>
+        <a href="index.html" class="btn btn-primary">See open positions</a>
+      </div>
+
+    </div>
+  </section>
+
+  </main>
+
+  <script defer src="../js/components.js"></script>
+  <script defer src="../js/main.js"></script>
+  <script type="module" src="../js/career-dashboard.js"></script>
+</body>
+</html>

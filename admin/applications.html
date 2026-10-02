@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Applications | Admin | CA Ashish Rajput, Ghaziabad</title>
+  <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/careers.css">
+  <link rel="icon" type="image/png" href="../images/logo-96.png">
+</head>
+<body data-depth="1" data-root="../" data-breadcrumbs='[{"label":"Home","href":"index.html"},{"label":"Admin"},{"label":"Applications"}]'>
+
+  <main>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="admin-topbar">
+        <div>
+          <h1 class="admin-title">Applications</h1>
+          <p class="admin-sub">Review, shortlist and update candidates</p>
+        </div>
+        <div class="admin-topbar-actions">
+          <button type="button" class="btn btn-ghost" id="admin-signout">Sign out</button>
+        </div>
+      </div>
+
+      <nav class="admin-nav" id="admin-nav" aria-label="Admin sections"></nav>
+
+      <div id="alert" class="form-alert" hidden></div>
+
+      <div class="panel">
+        <div class="filter-bar">
+          <div class="form-group">
+            <label for="filter-search">Search</label>
+            <input type="search" id="filter-search" placeholder="Name, email, mobile, vacancy">
+          </div>
+          <div class="form-group">
+            <label for="filter-vacancy">Vacancy</label>
+            <select id="filter-vacancy"><option value="">All vacancies</option></select>
+          </div>
+          <div class="form-group">
+            <label for="filter-status">Status</label>
+            <select id="filter-status">
+              <option value="">All statuses</option>
+              <option value="submitted">Submitted</option>
+              <option value="under_review">Under review</option>
+              <option value="shortlisted">Shortlisted</option>
+              <option value="interview">Interview</option>
+              <option value="selected">Selected</option>
+              <option value="rejected">Rejected</option>
+              <option value="withdrawn">Withdrawn</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="filter-from">Applied from</label>
+            <input type="date" id="filter-from">
+          </div>
+          <div class="form-group">
+            <label for="filter-to">Applied to</label>
+            <input type="date" id="filter-to">
+          </div>
+          <button type="button" class="btn btn-ghost" id="reset-btn">Reset</button>
+        </div>
+
+        <div id="list-body" class="table-wrap" aria-live="polite">
+          <p class="muted">Loading…</p>
+        </div>
+
+        <div class="pager" id="pager" hidden>
+          <button type="button" class="btn btn-ghost btn-sm" id="prev-btn">Previous</button>
+          <span id="pager-text" class="muted"></span>
+          <button type="button" class="btn btn-ghost btn-sm" id="next-btn">Next</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  </main>
+
+  <!-- Detail dialog -->
+  <dialog id="app-dialog" class="dialog dialog-lg">
+    <div class="dialog-head">
+      <h2 id="app-title">Application</h2>
+      <button type="button" class="icon-btn" id="app-close" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="dialog-body" id="app-body" aria-live="polite">
+      <p class="muted">Loading…</p>
+    </div>
+
+    <div class="dialog-foot">
+      <button type="button" class="btn btn-danger" id="app-delete">Delete</button>
+      <span class="spacer"></span>
+      <button type="button" class="btn btn-ghost" id="app-cancel">Close</button>
+      <button type="button" class="btn btn-primary" id="app-save">Save</button>
+    </div>
+  </dialog>
+
+  <script defer src="../js/components.js"></script>
+  <script defer src="../js/main.js"></script>
+  <script type="module" src="../js/admin-applications.js"></script>
+</body>
+</html>

@@ -19,6 +19,9 @@
 const fs = require('fs');
 const path = require('path');
 
+const { htmlEsc, mdToHtml, parseFrontMatter } = require('./lib/markdown.js');
+const sitemap = require('./lib/sitemap.js');
+
 const ROOT = path.join(__dirname, '..');
 const BLOG_DIR = path.join(ROOT, 'blog');
 const DRAFTS_DIR = path.join(BLOG_DIR, 'drafts');
@@ -38,150 +41,11 @@ function todayISO() {
   return new Date().toISOString().slice(0, 10);
 }
 
-function htmlEsc(s) {
-  return String(s)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
-
 /* ============================================================
-   Markdown -> HTML (compact; supports the tag set used on this blog)
+   Markdown -> HTML and front matter parsing live in
+   scripts/lib/markdown.js so the careers pipeline renders
+   identically.
    ============================================================ */
-function mdInline(s) {
-  s = s.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"');
-  // strong
-  s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-  // inline code
-  s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
-  // links [text](url)
-  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, function (_, t, u) {
-    return '<a href="' + u + '">' + t + '</a>';
-  });
-  // em
-  s = s.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-  return s;
-}
-
-function mdToHtml(md) {
-  const lines = md.replace(/\r\n/g, '\n').split('\n');
-  const out = [];
-  let i = 0;
-  let listType = null; // 'ul' | 'ol'
-
-  function closeList() {
-    if (listType) { out.push('</' + listType + '>'); listType = null; }
-  }
-
-  while (i < lines.length) {
-    let line = lines[i];
-
-    if (/^\s*$/.test(line)) { closeList(); out.push(''); i++; continue; }
-
-    // Table
-    if (/^\s*\|/.test(line)) {
-      closeList();
-      const rows = [];
-      while (i < lines.length && /^\s*\|/.test(lines[i])) {
-        rows.push(lines[i]);
-        i++;
-      }
-      out.push(tableToHtml(rows));
-      continue;
-    }
-
-    // Headings
-    const h3 = line.match(/^###\s+(.*)/);
-    if (h3) { closeList(); out.push('<h3>' + mdInline(h3[1]) + '</h3>'); i++; continue; }
-    const h2 = line.match(/^##\s+(.*)/);
-    if (h2) { closeList(); out.push('<h2>' + mdInline(h2[1]) + '</h2>'); i++; continue; }
-    const h1 = line.match(/^#\s+(.*)/);
-    if (h1) { closeList(); out.push('<h1>' + mdInline(h1[1]) + '</h1>'); i++; continue; }
-
-    // Unordered list
-    const ul = line.match(/^\s*[-*]\s+(.*)/);
-    if (ul) {
-      if (listType !== 'ul') { closeList(); listType = 'ul'; out.push('<ul>'); }
-      out.push('  <li>' + handleNested(mdInline(ul[1])) + '</li>');
-      i++; continue;
-    }
-    // Ordered list
-    const ol = line.match(/^\s*\d+\.\s+(.*)/);
-    if (ol) {
-      if (listType !== 'ol') { closeList(); listType = 'ol'; out.push('<ol>'); }
-      out.push('  <li>' + mdInline(ol[1]) + '</li>');
-      i++; continue;
-    }
-
-    // Paragraph (join continuation lines)
-    closeList();
-    let para = [line];
-    i++;
-    while (i < lines.length && !/^\s*$/.test(lines[i]) &&
-        !/^\s*[-*]\s/.test(lines[i]) && !/^\s*\d+\.\s/.test(lines[i]) &&
-        !/^#{1,3}\s/.test(lines[i]) && !/^\s*\|/.test(lines[i])) {
-      para.push(lines[i]);
-      i++;
-    }
-    // preserve single line breaks within a paragraph as <br>
-    const text = para.map(function (p) { return mdInline(p.trim()); }).join(' ');
-    out.push('<p>' + text + '</p>');
-  }
-  closeList();
-  return out.join('\n\n');
-}
-
-function handleNested(s) {
-  // Sub-bullets as "A — " descriptions are already inline; nothing special.
-  return s;
-}
-
-function tableToHtml(rows) {
-  // rows are like "| A | B |" ; second row may be "| --- | --- |" separator
-  const parsed = rows.map(function (r) {
-    return r.replace(/^\s*\|/, '').replace(/\|\s*$/, '')
-      .split('|').map(function (c) { return c.trim(); });
-  });
-  // Drop separator row (---)
-  const sepIdx = parsed.findIndex(function (cells) {
-    return cells.every(function (c) { return /^:?-+:?$/.test(c); });
-  });
-  let header = parsed[0];
-  let body = parsed.slice(1);
-  if (sepIdx !== -1) { body = parsed.slice(sepIdx + 1); }
-
-  let h = '  <table class="due-dates-table">\n    <thead>\n      <tr>\n';
-  header.forEach(function (c) { h += '        <th>' + mdInline(c) + '</th>\n'; });
-  h += '      </tr>\n    </thead>\n    <tbody>\n';
-  body.forEach(function (cells) {
-    h += '      <tr>\n';
-    cells.forEach(function (c) { h += '        <td>' + mdInline(c) + '</td>\n'; });
-    h += '      </tr>\n';
-  });
-  h += '    </tbody>\n  </table>';
-  return h;
-}
-
-/* ============================================================
-   Front matter parsing
-   ============================================================ */
-function parseFrontMatter(raw) {
-  const fmMatch = raw.match(/^---\s*\n([\s\S]*?)\n---\s*\n/);
-  if (!fmMatch) throw new Error('Missing YAML front matter (--- blocks at top).');
-  const fm = {};
-  fmMatch[1].split('\n').forEach(function (line) {
-    const m = line.match(/^([A-Za-z@_]+):\s*(.*)$/);
-    if (!m || m[1].charAt(0) === '@') return;
-    let val = m[2].trim();
-    if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
-      val = val.slice(1, -1);
-    }
-    fm[m[1]] = val;
-  });
-  const body = raw.slice(fmMatch[0].length);
-  return { fm: fm, body: body };
-}
 
 /* ============================================================
    Blog post HTML template (mirrors existing blog/*.html structure)
@@ -493,24 +357,25 @@ function rebuildBlogHtml(posts) {
 
 /* ============================================================
    Sitemap regeneration (blog URLs only)
+
+   Uses scripts/lib/sitemap.js so only the <!-- Blog Posts --> section is
+   touched. The old implementation stripped everything from the blog marker
+   through </urlset>, which deleted any section listed after it (the careers
+   URLs). Sections must stay independent.
    ============================================================ */
 function rebuildSitemap(posts, lastmod) {
-  let content = fs.readFileSync(SITEMAP, 'utf8');
-  // Remove existing blog section comments and entries
-  content = content.replace(/[\r\n]*  <!-- Blog Posts -->[\s\S]*?<\/urlset>/, '\n</urlset>');
+  const urls = posts.map(function (p) {
+    return {
+      loc: BASE_URL + '/blog/' + p.slug + '.html',
+      lastmod: lastmod,
+      changefreq: 'monthly',
+      priority: '0.7'
+    };
+  });
 
-  const blogSection = '  <!-- Blog Posts -->\n' +
-    posts.map(function (p) {
-      return '  <url>\n' +
-        '    <loc>' + BASE_URL + '/blog/' + p.slug + '.html</loc>\n' +
-        '    <lastmod>' + lastmod + '</lastmod>\n' +
-        '    <changefreq>monthly</changefreq>\n' +
-        '    <priority>0.7</priority>\n' +
-        '  </url>';
-    }).join('\n') + '\n';
-
-  content = content.replace('</urlset>', blogSection + '</urlset>');
-  fs.writeFileSync(SITEMAP, content, 'utf8');
+  sitemap.edit(SITEMAP, function (content) {
+    return sitemap.upsertSection(content, sitemap.SECTION.BLOG, urls);
+  });
   console.log('  sitemap.xml updated with ' + posts.length + ' blog URL(s).');
 }
 

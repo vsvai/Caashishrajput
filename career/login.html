@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candidate Sign In | CA Ashish Rajput, Ghaziabad</title>
+  <meta name="description" content="Sign in to your applicant account at our Ghaziabad CA practice to track applications, upload a CV and follow your application status online.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="googlebot" content="noindex, nofollow, noarchive">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/careers.css">
+  <link rel="icon" type="image/png" href="../images/logo-96.png">
+</head>
+<body data-depth="1" data-active="career" data-root="../" data-breadcrumbs='[{"label":"Home","href":"index.html"},{"label":"Careers","href":"index.html"},{"label":"Sign In"}]'>
+
+  <main>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Candidate Sign In</h1>
+      <p class="auth-sub">Track your applications and manage your CV</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="auth-card">
+
+        <div id="alert" class="form-alert" hidden></div>
+
+        <form id="login-form" novalidate>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email"
+                   autocomplete="email" inputmode="email" required
+                   aria-describedby="email-error" placeholder="you@example.com">
+            <p class="field-error" id="email-error" hidden></p>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="password-wrap">
+              <input type="password" id="password" name="password"
+                     autocomplete="current-password" required
+                     aria-describedby="password-error" placeholder="Your password">
+              <button type="button" class="password-toggle" id="password-toggle"
+                      aria-label="Show password" aria-pressed="false">Show</button>
+            </div>
+            <p class="field-error" id="password-error" hidden></p>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="submit-btn">Sign In</button>
+            <a href="register.html" class="btn btn-ghost">Create an account</a>
+          </div>
+        </form>
+
+        <p class="auth-foot">
+          Trouble signing in? Email <a href="mailto:ca.ashishrajput@outlook.com">ca.ashishrajput@outlook.com</a>
+          or call <a href="tel:+918802586988">+91 88025 86988</a>.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <script defer src="../js/components.js"></script>
+  <script defer src="../js/main.js"></script>
+  <script type="module" src="../js/career-login.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Sign In | CA Ashish Rajput, Ghaziabad</title>
+  <meta name="description" content="Restricted sign-in for the practice administrator to manage vacancies and job applications.">
+  <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/careers.css">
+  <link rel="icon" type="image/png" href="../images/logo-96.png">
+</head>
+<body data-depth="1" data-root="../" data-breadcrumbs='[{"label":"Home","href":"index.html"},{"label":"Admin"}]'>
+
+  <main>
+
+  <section class="section">
+    <div class="container">
+      <div class="auth-card">
+
+        <h1>Admin Sign In</h1>
+        <p class="auth-sub">Vacancies and applications — practice use only</p>
+
+        <div id="alert" class="form-alert" hidden></div>
+
+        <form id="admin-login-form" novalidate>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email"
+                   autocomplete="email" inputmode="email" required
+                   aria-describedby="email-error" placeholder="you@example.com">
+            <p class="field-error" id="email-error" hidden></p>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="password-wrap">
+              <input type="password" id="password" name="password"
+                     autocomplete="current-password" required
+                     aria-describedby="password-error">
+              <button type="button" class="password-toggle" id="password-toggle"
+                      aria-label="Show password" aria-pressed="false">Show</button>
+            </div>
+            <p class="field-error" id="password-error" hidden></p>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="submit-btn">Sign In</button>
+            <a href="../career/index.html" class="btn btn-ghost">Back to careers</a>
+          </div>
+        </form>
+
+        <p class="auth-foot">
+          Applicant accounts do not need to sign in here. If you applied for a
+          position, use the <a href="../career/login.html">candidate sign-in</a>.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <script defer src="../js/components.js"></script>
+  <script defer src="../js/main.js"></script>
+  <script type="module" src="../js/admin-login.js"></script>
+</body>
+</html>

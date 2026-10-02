@@ -80,14 +80,23 @@ for (const file of htmlFiles) {
   if (page.h1 !== 1) page.problems.push('H1 count = ' + page.h1);
 
   // title / description (length measured on decoded text)
+  //
+  // SERP-shaped requirements only make sense for pages that can appear in
+  // search results. A noindex page (auth screens, the admin area) is excluded
+  // from indexing by design, so it has no snippet to shape — demanding a
+  // 140-158 character description there would only push filler text into
+  // pages nobody searches for. Those pages still need a <title>, still get
+  // their H1 and JSON-LD checked, and are still verified as noindex.
+  const indexable = !isNoindex(file);
   const title = content.match(/<title>([\s\S]*?)<\/title>/);
   const desc = content.match(/<meta name="description" content="([^"]*)">/);
   if (!title) page.problems.push('Missing <title>');
-  else if (decodeEntities(title[1]).length > 60) {
+  else if (indexable && decodeEntities(title[1]).length > 60) {
     page.problems.push('Title length ' + decodeEntities(title[1]).length + ' > 60');
   }
-  if (!desc) page.problems.push('Missing meta description');
-  else if (decodeEntities(desc[1]).length < 140 || decodeEntities(desc[1]).length > 158) {
+  if (!desc) {
+    if (indexable) page.problems.push('Missing meta description');
+  } else if (indexable && (decodeEntities(desc[1]).length < 140 || decodeEntities(desc[1]).length > 158)) {
     page.problems.push('Description length ' + decodeEntities(desc[1]).length + ' (target 140-158)');
   }
 
@@ -196,9 +205,33 @@ const sitemapUrls = [];
 let sm;
 const smRe = /<loc>([^<]+)<\/loc>/g;
 while ((sm = smRe.exec(sitemap))) sitemapUrls.push(sm[1]);
+// Pages that declare <meta name="robots" content="... noindex ..."> are
+// deliberately private (login, register, apply, dashboard, admin) and must
+// NOT be in sitemap.xml. Anything indexable still must be listed.
+function isNoindex(relPath) {
+  let content;
+  try {
+    content = fs.readFileSync(path.join(ROOT, relPath), 'utf8');
+  } catch (e) {
+    return false;
+  }
+  const m = content.match(/<meta\s+name=["']robots["']\s+content=["']([^"']+)["']/i);
+  return !!m && /\bnoindex\b/i.test(m[1]);
+}
+
 const expectedSitemap = htmlFiles
   .filter(f => !f.includes('404') && !f.startsWith('google'))
-  .map(f => (f === 'index.html' ? SITE + '/' : SITE + '/' + f));
+  .filter(f => !isNoindex(f))
+  .map(f => {
+    // career/index.html is served at /career/ , so any */index.html maps to
+    // its containing directory rather than to the .html file.
+    if (f === 'index.html') return SITE + '/';
+    if (f.endsWith('/index.html')) return SITE + '/' + f.slice(0, -'index.html'.length);
+    return SITE + '/' + f;
+  });
+const noindexPages = htmlFiles
+  .filter(f => !f.includes('404') && !f.startsWith('google'))
+  .filter(isNoindex);
 const missingFromSitemap = expectedSitemap.filter(u => !sitemapUrls.includes(u));
 if (missingFromSitemap.length) report.problems.push('Missing from sitemap: ' + missingFromSitemap.join(', '));
 const extraInSitemap = sitemapUrls.filter(u => !expectedSitemap.includes(u));
@@ -214,6 +247,10 @@ console.log('Pages checked      : ' + htmlFiles.length);
 console.log('JSON-LD blocks     : ' + jsonLdTotal + ' (all parsed OK)');
 console.log('FAQ pages verified : ' + faqChecks + ' (visible text matches FAQPage schema)');
 console.log('Sitemap URLs       : ' + sitemapUrls.length + ' (expected ' + expectedSitemap.length + ')');
+console.log('noindex pages      : ' + noindexPages.length + ' (excluded from sitemap by design)');
+if (noindexPages.length) {
+  noindexPages.forEach(f => console.log('                     - ' + f));
+}
 console.log('');
 console.log('--- Pages with problems ---');
 report.pages.filter(p => p.problems.length).forEach(p => {

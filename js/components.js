@@ -21,6 +21,7 @@
       '<a href="' + prefix + 'about.html"' + (active === 'about' ? ' class="active"' : '') + '>About</a>' +
       '<a href="' + prefix + 'services.html"' + (active === 'services' ? ' class="active"' : '') + '>Services</a>' +
       '<a href="' + prefix + 'blog.html"' + (active === 'blog' ? ' class="active"' : '') + '>Blog</a>' +
+      '<a href="' + prefix + 'career/index.html"' + (active === 'career' ? ' class="active"' : '') + '>Careers</a>' +
       '<a href="' + prefix + 'resources.html"' + (active === 'resources' ? ' class="active"' : '') + '>Resources</a>' +
       '<a href="' + prefix + 'contact.html"' + (active === 'contact' ? ' class="active"' : '') + '>Contact</a>' +
       '<a href="tel:+918802586988" class="nav-cta">' +
@@ -88,6 +89,7 @@
           '<li><a href="' + prefix + 'about.html">About</a></li>' +
           '<li><a href="' + prefix + 'services.html">Services</a></li>' +
           '<li><a href="' + prefix + 'blog.html">Blog</a></li>' +
+          '<li><a href="' + prefix + 'career/index.html">Careers</a></li>' +
           '<li><a href="' + prefix + 'resources.html">Resources</a></li>' +
           '<li><a href="' + prefix + 'contact.html">Contact</a></li>' +
           '<li><a href="' + prefix + 'index.html#reviews">Client Feedback</a></li>' +

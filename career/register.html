@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Candidate Account | CA Ashish Rajput, Ghaziabad</title>
+  <meta name="description" content="Create a candidate account at our Ghaziabad CA practice to apply for open positions, upload your CV and track your application status online.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="googlebot" content="noindex, nofollow, noarchive">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/careers.css">
+  <link rel="icon" type="image/png" href="../images/logo-96.png">
+</head>
+<body data-depth="1" data-active="career" data-root="../" data-breadcrumbs='[{"label":"Home","href":"index.html"},{"label":"Careers","href":"index.html"},{"label":"Create Account"}]'>
+
+  <main>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Create Candidate Account</h1>
+      <p class="auth-sub">One account to apply for any position and track your progress</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="auth-card">
+
+        <ol class="stepper" id="stepper">
+          <li class="stepper-step is-active" data-step="1"><span class="stepper-num">1</span> Your details</li>
+          <li class="stepper-step" data-step="2"><span class="stepper-num">2</span> Verify email</li>
+          <li class="stepper-step" data-step="3"><span class="stepper-num">3</span> Profile</li>
+        </ol>
+
+        <div id="alert" class="form-alert" hidden></div>
+
+        <!-- ---------- Step 1: account ---------- -->
+        <form id="register-form" novalidate>
+          <h2 class="form-section-title">Create your account</h2>
+
+          <div class="form-group">
+            <label for="full_name">Full name</label>
+            <input type="text" id="full_name" name="full_name"
+                   autocomplete="name" required aria-describedby="full_name-error"
+                   placeholder="As it appears on your CV">
+            <p class="field-error" id="full_name-error" hidden></p>
+          </div>
+
+          <div class="form-group">
+            <label for="mobile">Mobile number</label>
+            <input type="tel" id="mobile" name="mobile"
+                   autocomplete="tel" inputmode="tel" required
+                   aria-describedby="mobile-error mobile-hint" placeholder="10-digit mobile number">
+            <p class="form-hint" id="mobile-hint">We use this only to contact you about your application.</p>
+            <p class="field-error" id="mobile-error" hidden></p>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email"
+                   autocomplete="email" inputmode="email" required aria-describedby="email-error"
+                   placeholder="you@example.com">
+            <p class="form-hint">We will send a 6-digit verification code to this address.</p>
+            <p class="field-error" id="email-error" hidden></p>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="password-wrap">
+              <input type="password" id="password" name="password"
+                     autocomplete="new-password" required minlength="8"
+                     aria-describedby="password-error password-hint" placeholder="At least 8 characters">
+              <button type="button" class="password-toggle" id="password-toggle"
+                      aria-label="Show password" aria-pressed="false">Show</button>
+            </div>
+            <p class="form-hint" id="password-hint">Use at least 8 characters. A mix of letters and numbers is best.</p>
+            <p class="field-error" id="password-error" hidden></p>
+          </div>
+
+          <div class="form-group">
+            <label for="confirm_password">Confirm password</label>
+            <input type="password" id="confirm_password" name="confirm_password"
+                   autocomplete="new-password" required aria-describedby="confirm_password-error">
+            <p class="field-error" id="confirm_password-error" hidden></p>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="submit-btn">Create account</button>
+            <a href="login.html" class="btn btn-ghost">I already have an account</a>
+          </div>
+        </form>
+
+        <!-- ---------- Step 2: verify email ---------- -->
+        <form id="otp-form" novalidate hidden>
+          <h2 class="form-section-title">Verify your email address</h2>
+          <p class="form-hint" id="otp-target"></p>
+
+          <div class="form-group">
+            <label for="otp">Verification code</label>
+            <input class="otp-input" type="text" id="otp" name="otp"
+                   inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}"
+                   maxlength="6" required aria-describedby="otp-error" placeholder="000000">
+            <p class="field-error" id="otp-error" hidden></p>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="otp-submit-btn">Verify and continue</button>
+            <button type="button" class="btn btn-ghost" id="resend-btn">Resend code</button>
+          </div>
+
+          <p class="auth-foot" id="resend-note"></p>
+        </form>
+
+        <!-- ---------- Step 3: profile ---------- -->
+        <form id="profile-form" novalidate hidden>
+          <h2 class="form-section-title">Complete your profile</h2>
+          <p class="form-hint">This is what the practice sees when it opens your application.</p>
+
+          <div class="form-group">
+            <label for="profile_full_name">Full name</label>
+            <input type="text" id="profile_full_name" name="profile_full_name"
+                   autocomplete="name" required aria-describedby="profile_full_name-error">
+            <p class="field-error" id="profile_full_name-error" hidden></p>
+          </div>
+
+          <div class="form-group">
+            <label>Experience level</label>
+            <div class="choice-row">
+              <div class="choice">
+                <input type="radio" id="experience_type_fresher" name="experience_type" value="fresher" checked>
+                <label for="experience_type_fresher">Fresher</label>
+              </div>
+              <div class="choice">
+                <input type="radio" id="experience_type_experienced" name="experience_type" value="experienced">
+                <label for="experience_type_experienced">Experienced</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" id="years-row" hidden>
+            <label for="experience_years">Years of experience</label>
+            <input type="number" id="experience_years" name="experience_years"
+                   min="0.5" max="60" step="0.5" inputmode="decimal"
+                   aria-describedby="experience_years-error">
+            <p class="field-error" id="experience_years-error" hidden></p>
+          </div>
+
+          <div class="form-group">
+            <label for="current_employer">Current employer <span class="form-optional">(optional)</span></label>
+            <input type="text" id="current_employer" name="current_employer"
+                   autocomplete="organization" maxlength="150">
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="profile-submit-btn">Save profile</button>
+          </div>
+        </form>
+
+        <p class="auth-foot" id="signin-switch" hidden>
+          Already verified? <a href="login.html">Sign in instead</a>.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <script defer src="../js/components.js"></script>
+  <script defer src="../js/main.js"></script>
+  <script type="module" src="../js/career-register.js"></script>
+</body>
+</html>

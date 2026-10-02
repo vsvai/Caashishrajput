@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Overview | CA Ashish Rajput, Ghaziabad</title>
+  <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/careers.css">
+  <link rel="icon" type="image/png" href="../images/logo-96.png">
+</head>
+<body data-depth="1" data-root="../" data-breadcrumbs='[{"label":"Home","href":"index.html"},{"label":"Admin"}]'>
+
+  <main>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="admin-topbar">
+        <div>
+          <h1 class="admin-title">Overview</h1>
+          <p class="admin-sub">Signed in as <span id="admin-who">…</span></p>
+        </div>
+        <div class="admin-topbar-actions">
+          <a id="view-live" class="btn btn-ghost" href="../career/index.html" target="_blank" rel="noopener">View public careers page</a>
+          <button type="button" class="btn btn-ghost" id="admin-signout">Sign out</button>
+        </div>
+      </div>
+
+      <nav class="admin-nav" id="admin-nav" aria-label="Admin sections"></nav>
+
+      <div id="alert" class="form-alert" hidden></div>
+
+      <div class="stat-grid" id="stats">
+        <div class="stat-card"><p class="stat-label">Published vacancies</p><p class="stat-value" id="stat-published">—</p></div>
+        <div class="stat-card"><p class="stat-label">Drafts</p><p class="stat-value" id="stat-draft">—</p></div>
+        <div class="stat-card"><p class="stat-label">Closed / archived</p><p class="stat-value" id="stat-closed">—</p></div>
+        <div class="stat-card"><p class="stat-label">Applications</p><p class="stat-value" id="stat-apps">—</p></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Recent applications</h2>
+          <a class="btn btn-ghost" href="applications.html">See all</a>
+        </div>
+        <div id="recent-body" class="table-wrap" aria-live="polite">
+          <p class="muted">Loading…</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  </main>
+
+  <script defer src="../js/components.js"></script>
+  <script defer src="../js/main.js"></script>
+  <script type="module" src="../js/admin-overview.js"></script>
+</body>
+</html>
