@@ -242,7 +242,10 @@ function readPublishedPosts() {
       const h1 = (content.match(/<h1>([\s\S]*?)<\/h1>/) || [])[1] || f;
       const desc = (content.match(/name="description" content="([^"]+)"/) || [])[1] || '';
       const excerpt = desc;
+      const bodyHtml = (content.match(/<div class="blog-post-content">([\s\S]*?)(?:<!-- Author Bio -->|<div class="author-bio">)/) || [])[1] || '';
+      const words = bodyHtml.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
       posts.push({
+        minutes: Math.max(1, Math.round(words / 200)),
         slug: f.replace(/\.html$/, ''),
         date: published,
         category: cat,
@@ -278,18 +281,35 @@ const READ_MORE = {
   'nri-property-tds-no-tan-required-2026': 'Buying property from an NRI: no TAN needed from 1 Oct 2026'
 };
 
-function cardHtml(post) {
+// Topic colours and icons for the Insights listing (presentation only).
+const TOPICS = {
+  'Income Tax':  { slug: 'income-tax', color: '#1f4e8c', icon: '<path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 7h8"/><path d="M8 11h8"/><path d="M12 17.5 8 15h1a4 4 0 0 0 0-8"/>' },
+  'GST':         { slug: 'gst', color: '#1b6b4f', icon: '<path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m15 9-6 6"/><path d="M9 9h.01"/><path d="M15 15h.01"/>' },
+  'Company Law': { slug: 'company-law', color: '#8f2d22', icon: '<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/>' },
+  'Compliance':  { slug: 'compliance', color: '#5b3f8c', icon: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>' },
+  'Audit':       { slug: 'audit', color: '#1d6a6a', icon: '<path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m3 15 2 2 4-4"/>' }
+};
+function topic(cat) { return TOPICS[cat] || { slug: slugify(cat), color: '#102a43', icon: TOPICS['Compliance'].icon }; }
+function topicSvg(cat, cls) { return '<svg class="icon-svg' + (cls ? ' ' + cls : '') + '" viewBox="0 0 24 24" aria-hidden="true">' + topic(cat).icon + '</svg>'; }
+
+function cardHtml(post, i) {
   const monthYear = post.date ? monthLabel(post.date) : '';
   const href = 'blog/' + post.slug + '.html';
   const readMore = READ_MORE[post.slug] || 'Read more';
-  return '        <a href="' + href + '" class="blog-listing-card" aria-label="Read: ' + htmlEsc(stripHtml(post.h1)) + '">\n' +
+  const t = topic(post.category);
+  return '        <a href="' + href + '" class="blog-listing-card' + (i === 0 ? ' is-featured' : '') + '" data-cat="' + t.slug + '" style="--cat:' + t.color + '" aria-label="Read: ' + htmlEsc(stripHtml(post.h1)) + '">\n' +
+    '          <span class="blc-mark" aria-hidden="true">' + topicSvg(post.category) + '</span>\n' +
+    (i === 0 ? '          <span class="blc-latest">Latest</span>\n' : '') +
     '          <div class="blog-meta">\n' +
+    '            <span class="blog-category">' + topicSvg(post.category) + htmlEsc(post.category) + '</span>\n' +
     '            <span class="blog-date">' + monthYear + '</span>\n' +
-    '            <span class="blog-category">' + htmlEsc(post.category) + '</span>\n' +
     '          </div>\n' +
     '          <h2>' + htmlEsc(stripHtml(post.h1)) + '</h2>\n' +
-    '          <p class="blog-excerpt">' + htmlEsc(cleanExcerpt(post.excerpt)) + '</p>\n' +
-    '          <span class="read-more">' + readMore + ' <span class="card-arrow" aria-hidden="true">&rarr;</span></span>\n' +
+    '          <p class="blog-excerpt">' + (post.listingExcerpt || htmlEsc(cleanExcerpt(post.excerpt))) + '</p>\n' +
+    '          <div class="blc-foot">\n' +
+    '            <span class="read-more">' + readMore + ' <span class="card-arrow" aria-hidden="true">&rarr;</span></span>\n' +
+    (post.minutes ? '            <span class="blc-time"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>' + post.minutes + ' min read</span>\n' : '') +
+    '          </div>\n' +
     '        </a>';
 }
 
@@ -328,17 +348,29 @@ function findMatchingDiv(content, openTagStart) {
 function rebuildBlogHtml(posts) {
   let content = fs.readFileSync(BLOG_HTML, 'utf8');
 
+  // Keep excerpts already shown on the listing (some were written by hand);
+  // only posts new to the listing take their meta description.
+  const shown = {};
+  content.replace(/<a href="blog\/([^"]+)\.html" class="blog-listing-card[\s\S]*?<p class="blog-excerpt">([\s\S]*?)<\/p>/g, function (m, slug, ex) {
+    shown[slug] = ex;
+    return m;
+  });
+  posts.forEach(function (p) { if (shown[p.slug]) p.listingExcerpt = shown[p.slug]; });
+
   // Replace category filter list (keep the same set of filters, all linking to blog.html)
-  const filterMatch = content.match(/<div class="category-filters">[\s\S]*?<\/div>/);
+  const filterMatch = content.match(/<div class="category-filters"[^>]*>[\s\S]*?<\/div>/);
   if (filterMatch) {
     const cats = [];
     posts.forEach(function (p) { if (cats.indexOf(p.category) === -1) cats.push(p.category); });
-    // ensure standard categories present
-    DEFAULT_CATEGORIES.forEach(function (c) { if (cats.indexOf(c) === -1) cats.push(c); });
-    const links = ['<a href="blog.html" class="active">All</a>']
-      .concat(cats.map(function (c) { return '<a href="blog.html">' + htmlEsc(c) + '</a>'; }));
-    const block = '<div class="category-filters">\n' +
-      links.map(function (l) { return '        ' + l; }).join('\n') + '\n' +
+    const count = function (c) { return posts.filter(function (p) { return p.category === c; }).length; };
+    // Only topics that have posts get a filter; an empty filter is a dead end.
+    const buttons = ['<button type="button" class="active" data-cat="all" aria-pressed="true"><span>All</span><b>' + posts.length + '</b></button>']
+      .concat(cats.sort(function (a, b) { return count(b) - count(a); }).map(function (c) {
+        const t = topic(c);
+        return '<button type="button" data-cat="' + t.slug + '" aria-pressed="false" style="--cat:' + t.color + '">' + topicSvg(c) + '<span>' + htmlEsc(c) + '</span><b>' + count(c) + '</b></button>';
+      }));
+    const block = '<div class="category-filters" role="group" aria-label="Filter articles by topic">\n' +
+      buttons.map(function (l) { return '        ' + l; }).join('\n') + '\n' +
       '      </div>';
     content = content.replace(filterMatch[0], block);
   }
@@ -350,7 +382,7 @@ function rebuildBlogHtml(posts) {
     const closeEnd = findMatchingDiv(content, start);
     if (closeEnd !== -1) {
       content = content.slice(0, openEnd) + '\n' +
-        posts.map(cardHtml).join('\n\n') + '\n\n' +
+        posts.map(function (p, i) { return cardHtml(p, i); }).join('\n\n') + '\n\n' +
         content.slice(closeEnd);
     } else {
       // No closing tag found — leave listing untouched rather than corrupt it.
@@ -578,6 +610,7 @@ if (cmd === 'list') { cmdList(); process.exit(0); }
 if (cmd === 'new') { cmdNew(args); process.exit(0); }
 if (cmd === 'preview') { cmdPreview(args); process.exit(0); }
 if (cmd === 'publish') { cmdPublish(args, false); process.exit(0); }
+if (cmd === 'listing') { rebuildBlogHtml(readPublishedPosts()); process.exit(0); }
 if (cmd === 'home') { rebuildHomeLatest(readPublishedPosts()); process.exit(0); }
 if (cmd === 'rebuild') {
   const lastmod = todayISO();

@@ -24,38 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Blog category filters
-  var filters = document.querySelector('.category-filters');
-  if (filters) {
-    var cards = Array.prototype.slice.call(document.querySelectorAll('.blog-listing-card'));
-    var empty = document.createElement('p');
-    empty.className = 'blog-empty';
-    empty.textContent = 'No posts in this category yet.';
-    empty.hidden = true;
-    empty.setAttribute('role', 'status');
-    filters.parentNode.insertBefore(empty, filters.nextSibling);
-
-    filters.querySelectorAll('a').forEach(function (btn) {
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        var cat = this.textContent.trim();
-        var isAll = cat === 'All';
-        var visible = 0;
-        filters.querySelectorAll('a').forEach(function (b) {
-          b.classList.toggle('active', b === btn);
-          b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
-        });
-        cards.forEach(function (card) {
-          var tag = card.querySelector('.blog-category');
-          var match = isAll || (tag && tag.textContent.trim() === cat);
-          card.style.display = match ? '' : 'none';
-          if (match) visible++;
-        });
-        empty.hidden = visible !== 0;
-      });
-    });
-  }
-
   // Click-to-load map: the Google Maps iframe (~1 MB of third-party script)
   // loads only when a visitor asks for it.
   document.querySelectorAll('[data-map-src]').forEach(function (facade) {

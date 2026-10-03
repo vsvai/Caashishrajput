@@ -164,155 +164,211 @@
     <div class="container">
 
       <!-- Category Filters -->
-      <div class="category-filters">
-        <a href="blog.html" class="active">All</a>
-        <a href="blog.html">Income Tax</a>
-        <a href="blog.html">Compliance</a>
-        <a href="blog.html">Company Law</a>
-        <a href="blog.html">GST</a>
-        <a href="blog.html">Audit</a>
+      <div class="category-filters" role="group" aria-label="Filter articles by topic">
+        <button type="button" class="active" data-cat="all" aria-pressed="true"><span>All</span><b>14</b></button>
+        <button type="button" data-cat="income-tax" aria-pressed="false" style="--cat:#1f4e8c"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 7h8"/><path d="M8 11h8"/><path d="M12 17.5 8 15h1a4 4 0 0 0 0-8"/></svg><span>Income Tax</span><b>4</b></button>
+        <button type="button" data-cat="company-law" aria-pressed="false" style="--cat:#8f2d22"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg><span>Company Law</span><b>4</b></button>
+        <button type="button" data-cat="gst" aria-pressed="false" style="--cat:#1b6b4f"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m15 9-6 6"/><path d="M9 9h.01"/><path d="M15 15h.01"/></svg><span>GST</span><b>4</b></button>
+        <button type="button" data-cat="compliance" aria-pressed="false" style="--cat:#5b3f8c"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><span>Compliance</span><b>2</b></button>
       </div>
 
       <!-- Blog Grid -->
       <div class="blog-listing-grid">
-        <a href="blog/nri-property-tds-no-tan-required-2026.html" class="blog-listing-card" aria-label="Read: Buying Property from an NRI? No TAN Needed from 1 October 2026">
+        <a href="blog/nri-property-tds-no-tan-required-2026.html" class="blog-listing-card is-featured" data-cat="income-tax" style="--cat:#1f4e8c" aria-label="Read: Buying Property from an NRI? No TAN Needed from 1 October 2026">
+          <span class="blc-mark" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 7h8"/><path d="M8 11h8"/><path d="M12 17.5 8 15h1a4 4 0 0 0 0-8"/></svg></span>
+          <span class="blc-latest">Latest</span>
           <div class="blog-meta">
+            <span class="blog-category"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 7h8"/><path d="M8 11h8"/><path d="M12 17.5 8 15h1a4 4 0 0 0 0-8"/></svg>Income Tax</span>
             <span class="blog-date">September 2026</span>
-            <span class="blog-category">Income Tax</span>
           </div>
           <h2>Buying Property from an NRI? No TAN Needed from 1 October 2026</h2>
           <p class="blog-excerpt">Buying property from an NRI? From 1 October 2026 resident buyers need no TAN: TDS is paid via PAN-based Form 141 Schedule E. Call +91 88025 86988.</p>
-          <span class="read-more">Buying property from an NRI: no TAN needed from 1 Oct 2026 <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+          <div class="blc-foot">
+            <span class="read-more">Buying property from an NRI: no TAN needed from 1 Oct 2026 <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+            <span class="blc-time"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>10 min read</span>
+          </div>
         </a>
 
-        <a href="blog/epfo-wage-ceiling-raised-to-25000.html" class="blog-listing-card" aria-label="Read: EPFO Wage Ceiling Raised to Rs. 25,000: What It Means for Employees and Employers">
+        <a href="blog/epfo-wage-ceiling-raised-to-25000.html" class="blog-listing-card" data-cat="compliance" style="--cat:#5b3f8c" aria-label="Read: EPFO Wage Ceiling Raised to Rs. 25,000: What It Means for Employees and Employers">
+          <span class="blc-mark" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
           <div class="blog-meta">
+            <span class="blog-category"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Compliance</span>
             <span class="blog-date">September 2026</span>
-            <span class="blog-category">Compliance</span>
           </div>
           <h2>EPFO Wage Ceiling Raised to Rs. 25,000: What It Means for Employees and Employers</h2>
           <p class="blog-excerpt">EPFO wage ceiling raised from Rs. 15,000 to Rs. 25,000: who gets covered, why it matters, and what employers must do now. Call +91 88025 86988.</p>
-          <span class="read-more">EPFO ceiling up to Rs. 25,000: new coverage and what changes <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+          <div class="blc-foot">
+            <span class="read-more">EPFO ceiling up to Rs. 25,000: new coverage and what changes <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+            <span class="blc-time"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>2 min read</span>
+          </div>
         </a>
 
-        <a href="blog/which-business-structure-should-you-register.html" class="blog-listing-card" aria-label="Read: Which Business Structure Should You Actually Register?">
+        <a href="blog/which-business-structure-should-you-register.html" class="blog-listing-card" data-cat="company-law" style="--cat:#8f2d22" aria-label="Read: Which Business Structure Should You Actually Register?">
+          <span class="blc-mark" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></span>
           <div class="blog-meta">
+            <span class="blog-category"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>Company Law</span>
             <span class="blog-date">September 2026</span>
-            <span class="blog-category">Company Law</span>
           </div>
           <h2>Which Business Structure Should You Actually Register?</h2>
           <p class="blog-excerpt">Proprietorship, Partnership, LLP, OPC or Private Limited? Compare liability, funding and paperwork to choose the right structure. Call +91 88025 86988.</p>
-          <span class="read-more">Proprietorship vs LLP vs OPC vs Pvt Ltd: which fits you <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+          <div class="blc-foot">
+            <span class="read-more">Proprietorship vs LLP vs OPC vs Pvt Ltd: which fits you <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+            <span class="blc-time"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>3 min read</span>
+          </div>
         </a>
 
-        <a href="blog/fssai-registration-licensing-guide-2026.html" class="blog-listing-card" aria-label="Read: FSSAI Registration &amp; Licensing in India: Complete 2026 Guide">
+        <a href="blog/fssai-registration-licensing-guide-2026.html" class="blog-listing-card" data-cat="compliance" style="--cat:#5b3f8c" aria-label="Read: FSSAI Registration &amp; Licensing in India: Complete 2026 Guide">
+          <span class="blc-mark" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
           <div class="blog-meta">
+            <span class="blog-category"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Compliance</span>
             <span class="blog-date">September 2026</span>
-            <span class="blog-category">Compliance</span>
           </div>
           <h2>FSSAI Registration &amp; Licensing in India: Complete 2026 Guide</h2>
           <p class="blog-excerpt">Complete FSSAI registration and licensing guide 2026: turnover limits, KoB-wise process, fees and checklist per the 2026 amendment. Call +91 88025 86988.</p>
-          <span class="read-more">FSSAI tiers, fees and KoB-wise process explained <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+          <div class="blc-foot">
+            <span class="read-more">FSSAI tiers, fees and KoB-wise process explained <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+            <span class="blc-time"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>17 min read</span>
+          </div>
         </a>
 
-        <a href="blog/mca-incorporation-amendment-rules-2026.html" class="blog-listing-card" aria-label="Read: MCA Draft Rules to Simplify Company Incorporation in 2026">
+        <a href="blog/mca-incorporation-amendment-rules-2026.html" class="blog-listing-card" data-cat="company-law" style="--cat:#8f2d22" aria-label="Read: MCA Draft Rules to Simplify Company Incorporation in 2026">
+          <span class="blc-mark" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></span>
           <div class="blog-meta">
+            <span class="blog-category"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>Company Law</span>
             <span class="blog-date">September 2026</span>
-            <span class="blog-category">Company Law</span>
           </div>
           <h2>MCA Draft Rules to Simplify Company Incorporation in 2026</h2>
           <p class="blog-excerpt">MCA draft Company Incorporation (Amendment) Rules 2026: fewer forms, optional AGILE-PRO-S, lighter verification. Know what changes for new companies.</p>
-          <span class="read-more">MCA draft rules: fewer forms, faster company registration <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+          <div class="blc-foot">
+            <span class="read-more">MCA draft rules: fewer forms, faster company registration <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+            <span class="blc-time"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>4 min read</span>
+          </div>
         </a>
 
-        <a href="blog/delhi-hc-biometric-aadhaar-gst-registration.html" class="blog-listing-card" aria-label="Read: Biometric Aadhaar Authentication Mandatory for GST Registration">
+        <a href="blog/delhi-hc-biometric-aadhaar-gst-registration.html" class="blog-listing-card" data-cat="gst" style="--cat:#1b6b4f" aria-label="Read: Biometric Aadhaar Authentication Mandatory for GST Registration">
+          <span class="blc-mark" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m15 9-6 6"/><path d="M9 9h.01"/><path d="M15 15h.01"/></svg></span>
           <div class="blog-meta">
+            <span class="blog-category"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m15 9-6 6"/><path d="M9 9h.01"/><path d="M15 15h.01"/></svg>GST</span>
             <span class="blog-date">September 2026</span>
-            <span class="blog-category">GST</span>
           </div>
           <h2>Biometric Aadhaar Authentication Mandatory for GST Registration</h2>
           <p class="blog-excerpt">Delhi HC makes biometric Aadhaar authentication mandatory for every GST registration. Analysis of Neha v. Union of India (08.09.2026). Call +91 88025 86988.</p>
-          <span class="read-more">Delhi HC ruling makes biometric Aadhaar mandatory <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+          <div class="blc-foot">
+            <span class="read-more">Delhi HC ruling makes biometric Aadhaar mandatory <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+            <span class="blc-time"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>6 min read</span>
+          </div>
         </a>
 
-        <a href="blog/advance-tax-guide-due-dates-instalments-2026.html" class="blog-listing-card" aria-label="Read: Advance Tax under Income Tax Act 2025 - Complete Guide">
+        <a href="blog/advance-tax-guide-due-dates-instalments-2026.html" class="blog-listing-card" data-cat="income-tax" style="--cat:#1f4e8c" aria-label="Read: Advance Tax under Income Tax Act 2025 - Complete Guide">
+          <span class="blc-mark" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 7h8"/><path d="M8 11h8"/><path d="M12 17.5 8 15h1a4 4 0 0 0 0-8"/></svg></span>
           <div class="blog-meta">
+            <span class="blog-category"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 7h8"/><path d="M8 11h8"/><path d="M12 17.5 8 15h1a4 4 0 0 0 0-8"/></svg>Income Tax</span>
             <span class="blog-date">August 2026</span>
-            <span class="blog-category">Income Tax</span>
           </div>
           <h2>Advance Tax under Income Tax Act 2025 - Complete Guide</h2>
           <p class="blog-excerpt">Complete guide to advance tax under the Income-tax Act 2025 — applicability, due dates, instalment percentages, exemptions, interest under Sections 234B/234C, and the …</p>
-          <span class="read-more">Due dates, calculations and interest rules explained <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+          <div class="blc-foot">
+            <span class="read-more">Due dates, calculations and interest rules explained <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+            <span class="blc-time"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>12 min read</span>
+          </div>
         </a>
 
-        <a href="blog/ccfs-2026-extended-to-15-september-2026.html" class="blog-listing-card" aria-label="Read: CCFS-2026 Extended to 15 September 2026: What It Means">
+        <a href="blog/ccfs-2026-extended-to-15-september-2026.html" class="blog-listing-card" data-cat="company-law" style="--cat:#8f2d22" aria-label="Read: CCFS-2026 Extended to 15 September 2026: What It Means">
+          <span class="blc-mark" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></span>
           <div class="blog-meta">
+            <span class="blog-category"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>Company Law</span>
             <span class="blog-date">August 2026</span>
-            <span class="blog-category">Company Law</span>
           </div>
           <h2>CCFS-2026 Extended to 15 September 2026: What It Means</h2>
           <p class="blog-excerpt">MCA has extended CCFS-2026 to 15th September 2026. Know what's covered, the fee waivers on offer, and how to complete pending ROC filings in time.</p>
-          <span class="read-more">ROC filing relief scheme deadline and fee waivers <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+          <div class="blc-foot">
+            <span class="read-more">ROC filing relief scheme deadline and fee waivers <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+            <span class="blc-time"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>7 min read</span>
+          </div>
         </a>
 
-        <a href="blog/itr-filing-business-income-due-date-ay-2026-27.html" class="blog-listing-card" aria-label="Read: ITR Filing for Business Income (Non-Audit Cases): Due Date for AY 2026-27">
+        <a href="blog/itr-filing-business-income-due-date-ay-2026-27.html" class="blog-listing-card" data-cat="income-tax" style="--cat:#1f4e8c" aria-label="Read: ITR Filing for Business Income (Non-Audit Cases): Due Date for AY 2026-27">
+          <span class="blc-mark" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 7h8"/><path d="M8 11h8"/><path d="M12 17.5 8 15h1a4 4 0 0 0 0-8"/></svg></span>
           <div class="blog-meta">
+            <span class="blog-category"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 7h8"/><path d="M8 11h8"/><path d="M12 17.5 8 15h1a4 4 0 0 0 0-8"/></svg>Income Tax</span>
             <span class="blog-date">August 2026</span>
-            <span class="blog-category">Income Tax</span>
           </div>
           <h2>ITR Filing for Business Income (Non-Audit Cases): Due Date for AY 2026-27</h2>
           <p class="blog-excerpt">ITR filing due date for AY 2026-27 (non-audit business/professional income): 31 August 2026 under ITR-3/ITR-4, explained by a Chartered Accountant in Ghaziabad.</p>
-          <span class="read-more">31 August 2026 deadline for ITR-3/ITR-4 filers <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+          <div class="blc-foot">
+            <span class="read-more">31 August 2026 deadline for ITR-3/ITR-4 filers <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+            <span class="blc-time"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>6 min read</span>
+          </div>
         </a>
 
-        <a href="blog/gst-registration-turnover-limits-up-2026.html" class="blog-listing-card" aria-label="Read: GST Registration Turnover Limits in Uttar Pradesh — 2026">
+        <a href="blog/gst-registration-turnover-limits-up-2026.html" class="blog-listing-card" data-cat="gst" style="--cat:#1b6b4f" aria-label="Read: GST Registration Turnover Limits in Uttar Pradesh — 2026">
+          <span class="blc-mark" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m15 9-6 6"/><path d="M9 9h.01"/><path d="M15 15h.01"/></svg></span>
           <div class="blog-meta">
+            <span class="blog-category"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m15 9-6 6"/><path d="M9 9h.01"/><path d="M15 15h.01"/></svg>GST</span>
             <span class="blog-date">August 2026</span>
-            <span class="blog-category">GST</span>
           </div>
           <h2>GST Registration Turnover Limits in Uttar Pradesh — 2026</h2>
           <p class="blog-excerpt">GST registration turnover limits for Uttar Pradesh in 2026: Rs 40 lakh for goods and Rs 20 lakh for services, with the exceptions that trigger mandatory registration.</p>
-          <span class="read-more">When GST registration is mandatory in UP <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+          <div class="blc-foot">
+            <span class="read-more">When GST registration is mandatory in UP <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+            <span class="blc-time"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>1 min read</span>
+          </div>
         </a>
 
-        <a href="blog/gst-annual-return-gstr9-fy2025-26.html" class="blog-listing-card" aria-label="Read: GST Annual Return (GSTR-9) — FY 2025-26 Filing Guide">
+        <a href="blog/gst-annual-return-gstr9-fy2025-26.html" class="blog-listing-card" data-cat="gst" style="--cat:#1b6b4f" aria-label="Read: GST Annual Return (GSTR-9) — FY 2025-26 Filing Guide">
+          <span class="blc-mark" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m15 9-6 6"/><path d="M9 9h.01"/><path d="M15 15h.01"/></svg></span>
           <div class="blog-meta">
+            <span class="blog-category"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m15 9-6 6"/><path d="M9 9h.01"/><path d="M15 15h.01"/></svg>GST</span>
             <span class="blog-date">July 2026</span>
-            <span class="blog-category">GST</span>
           </div>
           <h2>GST Annual Return (GSTR-9) — FY 2025-26 Filing Guide</h2>
           <p class="blog-excerpt">GSTR-9 annual return for FY 2025-26: who must file, due date of 31 December, key sections and common errors, from a CA in Ghaziabad. Call +91 88025 86988.</p>
-          <span class="read-more">GSTR-9 filing guide with deadlines and errors <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+          <div class="blc-foot">
+            <span class="read-more">GSTR-9 filing guide with deadlines and errors <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+            <span class="blc-time"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>13 min read</span>
+          </div>
         </a>
 
-        <a href="blog/gst-due-dates-july-2026.html" class="blog-listing-card" aria-label="Read: GST Return Filing Due Dates — July 2026">
+        <a href="blog/gst-due-dates-july-2026.html" class="blog-listing-card" data-cat="gst" style="--cat:#1b6b4f" aria-label="Read: GST Return Filing Due Dates — July 2026">
+          <span class="blc-mark" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m15 9-6 6"/><path d="M9 9h.01"/><path d="M15 15h.01"/></svg></span>
           <div class="blog-meta">
+            <span class="blog-category"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m15 9-6 6"/><path d="M9 9h.01"/><path d="M15 15h.01"/></svg>GST</span>
             <span class="blog-date">July 2026</span>
-            <span class="blog-category">GST</span>
           </div>
           <h2>GST Return Filing Due Dates — July 2026</h2>
           <p class="blog-excerpt">GST due dates for July 2026: GSTR-1, GSTR-3B, GSTR-5, GSTR-6, GSTR-8 and IFF deadlines from a Chartered Accountant in Ghaziabad. Call +91 88025 86988.</p>
-          <span class="read-more">Complete GST filing calendar for July 2026 <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+          <div class="blc-foot">
+            <span class="read-more">Complete GST filing calendar for July 2026 <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+            <span class="blc-time"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>7 min read</span>
+          </div>
         </a>
 
-        <a href="blog/income-tax-advance-tax-instalments-fy2025-26.html" class="blog-listing-card" aria-label="Read: Advance Tax Instalments — FY 2025-26">
+        <a href="blog/income-tax-advance-tax-instalments-fy2025-26.html" class="blog-listing-card" data-cat="income-tax" style="--cat:#1f4e8c" aria-label="Read: Advance Tax Instalments — FY 2025-26">
+          <span class="blc-mark" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 7h8"/><path d="M8 11h8"/><path d="M12 17.5 8 15h1a4 4 0 0 0 0-8"/></svg></span>
           <div class="blog-meta">
+            <span class="blog-category"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 7h8"/><path d="M8 11h8"/><path d="M12 17.5 8 15h1a4 4 0 0 0 0-8"/></svg>Income Tax</span>
             <span class="blog-date">June 2026</span>
-            <span class="blog-category">Income Tax</span>
           </div>
           <h2>Advance Tax Instalments — FY 2025-26</h2>
           <p class="blog-excerpt">Advance tax instalments for FY 2025-26: due dates of 15 June, 15 September, 15 December and 15 March with Section 234B/234C interest. Call +91 88025 86988.</p>
-          <span class="read-more">Advance tax dates and interest calculation guide <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+          <div class="blc-foot">
+            <span class="read-more">Advance tax dates and interest calculation guide <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+            <span class="blc-time"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>10 min read</span>
+          </div>
         </a>
 
-        <a href="blog/llp-annual-compliance-requirements-2026.html" class="blog-listing-card" aria-label="Read: LLP Annual Compliance Requirements — 2026">
+        <a href="blog/llp-annual-compliance-requirements-2026.html" class="blog-listing-card" data-cat="company-law" style="--cat:#8f2d22" aria-label="Read: LLP Annual Compliance Requirements — 2026">
+          <span class="blc-mark" aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></span>
           <div class="blog-meta">
+            <span class="blog-category"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>Company Law</span>
             <span class="blog-date">May 2026</span>
-            <span class="blog-category">Company Law</span>
           </div>
           <h2>LLP Annual Compliance Requirements — 2026</h2>
           <p class="blog-excerpt">LLP annual compliance in 2026: Form 8, Form 11, agreement and MCA penalties explained by a practising CA in Ghaziabad. Call +91 88025 86988.</p>
-          <span class="read-more">Form 8, Form 11 and MCA deadlines explained <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+          <div class="blc-foot">
+            <span class="read-more">Form 8, Form 11 and MCA deadlines explained <span class="card-arrow" aria-hidden="true">&rarr;</span></span>
+            <span class="blc-time"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>10 min read</span>
+          </div>
         </a>
 
 </div>
@@ -323,6 +379,7 @@
   
   </main>
   <script defer src="js/main.js"></script>
+  <script defer src="js/insights.js"></script>
 <!--chrome:footer-->
 <footer class="footer">
   <div class="container">
