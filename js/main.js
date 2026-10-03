@@ -24,35 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Services hub accordion: click/tap toggles a category.
-  document.querySelectorAll('.acc-group').forEach(function (group) {
-    var head = group.querySelector('.acc-head');
-    if (!head) return;
-    head.setAttribute('aria-expanded', group.classList.contains('pinned') ? 'true' : 'false');
-    head.addEventListener('click', function () {
-      var open = group.classList.toggle('pinned');
-      head.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  });
-
-  // Deep-link: expand + scroll to a specific service row (services.html#svc-...)
-  var hash = window.location.hash ? window.location.hash.slice(1) : '';
-  if (hash) {
-    var row = document.getElementById(hash);
-    if (row && row.classList.contains('acc-item')) {
-      var group = row.closest('.acc-group');
-      if (group) {
-        group.classList.add('pinned');
-        var h = group.querySelector('.acc-head');
-        if (h) h.setAttribute('aria-expanded', 'true');
-      }
-      setTimeout(function () {
-        row.scrollIntoView({ block: 'center' });
-        row.classList.add('acc-item-flash');
-      }, 150);
-    }
-  }
-
   // Blog category filters
   var filters = document.querySelector('.category-filters');
   if (filters) {
