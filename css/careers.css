@@ -1017,7 +1017,7 @@ a.count-link:hover { color: var(--accent-text); }
 /* ===== Vacancy detail hero location ===== */
 .vac-hero-location {
   font-weight: 600;
-  color: var(--primary);
+  color: #fff;
 }
 
 /* ===== Applicant dashboard (§15, §16) ===== */
@@ -1111,6 +1111,7 @@ a.count-link:hover { color: var(--accent-text); }
 @media (max-width: 860px) {
   .dashboard-grid { grid-template-columns: 1fr; }
   .application-head { flex-direction: column; align-items: flex-start; }
+  .vacancy-detail { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
 }
 
 /* ===== Print ===== */

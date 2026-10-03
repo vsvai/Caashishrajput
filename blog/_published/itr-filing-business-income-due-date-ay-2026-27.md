@@ -4,7 +4,7 @@ seo_title: ITR Due Date AY 2026-27: Business Income | CA Ashish Rajput
 slug: itr-filing-business-income-due-date-ay-2026-27
 category: Income Tax
 date: 2026-08-28
-description: ITR filing due date for AY 2026-27 (non-audit business/professional income): 31 August 2026 under ITR-3/ITR-4, explained by a Chartered Accountant in Ghaziabad.
+description: ITR filing due date for AY 2026-27 (non-audit business/professional income): 31 August 2026 under ITR-3/ITR-4, explained by a CA in Ghaziabad.
 ---
 
 ## By a Chartered Accountant's Desk

@@ -21,6 +21,7 @@ const path = require('path');
 
 const { htmlEsc, mdToHtml, parseFrontMatter } = require('./lib/markdown.js');
 const sitemap = require('./lib/sitemap.js');
+const { stamp } = require('./lib/site-chrome.js');
 
 const ROOT = path.join(__dirname, '..');
 const BLOG_DIR = path.join(ROOT, 'blog');
@@ -144,7 +145,7 @@ function buildPostHtml(post) {
   const body = post.bodyHtml
     .split('\n').map(function (l) { return '        ' + l; }).join('\n');
 
-  return '<!DOCTYPE html>\n' +
+  return stamp('<!DOCTYPE html>\n' +
     '<html lang="en-IN">\n' +
     '<head>\n' +
     '  <meta charset="UTF-8">\n' +
@@ -220,10 +221,9 @@ function buildPostHtml(post) {
     '  </section>\n' +
     '\n' +
     '  </main>\n' +
-    '  <script defer src="../js/components.js"></script>\n' +
     '  <script defer src="../js/main.js"></script>\n' +
     '</body>\n' +
-    '</html>\n';
+    '</html>\n');
 }
 
 /* ============================================================

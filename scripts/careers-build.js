@@ -36,6 +36,7 @@ const path = require('path');
 
 const { htmlEsc, mdToHtml, parseFrontMatter } = require('./lib/markdown.js');
 const sitemap = require('./lib/sitemap.js');
+const { stamp } = require('./lib/site-chrome.js');
 
 const ROOT = path.join(__dirname, '..');
 const CAREERS_DIR = path.join(ROOT, 'careers');
@@ -470,7 +471,7 @@ function buildVacancyHtml(v) {
 
   const bodyHtml = tidyAndIndent(sections, '          ');
 
-  return '<!DOCTYPE html>\n' +
+  return stamp('<!DOCTYPE html>\n' +
     '<html lang="en-IN">\n' +
     '<head>\n' +
     '  <meta charset="UTF-8">\n' +
@@ -501,7 +502,7 @@ function buildVacancyHtml(v) {
     ' data-closing="' + htmlEsc(v.closing_date) + '"' +
     ' data-breadcrumbs=\'' + JSON.stringify([
       { label: 'Home', href: 'index.html' },
-      { label: 'Careers', href: 'index.html' },
+      { label: 'Careers', href: 'career/index.html' },
       { label: v.title }
     ]) + '\'>\n' +
     '  <main>\n' +
@@ -535,10 +536,9 @@ function buildVacancyHtml(v) {
     '  </section>\n' +
     '\n' +
     '  </main>\n' +
-    '  <script defer src="../js/components.js"></script>\n' +
     '  <script defer src="../js/main.js"></script>\n' +
     '</body>\n' +
-    '</html>\n';
+    '</html>\n');
 }
 
 /* ============================================================

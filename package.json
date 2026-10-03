@@ -14,6 +14,7 @@
     "careers:publish": "node scripts/careers-build.js publish",
     "careers:rebuild": "node scripts/careers-build.js rebuild",
     "careers:list": "node scripts/careers-build.js list",
+    "chrome": "node scripts/build-chrome.js",
     "seo:overhaul": "node scripts/seo-overhaul.js",
     "seo:validate": "node scripts/validate-seo.js"
   },

@@ -121,10 +121,11 @@ for (const file of htmlFiles) {
     }
   }
 
-  // Footer component (injects the NAP <address> at runtime) must be included
-  const footerScript = /(?:src=")(?:(?:\.\.\/)*)js\/components\.js"/.test(content);
-  if (/<body[\s>]/i.test(content) && !footerScript && !isGoogleVerify) {
-    page.problems.push('Missing js/components.js footer component');
+  // Shared header and footer (with the NAP <address>) must be written into the
+  // page by scripts/build-chrome.js
+  const staticChrome = /<!--chrome:header-->/.test(content) && /<!--chrome:footer-->/.test(content);
+  if (/<body[\s>]/i.test(content) && !staticChrome && !isGoogleVerify) {
+    page.problems.push('Missing static header/footer (run npm run chrome)');
   }
 
   // JSON-LD
@@ -186,15 +187,15 @@ const robots = fs.readFileSync(path.join(ROOT, 'robots.txt'), 'utf8');
 if (/Disallow:\s*\/pages\//.test(robots)) report.problems.push('robots.txt still disallows /pages/');
 if (!/Sitemap:\s*https:\/\/caashishrajput\.com\/sitemap\.xml/.test(robots)) report.problems.push('robots.txt missing sitemap directive');
 
-// footer component must contain the full NAP <address> block
-const components = fs.readFileSync(path.join(ROOT, 'js', 'components.js'), 'utf8');
-const napBlock = components.match(/<address[^>]*class="nap"[^>]*>([\s\S]*?)<\/address>/);
+// shared footer must contain the full NAP <address> block
+const footer = require('./lib/site-chrome.js').footerHtml('');
+const napBlock = footer.match(/<address[^>]*class="nap"[^>]*>([\s\S]*?)<\/address>/);
 if (!napBlock) {
-  report.problems.push('js/components.js missing <address class="nap"> NAP block');
+  report.problems.push('scripts/lib/site-chrome.js footer missing <address class="nap"> NAP block');
 } else {
   for (const cls of ['nap-name', 'nap-street', 'nap-locality', 'nap-region', 'nap-phone', 'nap-email']) {
     if (!new RegExp('class="' + cls + '"').test(napBlock[1])) {
-      report.problems.push('js/components.js NAP block missing .' + cls);
+      report.problems.push('scripts/lib/site-chrome.js NAP block missing .' + cls);
     }
   }
 }

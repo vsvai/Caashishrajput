@@ -796,6 +796,22 @@ a:hover { color: var(--accent-text); }
 
 .due-dates-table tr:nth-child(even) { background: var(--bg-alt); }
 
+/* Long unbroken strings (slash lists, email addresses) wrap instead of widening the page */
+.blog-post-content,
+.vacancy-detail,
+.vacancy-detail .panel {
+  overflow-wrap: break-word;
+}
+
+/* Wide tables scroll inside their own box on phones instead of widening the page */
+@media (max-width: 720px) {
+  .due-dates-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 /* ===== Footer ===== */
 .footer {
   background: #0f1923;

@@ -75,3 +75,14 @@ All previous `application/ld+json` blocks were stripped and regenerated from one
 ## 8. Verification
 
 Run `node scripts/validate-seo.js`. Full output and methodology in `SEO-VALIDATION-REPORT.md`.
+
+---
+
+## Update 2026-10-03: static header and footer
+
+- **Header, breadcrumbs, footer (with the NAP `<address>`) and WhatsApp button are now written into each page's HTML** instead of being injected by `js/components.js`, which has been removed. On every page except the homepage that script had been crashing at the breadcrumb step (`insertBefore` on a node inside `<main>`), so visitors and Google saw no footer, NAP block, WhatsApp button or breadcrumbs on 47 pages.
+- Markup lives in **`scripts/lib/site-chrome.js`**. After editing it, run **`npm run chrome`** to update every page. `blog-build.js` and `careers-build.js` apply it automatically to pages they generate. Pages still declare `data-depth`, `data-active` and `data-breadcrumbs` on `<body>`.
+- `validate-seo.js` now checks for the static header/footer markers and reads the NAP block from `site-chrome.js`.
+- Blog titles capped at 60 chars (optional `seo_title:` front matter); BreadcrumbList JSON-LD in posts now points at `/` and `/blog.html`.
+- Mobile: vacancy page stacks its sidebar under 860px, wide blog tables scroll inside their own box, and long unbroken words wrap.
+- `pages/*.html` corrected to `data-depth="1"`.
