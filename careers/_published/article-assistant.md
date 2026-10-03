@@ -17,8 +17,10 @@ responsibilities: |
   - Accounting — day-to-day bookkeeping, bank and ledger reconciliations, and support in finalising client accounts
   - ROC and corporate compliance — company incorporation, annual filings and maintenance of company records
   - Client assignments — supporting the Chartered Accountant on live client engagements and day-to-day client queries
+qualification: |
+  - This position is only for students pursuing the Chartered Accountancy (CA) course with ICAI
 benefits: |
-  - Stipend as per applicable ICAI guidelines
+  - Stipend as per applicable [ICAI guidelines](https://www.icai.org/post/781)
   - Hands-on exposure across different areas of CA practice rather than one repetitive stream of work
   - Direct supervision by a practising Chartered Accountant, with questions encouraged
   - A small team in Sahibabad, Ghaziabad, serving local businesses year after year
@@ -35,6 +37,8 @@ This is a learning position with real client work attached to it. Everything you
 Chartered Accountant before it goes out, so you learn what is correct and why, not just what to type.
 
 ## Who we are looking for
+
+**This position is only for students pursuing CA.**
 
 Someone who is motivated to learn the profession properly, is comfortable asking questions, and takes care
 over the records they handle. If you have just graduated, have done an internship, or have a year or two of
