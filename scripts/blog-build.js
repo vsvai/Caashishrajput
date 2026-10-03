@@ -370,7 +370,8 @@ function rebuildBlogHtml(posts) {
    Home page "Recent updates" (index.html, between <!--latest-posts--> markers)
    Generated here so the home page always links to the newest posts.
    ============================================================ */
-const HOME_HTML = path.join(ROOT, 'index.html');
+// Pages carrying an auto-updated "recent posts" block.
+const LATEST_PAGES = [path.join(ROOT, 'index.html'), path.join(ROOT, 'resources.html')];
 const HOME_LATEST_COUNT = 3;
 
 function homeCardHtml(post) {
@@ -384,17 +385,19 @@ function homeCardHtml(post) {
 }
 
 function rebuildHomeLatest(posts) {
-  if (!fs.existsSync(HOME_HTML)) return;
-  const content = fs.readFileSync(HOME_HTML, 'utf8');
-  const re = /(<!--latest-posts-->)[\s\S]*?(\s*<!--\/latest-posts-->)/;
-  if (!re.test(content)) {
-    console.warn('  ! index.html has no <!--latest-posts--> markers — home page not updated.');
-    return;
-  }
   const block = '\n      <div class="blog-grid">\n' +
     posts.slice(0, HOME_LATEST_COUNT).map(homeCardHtml).join('\n') + '\n      </div>';
-  fs.writeFileSync(HOME_HTML, content.replace(re, '$1' + block + '$2'), 'utf8');
-  console.log('  index.html recent updates set to the ' + Math.min(HOME_LATEST_COUNT, posts.length) + ' newest post(s).');
+  LATEST_PAGES.forEach(function (file) {
+    if (!fs.existsSync(file)) return;
+    const content = fs.readFileSync(file, 'utf8');
+    const re = /(<!--latest-posts-->)[\s\S]*?(\s*<!--\/latest-posts-->)/;
+    if (!re.test(content)) {
+      console.warn('  ! ' + path.basename(file) + ' has no <!--latest-posts--> markers — not updated.');
+      return;
+    }
+    fs.writeFileSync(file, content.replace(re, function (m, a, b) { return a + block + b; }), 'utf8');
+    console.log('  ' + path.basename(file) + ' recent posts set to the ' + Math.min(HOME_LATEST_COUNT, posts.length) + ' newest.');
+  });
 }
 
 /* ============================================================

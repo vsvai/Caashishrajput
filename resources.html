@@ -163,235 +163,168 @@
   <section class="section">
     <div class="container">
       <h2 class="section-title">FY 2026-27 Compliance Calendar</h2>
-      <p class="section-subtitle">All the important due dates for the financial year 2026-27 (April 2026 &ndash; March 2027) across income tax, GST, PF, ESI, companies law (ROC/MCA) and the LLP Act. Pick a month below to see its deadlines at a glance.</p>
+      <p class="section-subtitle">All the important due dates for the financial year 2026-27 (April 2026 &ndash; March 2027) across income tax, GST, PF, ESI, companies law (ROC/MCA) and the LLP Act. Filter by law, open any month, and add a due date straight to your own calendar with a reminder two days before.</p>
 
-      <div class="cal-legend">
-        <span class="cal-legend-item"><span class="cal-dot" style="background:#2563eb;"></span>Income Tax</span>
-        <span class="cal-legend-item"><span class="cal-dot" style="background:#059669;"></span>GST</span>
-        <span class="cal-legend-item"><span class="cal-dot" style="background:#7c3aed;"></span>Provident Fund (EPF)</span>
-        <span class="cal-legend-item"><span class="cal-dot" style="background:#0d9488;"></span>ESI</span>
-        <span class="cal-legend-item"><span class="cal-dot" style="background:#b91c1c;"></span>Companies Act &middot; ROC &middot; MCA</span>
-        <span class="cal-legend-item"><span class="cal-dot" style="background:#c2410c;"></span>LLP Act</span>
+      <div class="cc" id="complianceCalendar" data-fy="2026-27">
+        <!-- Static, crawlable list of every FY 2026-27 due date. js/compliance-calendar.js
+             builds the interactive view (countdown, filters, year chart, month grid) from it. -->
+        <section class="cc-month" data-month="2026-04" aria-label="April 2026">
+          <h3>April 2026</h3>
+          <ol class="cc-list">
+            <li class="cc-item" data-law="it"><time datetime="2026-04-07">7 Apr</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>TDS/TCS payment</strong> &mdash; March 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-04-11">11 Apr</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-1</strong> (monthly) &mdash; March 2026</span></li>
+            <li class="cc-item" data-law="epf"><time datetime="2026-04-15">15 Apr</time><span class="cc-law">EPF</span><span class="cc-what"><strong>EPF contribution + ECR</strong> &mdash; March 2026</span></li>
+            <li class="cc-item" data-law="esi"><time datetime="2026-04-15">15 Apr</time><span class="cc-law">ESI</span><span class="cc-what"><strong>ESI contribution</strong> &mdash; March 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-04-18">18 Apr</time><span class="cc-law">GST</span><span class="cc-what"><strong>CMP-08</strong> &mdash; Q4 FY 2025-26 (composition dealers)</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-04-20">20 Apr</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-3B</strong> &mdash; March 2026 (monthly filers)</span></li>
+            <li class="cc-item" data-law="gst" data-alt-day="24"><time datetime="2026-04-22">22/24 Apr</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-3B</strong> (QRMP) &mdash; Q4 FY 2025-26 <span class="cc-note">(22nd or 24th, depending on the state)</span></span></li>
+            <li class="cc-item" data-law="epf"><time datetime="2026-04-30">30 Apr</time><span class="cc-law">EPF</span><span class="cc-what"><strong>PF annual statements</strong> (Form 3A / 6A) &mdash; FY 2025-26</span></li>
+            <li class="cc-item" data-law="esi"><time datetime="2026-04-30">30 Apr</time><span class="cc-law">ESI</span><span class="cc-what"><strong>ESI half-yearly return</strong> &mdash; Oct 2025 &ndash; Mar 2026</span></li>
+            <li class="cc-item" data-law="roc"><time datetime="2026-04-30">30 Apr</time><span class="cc-law">Companies Act / ROC</span><span class="cc-what"><strong>MSME-1</strong> &mdash; Oct 2025 &ndash; Mar 2026 (where applicable)</span></li>
+          </ol>
+        </section>
+        <section class="cc-month" data-month="2026-05" aria-label="May 2026">
+          <h3>May 2026</h3>
+          <ol class="cc-list">
+            <li class="cc-item" data-law="it"><time datetime="2026-05-07">7 May</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>TDS/TCS payment</strong> &mdash; April 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-05-13">13 May</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-1 IFF</strong> (QRMP) &mdash; April 2026</span></li>
+            <li class="cc-item" data-law="epf"><time datetime="2026-05-15">15 May</time><span class="cc-law">EPF</span><span class="cc-what"><strong>EPF contribution + ECR</strong> &mdash; April 2026</span></li>
+            <li class="cc-item" data-law="esi"><time datetime="2026-05-15">15 May</time><span class="cc-law">ESI</span><span class="cc-what"><strong>ESI contribution</strong> &mdash; April 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-05-20">20 May</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-3B</strong> &mdash; April 2026</span></li>
+            <li class="cc-item" data-law="llp"><time datetime="2026-05-30">30 May</time><span class="cc-law">LLP</span><span class="cc-what"><strong>LLP Form 11</strong> (annual return) &mdash; FY 2025-26</span></li>
+            <li class="cc-item" data-law="it"><time datetime="2026-05-31">31 May</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>TDS/TCS quarterly return</strong> &mdash; Q4 FY 2025-26</span></li>
+          </ol>
+        </section>
+        <section class="cc-month" data-month="2026-06" aria-label="June 2026">
+          <h3>June 2026</h3>
+          <ol class="cc-list">
+            <li class="cc-item" data-law="it"><time datetime="2026-06-07">7 Jun</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>TDS/TCS payment</strong> &mdash; May 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-06-13">13 Jun</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-1 IFF</strong> (QRMP) &mdash; May 2026</span></li>
+            <li class="cc-item" data-law="it"><time datetime="2026-06-15">15 Jun</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>Advance tax</strong> &mdash; 1st instalment</span></li>
+            <li class="cc-item" data-law="epf"><time datetime="2026-06-15">15 Jun</time><span class="cc-law">EPF</span><span class="cc-what"><strong>EPF contribution + ECR</strong> &mdash; May 2026</span></li>
+            <li class="cc-item" data-law="esi"><time datetime="2026-06-15">15 Jun</time><span class="cc-law">ESI</span><span class="cc-what"><strong>ESI contribution</strong> &mdash; May 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-06-20">20 Jun</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-3B</strong> &mdash; May 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-06-30">30 Jun</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-4</strong> (composition, annual) &mdash; FY 2025-26</span></li>
+            <li class="cc-item" data-law="roc"><time datetime="2026-06-30">30 Jun</time><span class="cc-law">Companies Act / ROC</span><span class="cc-what"><strong>Form DPT-3</strong> &mdash; deposits (where applicable)</span></li>
+          </ol>
+        </section>
+        <section class="cc-month" data-month="2026-07" aria-label="July 2026">
+          <h3>July 2026</h3>
+          <ol class="cc-list">
+            <li class="cc-item" data-law="it"><time datetime="2026-07-07">7 Jul</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>TDS/TCS payment</strong> &mdash; June 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-07-13">13 Jul</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-1</strong> (quarterly, QRMP) &mdash; Q1 FY 2026-27</span></li>
+            <li class="cc-item" data-law="epf"><time datetime="2026-07-15">15 Jul</time><span class="cc-law">EPF</span><span class="cc-what"><strong>EPF contribution + ECR</strong> &mdash; June 2026</span></li>
+            <li class="cc-item" data-law="esi"><time datetime="2026-07-15">15 Jul</time><span class="cc-law">ESI</span><span class="cc-what"><strong>ESI contribution</strong> &mdash; June 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-07-18">18 Jul</time><span class="cc-law">GST</span><span class="cc-what"><strong>CMP-08</strong> &mdash; Q1 FY 2026-27 (composition dealers)</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-07-20">20 Jul</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-3B</strong> &mdash; June 2026 (monthly filers)</span></li>
+            <li class="cc-item" data-law="gst" data-alt-day="24"><time datetime="2026-07-22">22/24 Jul</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-3B</strong> (QRMP) &mdash; Q1 FY 2026-27 <span class="cc-note">(22nd or 24th, depending on the state)</span></span></li>
+            <li class="cc-item" data-law="it"><time datetime="2026-07-31">31 Jul</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>ITR filing &mdash; non-audit</strong> &mdash; FY 2025-26 (AY 2026-27)</span></li>
+            <li class="cc-item" data-law="it"><time datetime="2026-07-31">31 Jul</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>TDS/TCS quarterly return</strong> &mdash; Q1 FY 2026-27</span></li>
+          </ol>
+        </section>
+        <section class="cc-month" data-month="2026-08" aria-label="August 2026">
+          <h3>August 2026</h3>
+          <ol class="cc-list">
+            <li class="cc-item" data-law="it"><time datetime="2026-08-07">7 Aug</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>TDS/TCS payment</strong> &mdash; July 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-08-13">13 Aug</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-1 IFF</strong> (QRMP) &mdash; July 2026</span></li>
+            <li class="cc-item" data-law="epf"><time datetime="2026-08-15">15 Aug</time><span class="cc-law">EPF</span><span class="cc-what"><strong>EPF contribution + ECR</strong> &mdash; July 2026</span></li>
+            <li class="cc-item" data-law="esi"><time datetime="2026-08-15">15 Aug</time><span class="cc-law">ESI</span><span class="cc-what"><strong>ESI contribution</strong> &mdash; July 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-08-20">20 Aug</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-3B</strong> &mdash; July 2026</span></li>
+          </ol>
+        </section>
+        <section class="cc-month" data-month="2026-09" aria-label="September 2026">
+          <h3>September 2026</h3>
+          <ol class="cc-list">
+            <li class="cc-item" data-law="it"><time datetime="2026-09-07">7 Sep</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>TDS/TCS payment</strong> &mdash; August 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-09-13">13 Sep</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-1 IFF</strong> (QRMP) &mdash; August 2026</span></li>
+            <li class="cc-item" data-law="it"><time datetime="2026-09-15">15 Sep</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>Advance tax</strong> &mdash; 2nd instalment</span></li>
+            <li class="cc-item" data-law="epf"><time datetime="2026-09-15">15 Sep</time><span class="cc-law">EPF</span><span class="cc-what"><strong>EPF contribution + ECR</strong> &mdash; August 2026</span></li>
+            <li class="cc-item" data-law="esi"><time datetime="2026-09-15">15 Sep</time><span class="cc-law">ESI</span><span class="cc-what"><strong>ESI contribution</strong> &mdash; August 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-09-20">20 Sep</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-3B</strong> &mdash; August 2026</span></li>
+            <li class="cc-item" data-law="it"><time datetime="2026-09-30">30 Sep</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>Tax audit report</strong> (Sec 44AB) &mdash; FY 2025-26</span></li>
+            <li class="cc-item" data-law="roc"><time datetime="2026-09-30">30 Sep</time><span class="cc-law">MCA</span><span class="cc-what"><strong>DIR-3 KYC</strong> &mdash; directors' KYC (FY 2025-26)</span></li>
+            <li class="cc-item" data-law="roc"><time datetime="2026-09-30">30 Sep</time><span class="cc-law">Companies Act / ROC</span><span class="cc-what"><strong>AGM</strong> &mdash; FY 2025-26 (companies, by 30 Sept)</span></li>
+          </ol>
+        </section>
+        <section class="cc-month" data-month="2026-10" aria-label="October 2026">
+          <h3>October 2026</h3>
+          <ol class="cc-list">
+            <li class="cc-item" data-law="it"><time datetime="2026-10-07">7 Oct</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>TDS/TCS payment</strong> &mdash; September 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-10-13">13 Oct</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-1</strong> (quarterly, QRMP) &mdash; Q2 FY 2026-27</span></li>
+            <li class="cc-item" data-law="epf"><time datetime="2026-10-15">15 Oct</time><span class="cc-law">EPF</span><span class="cc-what"><strong>EPF contribution + ECR</strong> &mdash; September 2026</span></li>
+            <li class="cc-item" data-law="esi"><time datetime="2026-10-15">15 Oct</time><span class="cc-law">ESI</span><span class="cc-what"><strong>ESI contribution</strong> &mdash; September 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-10-18">18 Oct</time><span class="cc-law">GST</span><span class="cc-what"><strong>CMP-08</strong> &mdash; Q2 FY 2026-27 (composition dealers)</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-10-20">20 Oct</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-3B</strong> &mdash; September 2026 (monthly filers)</span></li>
+            <li class="cc-item" data-law="gst" data-alt-day="24"><time datetime="2026-10-22">22/24 Oct</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-3B</strong> (QRMP) &mdash; Q2 FY 2026-27 <span class="cc-note">(22nd or 24th, depending on the state)</span></span></li>
+            <li class="cc-item" data-law="llp"><time datetime="2026-10-30">30 Oct</time><span class="cc-law">LLP</span><span class="cc-what"><strong>LLP Form 8</strong> (accounts &amp; solvency) &mdash; FY 2025-26</span></li>
+            <li class="cc-item" data-law="roc"><time datetime="2026-10-30">30 Oct</time><span class="cc-law">Companies Act / ROC</span><span class="cc-what"><strong>AOC-4</strong> &mdash; FY 2025-26 (within 30 days of AGM)</span></li>
+            <li class="cc-item" data-law="esi"><time datetime="2026-10-30">30 Oct</time><span class="cc-law">ESI</span><span class="cc-what"><strong>ESI half-yearly return</strong> &mdash; Apr &ndash; Sep 2026</span></li>
+            <li class="cc-item" data-law="roc"><time datetime="2026-10-31">31 Oct</time><span class="cc-law">Companies Act / ROC</span><span class="cc-what"><strong>MSME-1</strong> &mdash; Apr &ndash; Sep 2026 (where applicable)</span></li>
+            <li class="cc-item" data-law="it"><time datetime="2026-10-31">31 Oct</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>ITR filing &mdash; audit cases</strong> &mdash; FY 2025-26 (AY 2026-27)</span></li>
+            <li class="cc-item" data-law="it"><time datetime="2026-10-31">31 Oct</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>TDS/TCS quarterly return</strong> &mdash; Q2 FY 2026-27</span></li>
+          </ol>
+        </section>
+        <section class="cc-month" data-month="2026-11" aria-label="November 2026">
+          <h3>November 2026</h3>
+          <ol class="cc-list">
+            <li class="cc-item" data-law="it"><time datetime="2026-11-07">7 Nov</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>TDS/TCS payment</strong> &mdash; October 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-11-13">13 Nov</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-1 IFF</strong> (QRMP) &mdash; October 2026</span></li>
+            <li class="cc-item" data-law="epf"><time datetime="2026-11-15">15 Nov</time><span class="cc-law">EPF</span><span class="cc-what"><strong>EPF contribution + ECR</strong> &mdash; October 2026</span></li>
+            <li class="cc-item" data-law="esi"><time datetime="2026-11-15">15 Nov</time><span class="cc-law">ESI</span><span class="cc-what"><strong>ESI contribution</strong> &mdash; October 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-11-20">20 Nov</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-3B</strong> &mdash; October 2026</span></li>
+            <li class="cc-item" data-law="roc"><time datetime="2026-11-29">29 Nov</time><span class="cc-law">Companies Act / ROC</span><span class="cc-what"><strong>MGT-7</strong> &mdash; FY 2025-26 (within 60 days of AGM)</span></li>
+            <li class="cc-item" data-law="it"><time datetime="2026-11-30">30 Nov</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>ITR &amp; Form 3CEB</strong> &mdash; transfer pricing (AY 2026-27)</span></li>
+          </ol>
+        </section>
+        <section class="cc-month" data-month="2026-12" aria-label="December 2026">
+          <h3>December 2026</h3>
+          <ol class="cc-list">
+            <li class="cc-item" data-law="it"><time datetime="2026-12-07">7 Dec</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>TDS/TCS payment</strong> &mdash; November 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-12-13">13 Dec</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-1 IFF</strong> (QRMP) &mdash; November 2026</span></li>
+            <li class="cc-item" data-law="it"><time datetime="2026-12-15">15 Dec</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>Advance tax</strong> &mdash; 3rd instalment</span></li>
+            <li class="cc-item" data-law="epf"><time datetime="2026-12-15">15 Dec</time><span class="cc-law">EPF</span><span class="cc-what"><strong>EPF contribution + ECR</strong> &mdash; November 2026</span></li>
+            <li class="cc-item" data-law="esi"><time datetime="2026-12-15">15 Dec</time><span class="cc-law">ESI</span><span class="cc-what"><strong>ESI contribution</strong> &mdash; November 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-12-20">20 Dec</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-3B</strong> &mdash; November 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2026-12-31">31 Dec</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-9 &amp; GSTR-9C</strong> (annual) &mdash; FY 2025-26</span></li>
+          </ol>
+        </section>
+        <section class="cc-month" data-month="2027-01" aria-label="January 2027">
+          <h3>January 2027</h3>
+          <ol class="cc-list">
+            <li class="cc-item" data-law="it"><time datetime="2027-01-07">7 Jan</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>TDS/TCS payment</strong> &mdash; December 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2027-01-13">13 Jan</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-1</strong> (quarterly, QRMP) &mdash; Q3 FY 2026-27</span></li>
+            <li class="cc-item" data-law="epf"><time datetime="2027-01-15">15 Jan</time><span class="cc-law">EPF</span><span class="cc-what"><strong>EPF contribution + ECR</strong> &mdash; December 2026</span></li>
+            <li class="cc-item" data-law="esi"><time datetime="2027-01-15">15 Jan</time><span class="cc-law">ESI</span><span class="cc-what"><strong>ESI contribution</strong> &mdash; December 2026</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2027-01-18">18 Jan</time><span class="cc-law">GST</span><span class="cc-what"><strong>CMP-08</strong> &mdash; Q3 FY 2026-27 (composition dealers)</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2027-01-20">20 Jan</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-3B</strong> &mdash; December 2026 (monthly filers)</span></li>
+            <li class="cc-item" data-law="gst" data-alt-day="24"><time datetime="2027-01-22">22/24 Jan</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-3B</strong> (QRMP) &mdash; Q3 FY 2026-27 <span class="cc-note">(22nd or 24th, depending on the state)</span></span></li>
+            <li class="cc-item" data-law="it"><time datetime="2027-01-31">31 Jan</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>TDS/TCS quarterly return</strong> &mdash; Q3 FY 2026-27</span></li>
+          </ol>
+        </section>
+        <section class="cc-month" data-month="2027-02" aria-label="February 2027">
+          <h3>February 2027</h3>
+          <ol class="cc-list">
+            <li class="cc-item" data-law="it"><time datetime="2027-02-07">7 Feb</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>TDS/TCS payment</strong> &mdash; January 2027</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2027-02-13">13 Feb</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-1 IFF</strong> (QRMP) &mdash; January 2027</span></li>
+            <li class="cc-item" data-law="epf"><time datetime="2027-02-15">15 Feb</time><span class="cc-law">EPF</span><span class="cc-what"><strong>EPF contribution + ECR</strong> &mdash; January 2027</span></li>
+            <li class="cc-item" data-law="esi"><time datetime="2027-02-15">15 Feb</time><span class="cc-law">ESI</span><span class="cc-what"><strong>ESI contribution</strong> &mdash; January 2027</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2027-02-20">20 Feb</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-3B</strong> &mdash; January 2027</span></li>
+          </ol>
+        </section>
+        <section class="cc-month" data-month="2027-03" aria-label="March 2027">
+          <h3>March 2027</h3>
+          <ol class="cc-list">
+            <li class="cc-item" data-law="it"><time datetime="2027-03-07">7 Mar</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>TDS/TCS payment</strong> &mdash; February 2027</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2027-03-13">13 Mar</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-1 IFF</strong> (QRMP) &mdash; February 2027</span></li>
+            <li class="cc-item" data-law="it"><time datetime="2027-03-15">15 Mar</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>Advance tax</strong> &mdash; 4th (final) instalment</span></li>
+            <li class="cc-item" data-law="epf"><time datetime="2027-03-15">15 Mar</time><span class="cc-law">EPF</span><span class="cc-what"><strong>EPF contribution + ECR</strong> &mdash; February 2027</span></li>
+            <li class="cc-item" data-law="esi"><time datetime="2027-03-15">15 Mar</time><span class="cc-law">ESI</span><span class="cc-what"><strong>ESI contribution</strong> &mdash; February 2027</span></li>
+            <li class="cc-item" data-law="gst"><time datetime="2027-03-20">20 Mar</time><span class="cc-law">GST</span><span class="cc-what"><strong>GSTR-3B</strong> &mdash; February 2027</span></li>
+            <li class="cc-item" data-law="it"><time datetime="2027-03-31">31 Mar</time><span class="cc-law">Income tax</span><span class="cc-what"><strong>FY 2026-27 closes</strong> &mdash; settle advance tax, TDS and GST before year-end</span></li>
+          </ol>
+        </section>
       </div>
-
-      <div class="cal-picker" id="calPicker">
-        <button type="button" class="cal-nav-btn" id="calPrev" aria-label="Previous month">&lsaquo;</button>
-        <div class="cal-tabs" id="calTabs" role="tablist" aria-label="Select a month">
-          <button type="button" role="tab" class="cal-tab" data-index="0" aria-selected="false">Apr &rsquo;26</button>
-          <button type="button" role="tab" class="cal-tab" data-index="1" aria-selected="false">May &rsquo;26</button>
-          <button type="button" role="tab" class="cal-tab" data-index="2" aria-selected="false">Jun &rsquo;26</button>
-          <button type="button" role="tab" class="cal-tab" data-index="3" aria-selected="false">Jul &rsquo;26</button>
-          <button type="button" role="tab" class="cal-tab" data-index="4" aria-selected="false">Aug &rsquo;26</button>
-          <button type="button" role="tab" class="cal-tab" data-index="5" aria-selected="false">Sep &rsquo;26</button>
-          <button type="button" role="tab" class="cal-tab" data-index="6" aria-selected="false">Oct &rsquo;26</button>
-          <button type="button" role="tab" class="cal-tab" data-index="7" aria-selected="false">Nov &rsquo;26</button>
-          <button type="button" role="tab" class="cal-tab" data-index="8" aria-selected="false">Dec &rsquo;26</button>
-          <button type="button" role="tab" class="cal-tab" data-index="9" aria-selected="false">Jan &rsquo;27</button>
-          <button type="button" role="tab" class="cal-tab" data-index="10" aria-selected="false">Feb &rsquo;27</button>
-          <button type="button" role="tab" class="cal-tab" data-index="11" aria-selected="false">Mar &rsquo;27</button>
-        </div>
-        <button type="button" class="cal-nav-btn" id="calNext" aria-label="Next month">&rsaquo;</button>
-      </div>
-
-      <div class="cal-stage">
-
-        <div class="cal-month active">
-          <div class="cal-month-head"><h3>April 2026</h3><span class="cal-count">10 items</span></div>
-          <ul class="cal-items">
-            <li class="cal-item"><span class="cal-date">7</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>TDS/TCS payment</strong> &mdash; March 2026</span></li>
-            <li class="cal-item"><span class="cal-date">11</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-1</strong> (monthly) &mdash; March 2026</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-pf">EPF</span><span class="cal-text"><strong>EPF contribution + ECR</strong> &mdash; March 2026</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-esi">ESI</span><span class="cal-text"><strong>ESI contribution</strong> &mdash; March 2026</span></li>
-            <li class="cal-item"><span class="cal-date">18</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>CMP-08</strong> &mdash; Q4 FY 2025-26 (composition dealers)</span></li>
-            <li class="cal-item"><span class="cal-date">20</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-3B</strong> &mdash; March 2026 (monthly filers)</span></li>
-            <li class="cal-item"><span class="cal-date">22/24</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-3B</strong> (QRMP) &mdash; Q4 FY 2025-26</span></li>
-            <li class="cal-item"><span class="cal-date">30</span><span class="cal-law law-pf">EPF</span><span class="cal-text"><strong>PF annual statements</strong> (Form 3A / 6A) &mdash; FY 2025-26</span></li>
-            <li class="cal-item"><span class="cal-date">30</span><span class="cal-law law-esi">ESI</span><span class="cal-text"><strong>ESI half-yearly return</strong> &mdash; Oct 2025 &ndash; Mar 2026</span></li>
-            <li class="cal-item"><span class="cal-date">30</span><span class="cal-law law-mca">ROC</span><span class="cal-text"><strong>MSME-1</strong> &mdash; Oct 2025 &ndash; Mar 2026 (where applicable)</span></li>
-          </ul>
-        </div>
-
-        <div class="cal-month">
-          <div class="cal-month-head"><h3>May 2026</h3><span class="cal-count">7 items</span></div>
-          <ul class="cal-items">
-            <li class="cal-item"><span class="cal-date">7</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>TDS/TCS payment</strong> &mdash; April 2026</span></li>
-            <li class="cal-item"><span class="cal-date">13</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-1 IFF</strong> (QRMP) &mdash; April 2026</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-pf">EPF</span><span class="cal-text"><strong>EPF contribution + ECR</strong> &mdash; April 2026</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-esi">ESI</span><span class="cal-text"><strong>ESI contribution</strong> &mdash; April 2026</span></li>
-            <li class="cal-item"><span class="cal-date">20</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-3B</strong> &mdash; April 2026</span></li>
-            <li class="cal-item"><span class="cal-date">30</span><span class="cal-law law-llp">LLP</span><span class="cal-text"><strong>LLP Form 11</strong> (annual return) &mdash; FY 2025-26</span></li>
-            <li class="cal-item"><span class="cal-date">31</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>TDS/TCS quarterly return</strong> &mdash; Q4 FY 2025-26</span></li>
-          </ul>
-        </div>
-
-        <div class="cal-month">
-          <div class="cal-month-head"><h3>June 2026</h3><span class="cal-count">8 items</span></div>
-          <ul class="cal-items">
-            <li class="cal-item"><span class="cal-date">7</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>TDS/TCS payment</strong> &mdash; May 2026</span></li>
-            <li class="cal-item"><span class="cal-date">13</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-1 IFF</strong> (QRMP) &mdash; May 2026</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>Advance tax</strong> &mdash; 1st instalment</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-pf">EPF</span><span class="cal-text"><strong>EPF contribution + ECR</strong> &mdash; May 2026</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-esi">ESI</span><span class="cal-text"><strong>ESI contribution</strong> &mdash; May 2026</span></li>
-            <li class="cal-item"><span class="cal-date">20</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-3B</strong> &mdash; May 2026</span></li>
-            <li class="cal-item"><span class="cal-date">30</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-4</strong> (composition, annual) &mdash; FY 2025-26</span></li>
-            <li class="cal-item"><span class="cal-date">30</span><span class="cal-law law-mca">ROC</span><span class="cal-text"><strong>Form DPT-3</strong> &mdash; deposits (where applicable)</span></li>
-          </ul>
-        </div>
-
-        <div class="cal-month">
-          <div class="cal-month-head"><h3>July 2026</h3><span class="cal-count">9 items</span></div>
-          <ul class="cal-items">
-            <li class="cal-item"><span class="cal-date">7</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>TDS/TCS payment</strong> &mdash; June 2026</span></li>
-            <li class="cal-item"><span class="cal-date">13</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-1</strong> (quarterly, QRMP) &mdash; Q1 FY 2026-27</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-pf">EPF</span><span class="cal-text"><strong>EPF contribution + ECR</strong> &mdash; June 2026</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-esi">ESI</span><span class="cal-text"><strong>ESI contribution</strong> &mdash; June 2026</span></li>
-            <li class="cal-item"><span class="cal-date">18</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>CMP-08</strong> &mdash; Q1 FY 2026-27 (composition dealers)</span></li>
-            <li class="cal-item"><span class="cal-date">20</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-3B</strong> &mdash; June 2026 (monthly filers)</span></li>
-            <li class="cal-item"><span class="cal-date">22/24</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-3B</strong> (QRMP) &mdash; Q1 FY 2026-27</span></li>
-            <li class="cal-item"><span class="cal-date">31</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>ITR filing &mdash; non-audit</strong> &mdash; FY 2025-26 (AY 2026-27)</span></li>
-            <li class="cal-item"><span class="cal-date">31</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>TDS/TCS quarterly return</strong> &mdash; Q1 FY 2026-27</span></li>
-          </ul>
-        </div>
-
-        <div class="cal-month">
-          <div class="cal-month-head"><h3>August 2026</h3><span class="cal-count">5 items</span></div>
-          <ul class="cal-items">
-            <li class="cal-item"><span class="cal-date">7</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>TDS/TCS payment</strong> &mdash; July 2026</span></li>
-            <li class="cal-item"><span class="cal-date">13</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-1 IFF</strong> (QRMP) &mdash; July 2026</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-pf">EPF</span><span class="cal-text"><strong>EPF contribution + ECR</strong> &mdash; July 2026</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-esi">ESI</span><span class="cal-text"><strong>ESI contribution</strong> &mdash; July 2026</span></li>
-            <li class="cal-item"><span class="cal-date">20</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-3B</strong> &mdash; July 2026</span></li>
-          </ul>
-        </div>
-
-        <div class="cal-month">
-          <div class="cal-month-head"><h3>September 2026</h3><span class="cal-count">9 items</span></div>
-          <ul class="cal-items">
-            <li class="cal-item"><span class="cal-date">7</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>TDS/TCS payment</strong> &mdash; August 2026</span></li>
-            <li class="cal-item"><span class="cal-date">13</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-1 IFF</strong> (QRMP) &mdash; August 2026</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>Advance tax</strong> &mdash; 2nd instalment</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-pf">EPF</span><span class="cal-text"><strong>EPF contribution + ECR</strong> &mdash; August 2026</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-esi">ESI</span><span class="cal-text"><strong>ESI contribution</strong> &mdash; August 2026</span></li>
-            <li class="cal-item"><span class="cal-date">20</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-3B</strong> &mdash; August 2026</span></li>
-            <li class="cal-item"><span class="cal-date">30</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>Tax audit report</strong> (Sec 44AB) &mdash; FY 2025-26</span></li>
-            <li class="cal-item"><span class="cal-date">30</span><span class="cal-law law-mca">MCA</span><span class="cal-text"><strong>DIR-3 KYC</strong> &mdash; directors' KYC (FY 2025-26)</span></li>
-            <li class="cal-item"><span class="cal-date">30</span><span class="cal-law law-mca">ROC</span><span class="cal-text"><strong>AGM</strong> &mdash; FY 2025-26 (companies, by 30 Sept)</span></li>
-          </ul>
-        </div>
-
-        <div class="cal-month">
-          <div class="cal-month-head"><h3>October 2026</h3><span class="cal-count">13 items</span></div>
-          <ul class="cal-items">
-            <li class="cal-item"><span class="cal-date">7</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>TDS/TCS payment</strong> &mdash; September 2026</span></li>
-            <li class="cal-item"><span class="cal-date">13</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-1</strong> (quarterly, QRMP) &mdash; Q2 FY 2026-27</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-pf">EPF</span><span class="cal-text"><strong>EPF contribution + ECR</strong> &mdash; September 2026</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-esi">ESI</span><span class="cal-text"><strong>ESI contribution</strong> &mdash; September 2026</span></li>
-            <li class="cal-item"><span class="cal-date">18</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>CMP-08</strong> &mdash; Q2 FY 2026-27 (composition dealers)</span></li>
-            <li class="cal-item"><span class="cal-date">20</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-3B</strong> &mdash; September 2026 (monthly filers)</span></li>
-            <li class="cal-item"><span class="cal-date">22/24</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-3B</strong> (QRMP) &mdash; Q2 FY 2026-27</span></li>
-            <li class="cal-item"><span class="cal-date">30</span><span class="cal-law law-llp">LLP</span><span class="cal-text"><strong>LLP Form 8</strong> (accounts &amp; solvency) &mdash; FY 2025-26</span></li>
-            <li class="cal-item"><span class="cal-date">30</span><span class="cal-law law-mca">ROC</span><span class="cal-text"><strong>AOC-4</strong> &mdash; FY 2025-26 (within 30 days of AGM)</span></li>
-            <li class="cal-item"><span class="cal-date">30</span><span class="cal-law law-esi">ESI</span><span class="cal-text"><strong>ESI half-yearly return</strong> &mdash; Apr &ndash; Sep 2026</span></li>
-            <li class="cal-item"><span class="cal-date">31</span><span class="cal-law law-mca">ROC</span><span class="cal-text"><strong>MSME-1</strong> &mdash; Apr &ndash; Sep 2026 (where applicable)</span></li>
-            <li class="cal-item"><span class="cal-date">31</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>ITR filing &mdash; audit cases</strong> &mdash; FY 2025-26 (AY 2026-27)</span></li>
-            <li class="cal-item"><span class="cal-date">31</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>TDS/TCS quarterly return</strong> &mdash; Q2 FY 2026-27</span></li>
-          </ul>
-        </div>
-
-        <div class="cal-month">
-          <div class="cal-month-head"><h3>November 2026</h3><span class="cal-count">7 items</span></div>
-          <ul class="cal-items">
-            <li class="cal-item"><span class="cal-date">7</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>TDS/TCS payment</strong> &mdash; October 2026</span></li>
-            <li class="cal-item"><span class="cal-date">13</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-1 IFF</strong> (QRMP) &mdash; October 2026</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-pf">EPF</span><span class="cal-text"><strong>EPF contribution + ECR</strong> &mdash; October 2026</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-esi">ESI</span><span class="cal-text"><strong>ESI contribution</strong> &mdash; October 2026</span></li>
-            <li class="cal-item"><span class="cal-date">20</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-3B</strong> &mdash; October 2026</span></li>
-            <li class="cal-item"><span class="cal-date">29</span><span class="cal-law law-mca">ROC</span><span class="cal-text"><strong>MGT-7</strong> &mdash; FY 2025-26 (within 60 days of AGM)</span></li>
-            <li class="cal-item"><span class="cal-date">30</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>ITR &amp; Form 3CEB</strong> &mdash; transfer pricing (AY 2026-27)</span></li>
-          </ul>
-        </div>
-
-        <div class="cal-month">
-          <div class="cal-month-head"><h3>December 2026</h3><span class="cal-count">7 items</span></div>
-          <ul class="cal-items">
-            <li class="cal-item"><span class="cal-date">7</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>TDS/TCS payment</strong> &mdash; November 2026</span></li>
-            <li class="cal-item"><span class="cal-date">13</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-1 IFF</strong> (QRMP) &mdash; November 2026</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>Advance tax</strong> &mdash; 3rd instalment</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-pf">EPF</span><span class="cal-text"><strong>EPF contribution + ECR</strong> &mdash; November 2026</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-esi">ESI</span><span class="cal-text"><strong>ESI contribution</strong> &mdash; November 2026</span></li>
-            <li class="cal-item"><span class="cal-date">20</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-3B</strong> &mdash; November 2026</span></li>
-            <li class="cal-item"><span class="cal-date">31</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-9 &amp; GSTR-9C</strong> (annual) &mdash; FY 2025-26</span></li>
-          </ul>
-        </div>
-
-        <div class="cal-month">
-          <div class="cal-month-head"><h3>January 2027</h3><span class="cal-count">8 items</span></div>
-          <ul class="cal-items">
-            <li class="cal-item"><span class="cal-date">7</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>TDS/TCS payment</strong> &mdash; December 2026</span></li>
-            <li class="cal-item"><span class="cal-date">13</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-1</strong> (quarterly, QRMP) &mdash; Q3 FY 2026-27</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-pf">EPF</span><span class="cal-text"><strong>EPF contribution + ECR</strong> &mdash; December 2026</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-esi">ESI</span><span class="cal-text"><strong>ESI contribution</strong> &mdash; December 2026</span></li>
-            <li class="cal-item"><span class="cal-date">18</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>CMP-08</strong> &mdash; Q3 FY 2026-27 (composition dealers)</span></li>
-            <li class="cal-item"><span class="cal-date">20</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-3B</strong> &mdash; December 2026 (monthly filers)</span></li>
-            <li class="cal-item"><span class="cal-date">22/24</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-3B</strong> (QRMP) &mdash; Q3 FY 2026-27</span></li>
-            <li class="cal-item"><span class="cal-date">31</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>TDS/TCS quarterly return</strong> &mdash; Q3 FY 2026-27</span></li>
-          </ul>
-        </div>
-
-        <div class="cal-month">
-          <div class="cal-month-head"><h3>February 2027</h3><span class="cal-count">5 items</span></div>
-          <ul class="cal-items">
-            <li class="cal-item"><span class="cal-date">7</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>TDS/TCS payment</strong> &mdash; January 2027</span></li>
-            <li class="cal-item"><span class="cal-date">13</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-1 IFF</strong> (QRMP) &mdash; January 2027</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-pf">EPF</span><span class="cal-text"><strong>EPF contribution + ECR</strong> &mdash; January 2027</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-esi">ESI</span><span class="cal-text"><strong>ESI contribution</strong> &mdash; January 2027</span></li>
-            <li class="cal-item"><span class="cal-date">20</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-3B</strong> &mdash; January 2027</span></li>
-          </ul>
-        </div>
-
-        <div class="cal-month">
-          <div class="cal-month-head"><h3>March 2027</h3><span class="cal-count">7 items</span></div>
-          <ul class="cal-items">
-            <li class="cal-item"><span class="cal-date">7</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>TDS/TCS payment</strong> &mdash; February 2027</span></li>
-            <li class="cal-item"><span class="cal-date">13</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-1 IFF</strong> (QRMP) &mdash; February 2027</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>Advance tax</strong> &mdash; 4th (final) instalment</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-pf">EPF</span><span class="cal-text"><strong>EPF contribution + ECR</strong> &mdash; February 2027</span></li>
-            <li class="cal-item"><span class="cal-date">15</span><span class="cal-law law-esi">ESI</span><span class="cal-text"><strong>ESI contribution</strong> &mdash; February 2027</span></li>
-            <li class="cal-item"><span class="cal-date">20</span><span class="cal-law law-gst">GST</span><span class="cal-text"><strong>GSTR-3B</strong> &mdash; February 2027</span></li>
-            <li class="cal-item"><span class="cal-date">31</span><span class="cal-law law-it">IT</span><span class="cal-text"><strong>FY 2026-27 closes</strong> &mdash; settle advance tax, TDS and GST before year-end</span></li>
-          </ul>
-        </div>
-
-      </div>
-
-      <script>
-        (function () {
-          var tabs = document.querySelectorAll('#calTabs .cal-tab');
-          var cards = document.querySelectorAll('.cal-stage .cal-month');
-          var cur = -1;
-          function show(i) {
-            if (i === cur) return;
-            cur = i;
-            for (var k = 0; k < tabs.length; k++) {
-              tabs[k].classList.toggle('active', k === i);
-              tabs[k].setAttribute('aria-selected', k === i ? 'true' : 'false');
-              cards[k].classList.toggle('active', k === i);
-            }
-            var activeTab = tabs[i];
-            if (activeTab.scrollIntoView) activeTab.scrollIntoView({ inline: 'nearest', block: 'nearest' });
-          }
-          for (var k = 0; k < tabs.length; k++) {
-            tabs[k].addEventListener('click', (function (idx) { return function () { show(idx); }; })(k));
-          }
-          var prev = document.getElementById('calPrev');
-          var next = document.getElementById('calNext');
-          if (prev) prev.addEventListener('click', function () { show((cur + 11) % 12); });
-          if (next) next.addEventListener('click', function () { show((cur + 1) % 12); });
-          var now = new Date();
-          var currentIndex = ((now.getMonth() - 3 + 12) % 12); /* Apr=0 ... Mar=11 */
-          show(currentIndex);
-        })();
-      </script>
+      <script defer src="js/compliance-calendar.js"></script>
 
       <div class="cal-note">
         <p><strong>How to read this:</strong> monthly entries refer to returns/payments of the previous month unless otherwise stated. Statutory dates may change by notification &mdash; always confirm on the official portal (GST, income tax, EPFO/ESI, MCA) before filing.</p>
@@ -412,34 +345,27 @@
     <div class="container">
       <h2 class="section-title">Articles &amp; Updates</h2>
       <p class="section-subtitle">Practical guides and updates on tax and compliance matters.</p>
+      <!--latest-posts-->
       <div class="blog-grid">
-        <div class="blog-card">
-          <div class="date">July 2026</div>
-          <h3>GST Return Filing Due Dates &mdash; July 2026</h3>
-          <p>A practical reference to all GST return filing deadlines for the month, including GSTR-1, GSTR-3B, and QRMP scheme dates.</p>
-          <a href="blog/gst-due-dates-july-2026.html">Read more &rarr;</a>
-        </div>
-        <div class="blog-card">
-          <div class="date">July 2026</div>
-          <h3>GST Annual Return (GSTR-9) &mdash; FY 2025-26 Filing Guide</h3>
-          <p>Who must file GSTR-9, key sections, common errors, and the December 31 deadline.</p>
-          <a href="blog/gst-annual-return-gstr9-fy2025-26.html">Read more &rarr;</a>
-        </div>
-        <div class="blog-card">
-          <div class="date">June 2026</div>
-          <h3>Advance Tax Instalments &mdash; FY 2025-26</h3>
-          <p>Important dates and guidelines for advance tax payments for FY 2025-26.</p>
-          <a href="blog/income-tax-advance-tax-instalments-fy2025-26.html">Read more &rarr;</a>
-        </div>
-        <div class="blog-card">
-          <div class="date">May 2026</div>
-          <h3>LLP Annual Compliance Requirements &mdash; 2026</h3>
-          <p>MCA has updated annual compliance requirements for LLPs. An overview of the changes and what they mean for LLP partners.</p>
-          <a href="blog/llp-annual-compliance-requirements-2026.html">Read more &rarr;</a>
-        </div>
+        <article class="blog-card">
+          <div class="date"><span class="tag">Income Tax</span><span>September 2026</span></div>
+          <h3><a href="blog/nri-property-tds-no-tan-required-2026.html">Buying Property from an NRI? No TAN Needed from 1 October 2026</a></h3>
+          <p>Buying property from an NRI? From 1 October 2026 resident buyers need no TAN: TDS is paid via PAN-based Form 141 Schedule E.</p>
+        </article>
+        <article class="blog-card">
+          <div class="date"><span class="tag">Compliance</span><span>September 2026</span></div>
+          <h3><a href="blog/epfo-wage-ceiling-raised-to-25000.html">EPFO Wage Ceiling Raised to Rs. 25,000: What It Means for Employees and Employers</a></h3>
+          <p>EPFO wage ceiling raised from Rs. 15,000 to Rs. 25,000: who gets covered, why it matters, and what employers must do now.</p>
+        </article>
+        <article class="blog-card">
+          <div class="date"><span class="tag">Company Law</span><span>September 2026</span></div>
+          <h3><a href="blog/which-business-structure-should-you-register.html">Which Business Structure Should You Actually Register?</a></h3>
+          <p>Proprietorship, Partnership, LLP, OPC or Private Limited? Compare liability, funding and paperwork to choose the right structure.</p>
+        </article>
       </div>
+      <!--/latest-posts-->
       <div style="text-align:center; margin-top:2rem;">
-        <a href="blog.html" class="btn btn-primary">View All Posts &rarr;</a>
+        <a href="blog.html" class="btn btn-outline">All articles</a>
       </div>
     </div>
   </section>
@@ -449,39 +375,39 @@
     <div class="container">
       <h2 class="section-title">Useful Links</h2>
       <p class="section-subtitle">Official portals and resources.</p>
-      <div class="services-grid">
+      <div class="services-grid links-grid">
         <div class="service-card">
-          <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent-text);"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+          <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 7h8"/><path d="M8 11h8"/><path d="M12 17.5 8 15h1a4 4 0 0 0 0-8"/></svg></div>
           <h3>Income Tax Department</h3>
           <p>Official portal for Income Tax filing, TDS, and tax-related services.</p>
           <a href="https://www.incometax.gov.in" target="_blank" rel="noopener">Visit &rarr;</a>
         </div>
         <div class="service-card">
-          <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent-text);"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></div>
+          <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m15 9-6 6"/><path d="M9 9h.01"/><path d="M15 15h.01"/></svg></div>
           <h3>GST Portal</h3>
           <p>Official GST portal for registration, return filing, and compliance.</p>
           <a href="https://www.gst.gov.in" target="_blank" rel="noopener">Visit &rarr;</a>
         </div>
         <div class="service-card">
-          <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent-text);"><path d="M6 22V4a2 2 0 012-2h8a2 2 0 012 2v18z"/></svg></div>
+          <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></div>
           <h3>MCA (Ministry of Corporate Affairs)</h3>
           <p>Company and LLP registration, ROC filings, and corporate compliance.</p>
           <a href="https://www.mca.gov.in" target="_blank" rel="noopener">Visit &rarr;</a>
         </div>
         <div class="service-card">
-          <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent-text);"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+          <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 22h18"/><path d="M6 18v-7"/><path d="M10 18v-7"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="M12 2 20 7H4z"/></svg></div>
           <h3>ICAI</h3>
           <p>Institute of Chartered Accountants of India &mdash; professional body and regulatory authority.</p>
           <a href="https://www.icai.org" target="_blank" rel="noopener">Visit &rarr;</a>
         </div>
         <div class="service-card">
-          <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent-text);"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+          <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></svg></div>
           <h3>TDS-CPC</h3>
           <p>TRACES portal for TDS returns, certificates, and challan status.</p>
           <a href="https://www.tdscpc.gov.in" target="_blank" rel="noopener">Visit &rarr;</a>
         </div>
         <div class="service-card">
-          <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" style="color:var(--accent-text);"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.1 5.1 9 3 3 5.6v15.4l6-2.6 6 2.6 6-2.6V3l-3.1 1.3"/><path d="M9 3v15.4"/><path d="M15 20.9V14"/><path d="M18 8c0 2.4-3 5-3 5s-3-2.6-3-5a3 3 0 0 1 6 0Z"/><circle cx="15" cy="8" r=".5"/></svg></div>
           <h3>Find Us on Google</h3>
           <p>View our Google Business Profile for directions, hours, and contact information.</p>
           <a href="https://maps.app.goo.gl/cMPY7JuiWfou4Ym1A" target="_blank" rel="noopener">Visit &rarr;</a>

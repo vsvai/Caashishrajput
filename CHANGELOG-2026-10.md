@@ -60,3 +60,12 @@ No automated accessibility engine (axe/Lighthouse) or unit-test suite exists in 
 | About | after | 1,232 ms | **1,232 ms** | 0 | 8 | 178 | 2 / 52 |
 
 FCP/LCP differences under ~300 ms are within run-to-run noise: repeated runs of the same contact page ranged 1,140–1,432 ms. The two extra requests are the one web font (Source Serif 4, ~50 KB), loaded without blocking rendering. INP was not measured (lab tooling can't measure it meaningfully without real interactions).
+
+## Follow-up — compliance calendar redesign (3 Oct 2026)
+
+| File | Change | Testing |
+|---|---|---|
+| `resources.html` | Calendar data (95 due dates) converted to semantic, crawlable markup (`.cc-month` / `.cc-item` with `<time datetime>`); "22/24" dates carry a state-dependent note; old tabs script removed | Validator PASS; crawler 1,808 refs OK |
+| `js/compliance-calendar.js` (new) | Interactive view built from that markup: live countdown to the next deadline (IST, 23:59 cut-off), working law filters (click isolates a law, further clicks combine), animated 12-month stacked chart (click opens a month), month grid with law-coloured markers and today ring, day filter, "in N days / Due today / Passed" badges, per-item and bulk `.ics` export with a 2-day reminder (RFC 5545 line folding) | Scripted: filters, month nav, bar click, day filter, countdown value, .ics content (47 upcoming events, max line 70) |
+| `css/style.css` | New `.cc-*` styles; distinct icons per law (receipt-rupee, percent badge, piggy bank, heart-pulse, building, handshake); scrollable chip row on phones; reduced-motion respected | 320/375/768 px: no overflow |
+| `resources.html` | Useful-links icons replaced with portal-specific icons; "Articles & updates" now generated from the newest posts by `blog-build.js` | `npm run blog:home` updates index and resources |
