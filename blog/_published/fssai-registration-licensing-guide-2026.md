@@ -1,5 +1,6 @@
 ---
 title: FSSAI Registration & Licensing in India: Complete 2026 Guide
+seo_title: FSSAI Registration & Licence Guide 2026 | CA Ashish Rajput
 slug: fssai-registration-licensing-guide-2026
 category: Compliance
 date: 2026-09-14

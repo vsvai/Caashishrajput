@@ -1,5 +1,6 @@
 ---
 title: Biometric Aadhaar Authentication Mandatory for GST Registration
+seo_title: Biometric Aadhaar for GST Registration | CA Ashish Rajput
 slug: delhi-hc-biometric-aadhaar-gst-registration
 category: GST
 date: 2026-09-13

@@ -1,5 +1,6 @@
 ---
 title: MCA Draft Rules to Simplify Company Incorporation in 2026
+seo_title: MCA Draft Incorporation Rules 2026 | CA Ashish Rajput
 slug: mca-incorporation-amendment-rules-2026
 category: Company Law
 date: 2026-09-14

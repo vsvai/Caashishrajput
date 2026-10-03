@@ -1,5 +1,6 @@
 ---
 title: Which Business Structure Should You Actually Register?
+seo_title: Choosing a Business Structure in India | CA Ashish Rajput
 slug: which-business-structure-should-you-register
 category: Company Law
 date: 2026-09-16

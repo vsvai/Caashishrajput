@@ -1,9 +1,10 @@
 ---
 title: GST Registration Turnover Limits in Uttar Pradesh — 2026
+seo_title: GST Turnover Limits in Uttar Pradesh 2026 | CA Ashish Rajput
 slug: gst-registration-turnover-limits-up-2026
 category: GST
 date: 2026-08-27
-description: GST registration turnover limits for Uttar Pradesh in 2026: Rs 40 lakh for goods and Rs 20 lakh for services, with the exceptions that trigger mandatory registration.
+description: GST registration limits in Uttar Pradesh for 2026: Rs 40 lakh for goods, Rs 20 lakh for services, and the cases where registration is mandatory.
 ---
 
 ## Introduction

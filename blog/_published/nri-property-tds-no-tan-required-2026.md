@@ -1,5 +1,6 @@
 ---
 title: Buying Property from an NRI? No TAN Needed from 1 October 2026
+seo_title: No TAN Needed to Buy NRI Property | CA Ashish Rajput
 slug: nri-property-tds-no-tan-required-2026
 category: Income Tax
 date: 2026-09-26

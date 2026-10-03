@@ -1,5 +1,6 @@
 ---
 title: CCFS-2026 Extended to 15 September 2026: What It Means
+seo_title: CCFS-2026 Extended to 15 September 2026 | CA Ashish Rajput
 slug: ccfs-2026-extended-to-15-september-2026
 category: Company Law
 date: 2026-08-28

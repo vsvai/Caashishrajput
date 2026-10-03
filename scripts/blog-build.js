@@ -108,13 +108,25 @@ function breadcrumbSchemaJson(post) {
   return {
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, item: { '@id': BASE_URL + '/blog/index.html', name: 'Home' } },
-      { '@type': 'ListItem', position: 2, item: { '@id': BASE_URL + '/blog/blog.html', name: 'Blog' } },
+      { '@type': 'ListItem', position: 1, item: { '@id': BASE_URL + '/', name: 'Home' } },
+      { '@type': 'ListItem', position: 2, item: { '@id': BASE_URL + '/blog.html', name: 'Blog' } },
       { '@type': 'ListItem', position: 3, item: { '@id': post.url, name: post.h1 } }
     ]
   };
 }
 const SCHEMA_INDENT = '  ';
+
+// Google cuts titles off at roughly 60 characters. Use `seo_title` from the
+// front matter when given, otherwise the longest brand suffix that still fits.
+const TITLE_MAX = 60;
+function pageTitle(post) {
+  if (post.seoTitle) return post.seoTitle;
+  const suffixes = [' | CA Ashish Rajput, Ghaziabad', ' | CA Ashish Rajput'];
+  for (let i = 0; i < suffixes.length; i++) {
+    if ((post.h1 + suffixes[i]).length <= TITLE_MAX) return post.h1 + suffixes[i];
+  }
+  return post.h1;
+}
 
 function buildPostHtml(post) {
   const schemas = [practiceSchemaJson(), personSchemaJson(), articleSchemaJson(post), breadcrumbSchemaJson(post)];
@@ -125,7 +137,7 @@ function buildPostHtml(post) {
   }).join('\n\n');
 
   const canonical = post.url;
-  const title = post.h1 + ' | CA Ashish Rajput, Ghaziabad';
+  const title = pageTitle(post);
   const desc = post.description;
   const escDesc = htmlEsc(desc);
 
@@ -454,6 +466,7 @@ function loadDraft(slug) {
   return {
     slug: slug,
     h1: title,
+    seoTitle: fm.seo_title || '',
     category: category,
     date: date,
     description: description,

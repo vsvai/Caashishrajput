@@ -1,5 +1,6 @@
 ---
 title: ITR Filing for Business Income (Non-Audit Cases): Due Date for AY 2026-27
+seo_title: ITR Due Date AY 2026-27: Business Income | CA Ashish Rajput
 slug: itr-filing-business-income-due-date-ay-2026-27
 category: Income Tax
 date: 2026-08-28

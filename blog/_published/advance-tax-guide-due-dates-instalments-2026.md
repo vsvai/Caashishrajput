@@ -1,9 +1,10 @@
 ---
 title: Advance Tax under Income Tax Act 2025 - Complete Guide
+seo_title: Advance Tax 2026: Due Dates & Instalments | CA Ashish Rajput
 slug: advance-tax-guide-due-dates-instalments-2026
 category: Income Tax
 date: 2026-08-28
-description: Complete guide to advance tax under the Income-tax Act 2025 — applicability, due dates, instalment percentages, exemptions, interest under Sections 234B/234C, and the new Act section mapping (403–408). Updated for Tax Year 2026-27.
+description: Advance tax under the Income-tax Act 2025: who must pay, due dates, instalment percentages and interest under Sections 234B/234C. Updated for 2026-27.
 ---
 
 ## Advance Tax under Income Tax Act 2025 - Complete Guide

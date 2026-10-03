@@ -1,5 +1,6 @@
 ---
 title: EPFO Wage Ceiling Raised to Rs. 25,000: What It Means for Employees and Employers
+seo_title: EPFO Wage Ceiling Raised to Rs. 25,000 | CA Ashish Rajput
 slug: epfo-wage-ceiling-raised-to-25000
 category: Compliance
 date: 2026-09-16
