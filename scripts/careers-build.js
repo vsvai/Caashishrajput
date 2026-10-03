@@ -108,7 +108,6 @@ function practiceSchemaJson() {
     url: BASE_URL,
     telephone: '+918802586988',
     email: 'ca.ashishrajput@outlook.com',
-    priceRange: 'Reasonable and transparent; fees quoted per engagement',
     address: {
       '@type': 'PostalAddress', streetAddress: 'LG-3, S-14, Krishna Plaza',
       addressLocality: 'Vrindavan Garden, Sahibabad',
@@ -483,7 +482,7 @@ function buildVacancyHtml(v) {
     '  <meta property="og:title" content="' + htmlEsc(title) + '">\n' +
     '  <meta property="og:description" content="' + htmlEsc(desc) + '">\n' +
     '  <meta property="og:url" content="' + canonical + '">\n' +
-    '  <meta property="og:image" content="' + BASE_URL + '/images/logo.png">\n' +
+    '  <meta property="og:image" content="' + BASE_URL + '/images/og-image.jpg">\n' +
     '  <meta property="og:site_name" content="' + htmlEsc(SITE_NAME) + '">\n' +
     '  <meta property="article:published_time" content="' + v.posted_date + '">\n' +
     '  <meta property="article:author" content="Ashish Rajput">\n' +
@@ -493,7 +492,6 @@ function buildVacancyHtml(v) {
     '\n' +
     '  <link rel="stylesheet" href="../css/style.css">\n' +
     '  <link rel="stylesheet" href="../css/careers.css">\n' +
-    '  <link rel="icon" type="image/png" href="../images/logo-96.png">\n' +
     '\n\n' +
     schemas + '\n' +
     '</head>\n' +

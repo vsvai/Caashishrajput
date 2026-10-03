@@ -4,6 +4,7 @@
   "private": true,
   "description": "Blog and Careers content pipelines for caashishrajput.com (static GitHub Pages site + Supabase)",
   "scripts": {
+    "serve": "node scripts/serve.js",
     "blog:new": "node scripts/blog-build.js new",
     "blog:preview": "node scripts/blog-build.js preview",
     "blog:publish": "node scripts/blog-build.js publish",
@@ -16,7 +17,8 @@
     "careers:list": "node scripts/careers-build.js list",
     "chrome": "node scripts/build-chrome.js",
     "seo:overhaul": "node scripts/seo-overhaul.js",
-    "seo:validate": "node scripts/validate-seo.js"
+    "seo:validate": "node scripts/validate-seo.js",
+    "blog:home": "node scripts/blog-build.js home"
   },
   "engines": {
     "node": ">=16"

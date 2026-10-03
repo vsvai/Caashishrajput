@@ -13,6 +13,16 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const DATA = require('./seo-data.js');
 
+// RETIRED (October 2026). The HTML pages are now the source of truth: they were
+// edited by hand after this generator last ran (service-page CTAs, ICAI fee
+// wording, charities rewrite, home page rebuild). Running this script would
+// silently revert 27+ pages. It refuses to run unless --force is passed, and
+// even then you should diff the result before committing.
+if (require.main === module && !process.argv.includes('--force')) {
+  console.error('seo-overhaul.js is retired: it would overwrite later hand edits. See the header comment.');
+  process.exit(1);
+}
+
 const BASE_URL = 'https://caashishrajput.com';
 const SITE_NAME = 'Ashish Jayalata & Associates';
 
@@ -63,7 +73,6 @@ function practiceSchema() {
     url: BASE_URL,
     telephone: '+918802586988',
     email: 'ca.ashishrajput@outlook.com',
-    priceRange: 'Reasonable and transparent; fees quoted per engagement',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'LG-3, S-14, Krishna Plaza',

@@ -121,6 +121,31 @@ for (const file of htmlFiles) {
     }
   }
 
+  // ICAI Code of Ethics 2026 regression checks (see WEBSITE-AUDIT-2026-10.md §2).
+  if (/<body[\s>]/i.test(content) && !isGoogleVerify) {
+    const visible = content.replace(/<script[\s\S]*?<\/script>/g, '');
+    // §2.14.1.7(xvii), §3.1.3(G): no firm logo / monogram files.
+    if (/images\/(logo\.(png|webp)|logo-96\.png|home-slide-\d)/.test(content)) {
+      page.problems.push('ICAI: firm monogram image referenced (images/logo.* or home-slide-*)');
+    }
+    // §3.1.3(E): no testimonials / reviews sections or review prompts.
+    if (/Client Reviews|Client Feedback|leave a review|testimonial/i.test(visible)) {
+      page.problems.push('ICAI: testimonial / review content present');
+    }
+    // §3.1.3(B), §3.3.7(xiii): no fee claims.
+    if (/no hidden charges|modest (service )?fee|fraction of the cost|priceRange|Reasonable and transparent/i.test(content)) {
+      page.problems.push('ICAI: fee / comparative-cost claim present');
+    }
+    // §3.1.3(B): no superlatives.
+    if (/\b(best|leading|top|No\.\s?1|number one)\s+(CA|chartered accountant|firm|tax consultant)/i.test(visible)) {
+      page.problems.push('ICAI: superlative claim present');
+    }
+    // Accessibility: no heading before the page's H1 inside <main>.
+    const main = (content.match(/<main[\s\S]*?<\/main>/) || [''])[0];
+    const firstHeading = (main.match(/<h([1-6])\b/) || [])[1];
+    if (firstHeading && firstHeading !== '1') page.problems.push('First heading in <main> is h' + firstHeading + ', not h1');
+  }
+
   // Shared header and footer (with the NAP <address>) must be written into the
   // page by scripts/build-chrome.js
   const staticChrome = /<!--chrome:header-->/.test(content) && /<!--chrome:footer-->/.test(content);

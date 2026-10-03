@@ -61,7 +61,6 @@ function practiceSchemaJson() {
     url: BASE_URL,
     telephone: '+918802586988',
     email: 'ca.ashishrajput@outlook.com',
-    priceRange: 'Reasonable and transparent; fees quoted per engagement',
     address: {
       '@type': 'PostalAddress', streetAddress: 'LG-3, S-14, Krishna Plaza',
       addressLocality: 'Vrindavan Garden, Sahibabad',
@@ -99,7 +98,7 @@ function articleSchemaJson(post) {
     author: { '@type': 'Person', name: AUTHOR, url: BASE_URL + '/about.html' },
     publisher: {
       '@type': 'Organization', name: SITE_NAME, url: BASE_URL,
-      logo: { '@type': 'ImageObject', url: BASE_URL + '/images/logo.png' }
+      logo: { '@type': 'ImageObject', url: BASE_URL + '/images/icon-512.png' }
     },
     description: post.description,
     mainEntityOfPage: { '@type': 'WebPage', '@id': post.url }
@@ -157,7 +156,7 @@ function buildPostHtml(post) {
     '  <meta property="og:title" content="' + htmlEsc(title) + '">\n' +
     '  <meta property="og:description" content="' + escDesc + '">\n' +
     '  <meta property="og:url" content="' + canonical + '">\n' +
-    '  <meta property="og:image" content="' + BASE_URL + '/images/logo.png">\n' +
+    '  <meta property="og:image" content="' + BASE_URL + '/images/og-image.jpg">\n' +
     '  <meta property="og:site_name" content="' + htmlEsc(SITE_NAME) + '">\n' +
     '  <meta property="article:published_time" content="' + post.date + '">\n' +
     '  <meta property="article:author" content="' + AUTHOR + '">\n' +
@@ -166,7 +165,6 @@ function buildPostHtml(post) {
     '  <meta name="twitter:description" content="' + escDesc + '">\n' +
     '\n' +
     '  <link rel="stylesheet" href="../css/style.css">\n' +
-    '  <link rel="icon" type="image/png" href="../images/logo.png">\n' +
     '\n\n' +
     schemaBlocks + '\n' +
     '</head>\n' +
@@ -180,8 +178,8 @@ function buildPostHtml(post) {
     '\n' +
     '  <section class="page-hero">\n' +
     '    <div class="container">\n' +
-    '      <h2>Blog</h2>\n' +
-    '      <p>Tax updates, compliance guides, and practical information</p>\n' +
+    '      <p class="page-hero-kicker">Insights</p>\n' +
+    '      <p>Tax updates, compliance guides and practical information</p>\n' +
     '    </div>\n' +
     '  </section>\n' +
     '\n' +
@@ -365,6 +363,38 @@ function rebuildBlogHtml(posts) {
 
   fs.writeFileSync(BLOG_HTML, content, 'utf8');
   console.log('  blog.html listing updated with ' + posts.length + ' post(s).');
+  rebuildHomeLatest(posts);
+}
+
+/* ============================================================
+   Home page "Recent updates" (index.html, between <!--latest-posts--> markers)
+   Generated here so the home page always links to the newest posts.
+   ============================================================ */
+const HOME_HTML = path.join(ROOT, 'index.html');
+const HOME_LATEST_COUNT = 3;
+
+function homeCardHtml(post) {
+  const title = htmlEsc(stripHtml(post.h1));
+  const excerpt = htmlEsc(cleanExcerpt(post.excerpt.replace(/\s*Call \+91[\d\s]+\.?$/, '')));
+  return '        <article class="blog-card">\n' +
+    '          <div class="date"><span class="tag">' + htmlEsc(post.category) + '</span><span>' + (post.date ? monthLabel(post.date) : '') + '</span></div>\n' +
+    '          <h3><a href="blog/' + post.slug + '.html">' + title + '</a></h3>\n' +
+    '          <p>' + excerpt + '</p>\n' +
+    '        </article>';
+}
+
+function rebuildHomeLatest(posts) {
+  if (!fs.existsSync(HOME_HTML)) return;
+  const content = fs.readFileSync(HOME_HTML, 'utf8');
+  const re = /(<!--latest-posts-->)[\s\S]*?(\s*<!--\/latest-posts-->)/;
+  if (!re.test(content)) {
+    console.warn('  ! index.html has no <!--latest-posts--> markers — home page not updated.');
+    return;
+  }
+  const block = '\n      <div class="blog-grid">\n' +
+    posts.slice(0, HOME_LATEST_COUNT).map(homeCardHtml).join('\n') + '\n      </div>';
+  fs.writeFileSync(HOME_HTML, content.replace(re, '$1' + block + '$2'), 'utf8');
+  console.log('  index.html recent updates set to the ' + Math.min(HOME_LATEST_COUNT, posts.length) + ' newest post(s).');
 }
 
 /* ============================================================
@@ -534,6 +564,7 @@ if (!cmd || cmd === 'help' || cmd === '--help') {
   console.log('  node scripts/blog-build.js preview <slug>           Render a draft to a temp HTML file for review');
   console.log('  node scripts/blog-build.js publish <slug>           Publish a draft -> HTML post, rebuild listing + sitemap');
   console.log('  node scripts/blog-build.js rebuild                  Rebuild listing + sitemap from existing posts');
+  console.log('  node scripts/blog-build.js home                     Refresh the home page recent-updates block only');
   console.log('  node scripts/blog-build.js list                     List drafts and published posts');
   console.log('\nNothing is committed or pushed by this script.');
   console.log('To deploy to GitHub Pages after publishing, run git add/commit/push yourself.');
@@ -544,6 +575,7 @@ if (cmd === 'list') { cmdList(); process.exit(0); }
 if (cmd === 'new') { cmdNew(args); process.exit(0); }
 if (cmd === 'preview') { cmdPreview(args); process.exit(0); }
 if (cmd === 'publish') { cmdPublish(args, false); process.exit(0); }
+if (cmd === 'home') { rebuildHomeLatest(readPublishedPosts()); process.exit(0); }
 if (cmd === 'rebuild') {
   const lastmod = todayISO();
   rebuildBlogHtml(readPublishedPosts());

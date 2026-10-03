@@ -56,6 +56,7 @@ This:
   author bio — matching the existing posts),
 - moves the Markdown draft to `blog/_published/` as an archive,
 - rebuilds the card grid in `blog.html` (newest first),
+- refreshes the three newest posts in the home page "Recent tax and compliance updates" block (`index.html`, between `<!--latest-posts-->` markers; `npm run blog:home` does only this),
 - adds/updates the post's `<url>` entry in `sitemap.xml`.
 
 The script deliberately does **not** commit or push.

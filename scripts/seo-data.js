@@ -38,7 +38,7 @@ module.exports = [
       {
         id: 'faq-svc-fees',
         q: 'How are your service fees charged?',
-        a: 'We quote a fixed fee per engagement after understanding your requirement — no hidden charges. Registrations and compliance work are quoted as one-time fees, while recurring work like bookkeeping, GST return filing, or payroll support is priced as a monthly or annual plan.'
+        a: 'We confirm the scope and fee for each engagement in writing after understanding your requirement. Registrations and compliance work are quoted as one-time fees, while recurring work like bookkeeping, GST return filing, or payroll support is priced as a monthly or annual plan.'
       },
       {
         id: 'faq-svc-turnaround',
@@ -152,7 +152,7 @@ module.exports = [
       {
         id: 'faq-gst-cost',
         q: 'How much does GST registration cost in Sahibabad?',
-        a: 'GST registration fees depend on the structure of your business — a proprietorship, partnership, company, or LLP. We quote a fixed fee after a quick review of your business documents, and there are no hidden charges. You will also need to budget for professional fees for return filing, which are quoted separately. Call our Sahibabad office to confirm your quote before we start.'
+        a: 'GST registration fees depend on the structure of your business — a proprietorship, partnership, company, or LLP. We confirm the fee after reviewing your business documents, before any work starts. You will also need to budget for professional fees for return filing, which are quoted separately. Call our Sahibabad office to confirm your quote before we start.'
       },
       {
         id: 'faq-gst-time',
@@ -213,7 +213,7 @@ module.exports = [
       {
         id: 'faq-itr-cost',
         q: 'What are your fees for ITR filing?',
-        a: 'ITR filing fees depend on the form you need and the sources of income. A simple salary return with Form 16 costs less than a return with capital gains, rental income, or business income. We give you a fixed quote after a quick call, with no hidden charges. Fees for tax audit cases or multiple years of returns are quoted separately.'
+        a: 'ITR filing fees depend on the form you need and the sources of income. A simple salary return with Form 16 costs less than a return with capital gains, rental income, or business income. We confirm the fee after a short call about your requirement. Fees for tax audit cases or multiple years of returns are quoted separately.'
       },
       {
         id: 'faq-itr-deadline',
@@ -294,7 +294,7 @@ module.exports = [
       {
         id: 'faq-taxaudit-cost',
         q: 'How much does a tax audit cost in Ghaziabad?',
-        a: 'Tax audit fees depend on the size of your business, the volume of transactions, and whether books are already maintained in a usable format. We quote a fixed fee after reviewing your turnover and records, with no hidden charges. You will also need to budget separately for the income tax return filing fee.'
+        a: 'Tax audit fees depend on the size of your business, the volume of transactions, and whether books are already maintained in a usable format. We confirm the fee after reviewing your turnover and records, before any work starts. You will also need to budget separately for the income tax return filing fee.'
       },
       {
         id: 'faq-taxaudit-disallow',
@@ -546,7 +546,7 @@ module.exports = [
       {
         id: 'faq-msme-cost',
         q: 'How much does MSME Udyam registration cost?',
-        a: 'The Udyam registration itself is free on the official portal. If you use a professional service to prepare and submit the application, you pay only a modest service fee. We keep our fee for Udyam registration low because the process is straightforward — no hidden or government charges are passed on to you.'
+        a: 'The Udyam registration itself is free on the official portal. If a professional prepares and submits the application for you, a professional fee applies. There is no government fee for Udyam registration; our professional fee is confirmed before we begin.'
       },
       {
         id: 'faq-msme-time',
@@ -611,7 +611,7 @@ module.exports = [
       {
         id: 'faq-iec-cost',
         q: 'How much does IEC registration cost?',
-        a: 'The DGFT fee for IEC registration is a fixed government charge. Beyond that you pay a professional service fee for preparing and submitting the application. We keep the professional fee modest and confirm the total cost, including government charges, before we begin.'
+        a: 'The DGFT fee for IEC registration is a fixed government charge. Beyond that you pay a professional service fee for preparing and submitting the application. We confirm the total cost, including government charges and our professional fee, before we begin.'
       },
       {
         id: 'faq-iec-update',
@@ -817,7 +817,7 @@ module.exports = [
       {
         id: 'faq-advisory-suitable',
         q: 'Is virtual CFO service suitable for a small business in Ghaziabad?',
-        a: 'Yes. Virtual CFO support is particularly useful for growing businesses that need financial structure but cannot justify a full-time CFO. Whether you are raising funds, planning to expand, or trying to improve margins, a part-time finance expert helps you make better decisions at a fraction of the cost.'
+        a: 'Yes. Virtual CFO support is particularly useful for growing businesses that need financial structure but cannot justify a full-time CFO. Whether you are raising funds, planning to expand, or trying to improve margins, a part-time finance function supports budgeting, cash flow and reporting without a full-time hire.'
       },
       {
         id: 'faq-advisory-deliverables',
@@ -831,8 +831,8 @@ module.exports = [
       },
       {
         id: 'faq-advisory-growth',
-        q: 'Can you help me get funding or a business loan?',
-        a: 'Yes. We help you prepare the financial projections, business plan, and the financial data banks need, and we review your loan application package for weaknesses. For equity or investor funding, we help you present your financials clearly and answer investor due diligence questions.'
+        q: 'Can you prepare the documents for a business loan or investor funding?',
+        a: 'Yes. We prepare the financial projections, business plan, and the financial data banks ask for, and we review your loan application package for gaps. We do not arrange loans or act for any lender. For equity or investor funding, we help you present your financials clearly and answer investor due diligence questions.'
       },
       {
         id: 'faq-advisory-accounting',
@@ -887,7 +887,7 @@ module.exports = [
       {
         id: 'faq-plan-cost',
         q: 'How much does a business plan cost in Ghaziabad?',
-        a: 'The fee depends on the complexity of the business, the depth of the financial model, and whether market research is required. We quote a fixed fee after understanding your requirement — for a bank loan plan, an investor plan, or an internal plan. No hidden charges.'
+        a: 'The fee depends on the complexity of the business, the depth of the financial model, and whether market research is required. We confirm the fee after understanding your requirement — for a bank loan plan, an investor plan, or an internal plan — before any work starts.'
       },
       {
         id: 'faq-plan-projections',
@@ -1047,7 +1047,7 @@ module.exports = [
       {
         id: 'faq-rep-fee',
         q: 'How much does notice representation cost?',
-        a: 'Fees depend on the complexity of the case — a simple 143(1) intimation response costs less than a scrutiny assessment or an appeal. We quote a fixed fee after reviewing the notice, with no hidden charges. Complex cases spanning multiple hearings may be quoted on a staged basis.'
+        a: 'Fees depend on the complexity of the case — a simple 143(1) intimation response costs less than a scrutiny assessment or an appeal. We confirm the fee after reviewing the notice, before any work starts. Complex cases spanning multiple hearings may be quoted on a staged basis.'
       },
       {
         id: 'faq-rep-appeal',
