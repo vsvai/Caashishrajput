@@ -609,9 +609,17 @@ h3, h4 { font-family: var(--font-text); font-weight: 600; letter-spacing: -0.005
 .contact-details-card h2, .contact-details-card h3 { font-size: 1.2rem; margin-bottom: 1.25rem; }
 .detail-row { display: flex; align-items: flex-start; gap: 0.85rem; margin-bottom: 1.15rem; font-size: 0.96rem; }
 .detail-row:last-child { margin-bottom: 0; }
-.detail-row .icon { flex-shrink: 0; margin-top: 2px; color: var(--brass-text); }
-.detail-row .icon svg { fill: none; }
-.detail-row .icon svg[viewBox] path[d^="M17.472"] { fill: var(--brass-text); }
+/* Icon tiles for contact details (contact page, home contact block) */
+.icon-tile { flex-shrink: 0; width: 42px; height: 42px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; background: var(--surface); border: 1px solid var(--line); color: var(--ink); box-shadow: 0 1px 2px rgba(16,42,67,0.05); transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s; }
+.icon-tile .icon-svg { width: 20px; height: 20px; stroke-width: 1.8; }
+.icon-tile .wa-logo { width: 21px; height: 21px; fill: currentColor; }
+.icon-tile.is-wa { color: var(--whatsapp); background: #e9f5ef; border-color: #cfe7da; }
+.detail-row { align-items: center; }
+.detail-row:hover .icon-tile { background: var(--ink); border-color: var(--ink); color: #fff; transform: translateY(-1px); }
+.detail-row:hover .icon-tile.is-wa { background: var(--whatsapp); border-color: var(--whatsapp); }
+.contact-strip .icon-tile { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.16); color: #e6cf9a; box-shadow: none; }
+.contact-strip .contact-item { align-items: center; }
+.contact-strip .contact-item:hover .icon-tile { background: #fff; color: var(--ink); }
 .detail-row .text { line-height: 1.55; min-width: 0; overflow-wrap: anywhere; }
 .detail-row .text strong { display: block; margin-bottom: 0.1rem; color: var(--ink); }
 
