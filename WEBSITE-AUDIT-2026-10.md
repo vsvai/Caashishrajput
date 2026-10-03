@@ -62,7 +62,7 @@ What changed in 2026 that matters here: websites may now run in **push and pull*
 | Business plan / advisory FAQ: "Can you help me get funding or a business loan?" | Answer prepares projections and reviews loan files | Low–medium: arranging loans is outside the permitted scope (2020 advisory item 9); preparing projections is fine | 2020 advisory: "services exceeding permitted authority (e.g. loan arrangement)" | Wording checked: the page describes preparing documents, not arranging finance. Keep it that way |
 | Asset valuation page | Valuation reports for banks | **Needs owner confirmation**: some valuations legally require an IBBI Registered Valuer (Companies Act s.247) or bank-empanelled valuer, and "empanelment" itself cannot be advertised | Companies Act s.247; 2020 advisory item 25 | **Flagged for you**, not changed |
 | Justdial / Sulekha listings (in schema `sameAs`) | Third-party directory listings | **Needs review**: listing on app-based service aggregators is not permitted for services reserved for CAs (audit/attest). Directory presence for non-exclusive services is allowed | Code of Ethics §3.6 "Application based Service provider Aggregators" | **Flagged for you**: check what those listings say. Schema left unchanged |
-| Firm Registration Number (FRN), membership number | Not shown | Optional permitted particulars | §3.2.1(A)(ii), (B)(ii) | Not shown, by owner decision (3 Oct 2026) |
+| Firm Registration Number (FRN), membership number | Not shown | Optional permitted particulars | §3.2.1(A)(ii), (B)(ii) | Shown on the About page (FRN 034962C, M. No. 566075), from owner-supplied content |
 
 ---
 
@@ -163,6 +163,6 @@ Home page before: two Google Maps iframes (each pulls ~1–1.5 MB of Google JS o
 17. Page hero, service page, FAQ, related-services, footer and services hub restyled; services hub accordion opens on click only.
 
 ### P3 — Enhancements / owner input needed
-18. ~~FRN and membership number~~: not shown, by owner decision.
+18. FRN and membership number: added to the About page from owner-supplied content.
 19. Search Console export → CTR opportunity matrix.
 20. Privacy-respecting analytics (needs your decision; see the final report).
