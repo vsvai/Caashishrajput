@@ -128,6 +128,28 @@ function pageTitle(post) {
   return post.h1;
 }
 
+// "Related Services" box shown above the author bio, chosen by category.
+// A draft can override it in front matter: related_service: services/<page>.html | Link text
+const RELATED_SERVICE = {
+  'GST': ['services/gst.html', 'GST registration and return filing services in Ghaziabad'],
+  'Income Tax': ['services/income-tax.html', 'Income tax return filing and advisory'],
+  'Company Law': ['services/company-llp-registration.html', 'Company and LLP registration services'],
+  'Compliance': ['services/business-advisory.html', 'Business advisory and compliance support in Ghaziabad']
+};
+
+function relatedServicesHtml(post) {
+  const link = post.relatedService || RELATED_SERVICE[post.category];
+  if (!link) return '';
+  return '      <!-- Related Services -->\n' +
+    '      <div class="related-services">\n' +
+    '        <h3>Related Services</h3>\n' +
+    '        <ul>\n' +
+    '          <li><a href="../' + link[0] + '">' + htmlEsc(link[1]) + '</a></li>\n' +
+    '        </ul>\n' +
+    '      </div>\n' +
+    '\n';
+}
+
 function buildPostHtml(post) {
   const schemas = [practiceSchemaJson(), personSchemaJson(), articleSchemaJson(post), breadcrumbSchemaJson(post)];
   const schemaBlocks = schemas.map(function (s) {
@@ -197,6 +219,7 @@ function buildPostHtml(post) {
     '\n' +
     body + '\n' +
     '\n' +
+    relatedServicesHtml(post) +
     '      <!-- Author Bio -->\n' +
     '      <div class="author-bio">\n' +
     '        <div class="author-photo">\n' +
@@ -532,6 +555,7 @@ function loadDraft(slug) {
     slug: slug,
     h1: title,
     seoTitle: fm.seo_title || '',
+    relatedService: fm.related_service ? fm.related_service.split('|').map(function (s) { return s.trim(); }) : null,
     category: category,
     date: date,
     description: description,
