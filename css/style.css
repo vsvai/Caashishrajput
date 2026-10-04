@@ -332,6 +332,11 @@ h3, h4 { font-family: var(--font-text); font-weight: 600; letter-spacing: -0.005
 .service-group h3 { font-size: 1.12rem; margin-bottom: 0.2rem; }
 .service-group-head p { font-size: 0.92rem; color: var(--muted); line-height: 1.5; }
 .service-links { list-style: none; margin-top: auto; border-top: 1px solid var(--line); }
+/* Line up headings and link lists across each row, whatever the description length */
+@supports (grid-template-rows: subgrid) {
+  .service-group { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 0; }
+  .service-links { margin-top: 0; align-self: start; }
+}
 .service-links li { border-bottom: 1px solid var(--line); }
 .service-links li:last-child { border-bottom: 0; }
 .service-links a {
@@ -423,10 +428,7 @@ h3, h4 { font-family: var(--font-text); font-weight: 600; letter-spacing: -0.005
 .links-grid .icon .icon-svg { width: 22px; height: 22px; }
 .links-grid .service-card:hover .icon { background: var(--ink); color: #fff; transform: rotate(-4deg) scale(1.04); }
 
-.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .stat-card { padding: 1.25rem; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--line); }
-.stat-card .number { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--ink); }
-.stat-card .label { font-size: 0.85rem; color: var(--muted); margin-top: 0.15rem; }
 
 /* ===== Service explorer (services.html, js/services-explorer.js) ===== */
 .svx-group { --cat: var(--ink); margin-bottom: 2.25rem; }
@@ -648,6 +650,10 @@ h3, h4 { font-family: var(--font-text); font-weight: 600; letter-spacing: -0.005
 
 /* ===== Contact page ===== */
 .contact-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 3.5rem); }
+/* Keep office details beside the long enquiry form instead of leaving an empty column */
+@media (min-width: 961px) and (min-height: 760px) {
+  .contact-grid > #visit { position: sticky; top: calc(var(--header-h) + 1.25rem); align-self: start; }
+}
 .contact-form { display: flex; flex-direction: column; gap: 1.1rem; }
 .contact-form fieldset { min-width: 0; margin: 0; padding: 0; }
 .form-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
@@ -1171,7 +1177,7 @@ body[data-active="blog"] .page-hero::after { width: 360px; height: 360px; right:
   .cc-row-ico { width: 34px; height: 34px; }
   .cc-row-side { grid-column: 3; flex-direction: row; align-items: center; justify-content: flex-start; flex-wrap: wrap; }
   .cc-dl-all span { font-size: 0.82rem; }
-  .cc-toolbar { flex-direction: column; align-items: stretch; }
+  .cc-toolbar { flex-direction: column; flex-wrap: nowrap; align-items: stretch; }
   .cc-filters { flex-wrap: nowrap; overflow-x: auto; margin: 0 -1.25rem; padding: 0.25rem 1.25rem 0.5rem; scroll-snap-type: x proximity; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
   .cc-filters::-webkit-scrollbar { display: none; }
   .cc-chip { flex-shrink: 0; scroll-snap-align: start; }
@@ -1327,6 +1333,11 @@ body[data-active="blog"] .page-hero::after { width: 360px; height: 360px; right:
   .service-checkboxes label { font-size: 0.86rem; padding: 0.45rem 0.6rem; }
   .hero-buttons .btn { flex: 1 1 auto; }
   .practice-card dl div { font-size: 0.86rem; }
+  .practice-card-head { gap: 0.85rem; padding: 1.15rem 1.15rem; }
+  .practice-card-head img.founder { width: 64px; height: 82px; }
+  .practice-card-head .who strong { font-size: 1.1rem; }
+  .practice-card-head .ca-logo { width: 44px; }
+  .practice-card dl, .practice-card-foot { padding-left: 1.15rem; padding-right: 1.15rem; }
 }
 
 @media (max-width: 480px) {
