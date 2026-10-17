@@ -1,14 +1,17 @@
 // Service explorer (services.html).
 //
 // Every service is plain, crawlable HTML (.svx-group > .svx-card). This script
-// adds a finder panel on top: live search, "I am…" audience chips and category
-// tabs, with animated filtering. Without JavaScript the grouped list remains.
+// adds a finder panel on top: live search with synonyms and relevance ranking,
+// popular-search chips, "I am…" audience chips and category tabs, with animated
+// filtering, a shareable URL state and a "discuss these" action. Without
+// JavaScript the grouped list remains.
 (function () {
   var root = document.getElementById('serviceExplorer');
   if (!root) return;
 
   var cards = [].slice.call(root.querySelectorAll('.svx-card'));
   var groups = [].slice.call(root.querySelectorAll('.svx-group'));
+  var groupHome = groups[0] && groups[0].parentNode;
   if (!cards.length) return;
 
   var ICON = {
@@ -32,6 +35,27 @@
     return { key: g.getAttribute('data-cat'), name: g.querySelector('h2').textContent, icon: g.querySelector('.svx-group-ico').innerHTML, color: g.style.getPropertyValue('--cat') };
   });
 
+  // Typical starting documents (general guidance; the office confirms the checklist per engagement).
+  var PEEK = {
+    'income-tax': ['PAN and Aadhaar', 'Form 16 / income and TDS details', 'Bank statements and investment proofs'],
+    'gst': ['PAN of the business or owner', 'Address proof of the business premises', 'Bank details and photographs'],
+    'tax-audit': ['Books of accounts and bank statements', 'Previous year return and audit report', 'GST and TDS records'],
+    'corporate-representation': ['The notice or order received', 'Return and records for the year concerned', 'Earlier correspondence, if any'],
+    'statutory-audit': ['Trial balance and books of accounts', 'Bank and loan confirmations', 'Statutory registers and prior-year financials'],
+    'internal-audit': ['Process and policy documents', 'Sample transaction records', 'Organisation chart and key contacts'],
+    'charities-trust-audits': ['Trust deed or society MOA', 'Registrations (12A / 80G, if held)', 'Receipts, payments and bank records'],
+    'company-llp-registration': ['PAN and Aadhaar of directors or partners', 'Address proof of the registered office', 'Proposed names and business activity'],
+    'trust-society-ngo-registration': ['PAN and Aadhaar of trustees or members', 'Address proof of the registered office', 'Aims and objects of the organisation'],
+    'msme-udyam-registration': ['Aadhaar of the owner or authorised person', 'PAN and GSTIN, if any', 'Bank details and business activity'],
+    'import-export-code-iec': ['PAN of the business', 'Bank certificate or cancelled cheque', 'Address proof of the business'],
+    'fssai-registration': ['Photo ID and photograph of the applicant', 'Address proof of the premises', 'List of food products handled'],
+    'lei-certificate': ['PAN and incorporation documents', 'Registered address proof', 'Authorised signatory details'],
+    'accounting-bookkeeping': ['Sales and purchase invoices', 'Bank statements', 'Expense vouchers and previous books'],
+    'business-advisory': ['Recent financial statements', 'Current budgets or MIS, if any', 'A short note on your goals'],
+    'business-plan-financial-projections': ['Past financials (if existing business)', 'Details of the project and funding needed', 'Quotations for assets or costs'],
+    'asset-valuation': ['Fixed asset or stock list', 'Purchase invoices and past valuations', 'Purpose of the valuation']
+  };
+
   // Keep each card's original text so search highlighting can be undone.
   cards.forEach(function (c) {
     c._name = c.querySelector('.svx-name');
@@ -40,9 +64,59 @@
     c._descHtml = c._desc.innerHTML;
     c._hay = (c._name.textContent + ' ' + c._desc.textContent + ' ' + c.getAttribute('data-keywords')).toLowerCase();
     c._for = (c.getAttribute('data-for') || '').split(/\s+/);
+    c._kw = (c.getAttribute('data-keywords') || '').toLowerCase();
+    // Wrap each card so a "Quick look" toggle and panel can sit under it (a link cannot contain a button).
+    var item = document.createElement('div');
+    item.className = 'svx-item';
+    c._home = c.parentNode;
+    c._pos = [].indexOf.call(c.parentNode.children, c);
+    c.parentNode.insertBefore(item, c);
+    item.appendChild(c);
+    c._item = item;
+    var docs = PEEK[c.id.replace('svc-', '')];
+    if (docs) {
+      var pid = 'peek-' + c.id;
+      var tog = document.createElement('button');
+      tog.type = 'button'; tog.className = 'svx-peek-toggle';
+      tog.setAttribute('aria-expanded', 'false'); tog.setAttribute('aria-controls', pid);
+      tog.innerHTML = '<span>Quick look</span>' + svg('<path d="m6 9 6 6 6-6"/>');
+      var pan = document.createElement('div');
+      pan.className = 'svx-peek'; pan.id = pid; pan.hidden = true;
+      var name = c.querySelector('.svx-name').textContent;
+      pan.innerHTML = '<p class="svx-peek-h">Usually needed to get started</p><ul>' +
+        docs.map(function (d) { return '<li>' + d + '</li>'; }).join('') + '</ul>' +
+        '<p class="svx-peek-note">The office confirms the exact checklist, fee and timeline in writing before work begins.</p>' +
+        '<div class="svx-peek-actions"><a class="btn btn-primary" target="_blank" rel="noopener" data-track="whatsapp" href="https://wa.me/918802586988?text=' +
+        encodeURIComponent('Hello, I would like to know more about ' + name + '.') + '">Ask about this</a>' +
+        '<a class="btn btn-secondary" href="' + c.getAttribute('href') + '">Full details</a></div>';
+      tog.addEventListener('click', function () {
+        var open = tog.getAttribute('aria-expanded') !== 'true';
+        tog.setAttribute('aria-expanded', open ? 'true' : 'false');
+        pan.hidden = !open;
+        item.classList.toggle('is-open', open);
+      });
+      item.appendChild(tog); item.appendChild(pan);
+    }
   });
 
   var state = { q: '', who: null, cat: 'all' };
+  var WHO_KEYS = AUDIENCES.map(function (a) { return a[0]; });
+  var CAT_KEYS = ['all'].concat(CATS.map(function (c) { return c.key; }));
+  var reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Plain-language ways people describe a need, mapped to terms already on the cards.
+  var SYNONYMS = {
+    itr: ['income tax'], refund: ['itr'], salary: ['itr'], gstin: ['gst'],
+    licence: ['fssai', 'license'], license: ['fssai', 'licence'],
+    letter: ['notice'], summons: ['notice'], startup: ['company', 'incorporation', 'udyam'],
+    pvt: ['private limited'], ltd: ['limited'], loan: ['project report', 'cma', 'projections'],
+    bank: ['cma', 'lei'], export: ['iec'], import: ['iec'],
+    ngo: ['trust', 'society', '12a', '80g'], charity: ['trust', '12a', '80g'],
+    books: ['bookkeeping', 'accounting'], accounts: ['accounting', 'bookkeeping'], cfo: ['advisory'],
+    valuation: ['asset'], audit: ['44ab', 'statutory']
+  };
+  var POPULAR = ['ITR filing', 'GST registration', 'Income tax notice', 'Company registration', 'Tax audit', '12A / 80G', 'Loan project report'];
+  var PLACEHOLDERS = ['GST return', '12A', 'income tax notice', 'company registration', 'FSSAI licence', 'project report for a loan'];
 
   /* ---------------------------------------------------------- finder panel */
   var panel = document.createElement('div');
@@ -57,13 +131,18 @@
         '<kbd aria-hidden="true">/</kbd>' +
         '<button type="button" class="svx-clear" aria-label="Clear search" hidden>' + svg(ICON.x) + '</button>' +
       '</label>' +
+      '<p class="svx-pop"><span>Popular:</span>' +
+        POPULAR.map(function (q) { return '<button type="button" class="svx-pop-chip" data-q="' + q + '">' + q + '</button>'; }).join('') +
+      '</p>' +
       '<p class="svx-who-label">I am&hellip;</p>' +
       '<div class="svx-who" role="group" aria-label="Who are you?">' +
         AUDIENCES.map(function (a) {
           return '<button type="button" class="svx-who-chip" data-who="' + a[0] + '" aria-pressed="false">' + svg(ICON[a[0]]) + '<span>' + a[1] + '</span></button>';
         }).join('') +
       '</div>' +
-    '</div>';
+      '<button type="button" class="svx-guide-btn">' + svg('<path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/>') + 'Not sure? Guide me in 2 questions</button>' +
+    '</div>' +
+    '<div class="svx-wizard" hidden></div>';
   var tabs = document.createElement('div');
   tabs.className = 'svx-tabs-row';
   tabs.innerHTML =
@@ -81,7 +160,16 @@
     '<p>The office handles more than is listed here. Describe what you need and you will be told what applies.</p>' +
     '<div class="svx-empty-actions"><button type="button" class="btn btn-secondary svx-reset">Show all services</button><a class="btn btn-primary" href="contact.html#enquiry" data-track="enquiry">Send an enquiry</a></div>';
 
+  var bar = document.createElement('div');
+  bar.className = 'svx-bar';
+  bar.hidden = true;
+  bar.innerHTML = '<p class="svx-bar-text"></p><div class="svx-bar-actions"><a class="btn btn-primary svx-bar-wa" target="_blank" rel="noopener" data-track="whatsapp">Discuss on WhatsApp</a><button type="button" class="btn btn-secondary svx-reset">Clear filters</button></div>';
+  var sentinel = document.createElement('div');
+  sentinel.className = 'svx-sentinel';
+
+  root.insertBefore(bar, root.firstChild);
   root.insertBefore(tabs, root.firstChild);
+  root.insertBefore(sentinel, root.firstChild);
   root.insertBefore(panel, root.firstChild);
   root.appendChild(empty);
   root.classList.add('svx-js');
@@ -89,6 +177,8 @@
   var input = panel.querySelector('input');
   var clearBtn = panel.querySelector('.svx-clear');
   var statusEl = tabs.querySelector('.svx-status');
+  var barText = bar.querySelector('.svx-bar-text');
+  var barWa = bar.querySelector('.svx-bar-wa');
 
   /* ---------------------------------------------------------- filtering */
   function escRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
@@ -98,30 +188,93 @@
     // Only touch text between tags.
     return html.replace(/(^|>)([^<]+)/g, function (m, a, text) { return a + text.replace(re, '<mark>$1</mark>'); });
   }
-  function matches(c, words) {
-    if (state.who && c._for.indexOf(state.who) === -1) return false;
-    return words.every(function (w) { return c._hay.indexOf(w) !== -1; });
+  function hit(c, w) {
+    if (c._hay.indexOf(w) !== -1) return true;
+    var alt = SYNONYMS[w];
+    return !!alt && alt.some(function (a) { return c._hay.indexOf(a) !== -1; });
+  }
+  // 0 = no match; higher = better. Name hits outrank keyword hits outrank description hits.
+  function score(c, words) {
+    if (state.who && c._for.indexOf(state.who) === -1) return 0;
+    if (!words.length) return 1;
+    var total = 0;
+    var n = c._name.textContent.toLowerCase();
+    for (var i = 0; i < words.length; i++) {
+      var w = words[i];
+      if (!hit(c, w)) return 0;
+      total += n.indexOf(w) === 0 ? 6 : n.indexOf(w) !== -1 ? 4 : c._kw.indexOf(w) !== -1 ? 3 : 1;
+    }
+    return total;
+  }
+
+  // With a search active, the best-matching group and card come first; otherwise
+  // the original page order is restored.
+  function sortByRelevance(scores) {
+    var gScore = {};
+    groups.forEach(function (g) { gScore[g.getAttribute('data-cat')] = 0; });
+    if (scores) cards.forEach(function (c, i) {
+      var k = c.getAttribute('data-cat'); if (scores[i] > gScore[k]) gScore[k] = scores[i];
+    });
+    groups.slice().sort(function (a, b) {
+      return scores ? gScore[b.getAttribute('data-cat')] - gScore[a.getAttribute('data-cat')] || groups.indexOf(a) - groups.indexOf(b) : groups.indexOf(a) - groups.indexOf(b);
+    }).forEach(function (g) { groupHome.insertBefore(g, empty); });
+    groups.forEach(function (g) {
+      [].slice.call(g.querySelectorAll('.svx-card')).sort(function (a, b) {
+        return scores ? scores[cards.indexOf(b)] - scores[cards.indexOf(a)] || a._pos - b._pos : a._pos - b._pos;
+      }).forEach(function (c) { c._home.appendChild(c._item); });
+    });
+  }
+
+  function updateBar(shown, best, whoName) {
+    var filtered = state.q || state.who || state.cat !== 'all';
+    bar.hidden = !(filtered && shown > 0);
+    if (bar.hidden) return;
+    var names = [].slice.call(root.querySelectorAll('.svx-card:not([hidden]) .svx-name')).slice(0, 3)
+      .map(function (n) { return n.textContent; });
+    var lead = best ? best.querySelector('.svx-name').textContent : names[0];
+    barText.innerHTML = shown === 1
+      ? '<strong>' + lead + '</strong> looks like the right fit. Tell the office what you need and you will be told the documents and timeline.'
+      : '<strong>' + shown + ' services</strong> match' + (whoName ? ' for ' + whoName : '') + '. Not sure which one applies? The office will point you to the right one.';
+    var msg = 'Hello, I was looking at ' + (shown === 1 ? lead : names.join(', ') + (shown > 3 ? ' and other services' : '')) +
+      ' on your website' + (whoName ? ' (I am ' + (/^[aeiou]/.test(whoName) ? 'an ' : 'a ') + whoName + ')' : '') + ' and would like to discuss my requirement.';
+    barWa.href = 'https://wa.me/918802586988?text=' + encodeURIComponent(msg);
+  }
+
+  // Keep the current search shareable: services.html?q=notice&who=company&cat=tax
+  function syncUrl() {
+    if (!window.history || !history.replaceState) return;
+    var p = [];
+    if (state.q) p.push('q=' + encodeURIComponent(state.q));
+    if (state.who) p.push('who=' + state.who);
+    if (state.cat !== 'all') p.push('cat=' + state.cat);
+    try { history.replaceState(null, '', location.pathname + (p.length ? '?' + p.join('&') : '') + location.hash); } catch (e) {}
   }
 
   function apply() {
     var words = state.q.toLowerCase().split(/\s+/).filter(Boolean);
-    var perCat = {}; var shown = 0; var order = 0;
-    cards.forEach(function (c) {
-      var base = matches(c, words);
+    var perCat = {}; var shown = 0; var order = 0; var best = null; var bestScore = 0;
+    var scores = cards.map(function (c) { return score(c, words); });
+    cards.forEach(function (c, i) {
+      var base = scores[i] > 0;
       var cat = c.getAttribute('data-cat');
       if (base) perCat[cat] = (perCat[cat] || 0) + 1;
       var on = base && (state.cat === 'all' || state.cat === cat);
       c._name.innerHTML = on ? highlight(c._nameHtml, words) : c._nameHtml;
       c._desc.innerHTML = on ? highlight(c._descHtml, words) : c._descHtml;
+      c.classList.remove('is-best');
       if (on) {
         shown++;
+        if (words.length && scores[i] > bestScore) { bestScore = scores[i]; best = c; }
         c.style.setProperty('--i', order++);
         if (c.hidden) { c.hidden = false; c.classList.remove('is-in'); void c.offsetWidth; }
         c.classList.add('is-in');
       } else {
         c.hidden = true;
       }
+      c._item.hidden = c.hidden;
     });
+    if (best) best.classList.add('is-best');
+    sortByRelevance(words.length ? scores : null);
     groups.forEach(function (g) {
       var visible = g.querySelectorAll('.svx-card:not([hidden])').length;
       g.hidden = visible === 0;
@@ -135,12 +288,18 @@
       t.classList.toggle('is-empty', n === 0);
       t.setAttribute('aria-pressed', state.cat === k ? 'true' : 'false');
     });
+    [].forEach.call(panel.querySelectorAll('.svx-who-chip'), function (x) {
+      x.setAttribute('aria-pressed', x.getAttribute('data-who') === state.who ? 'true' : 'false');
+    });
     empty.hidden = shown !== 0;
     clearBtn.hidden = !state.q;
+    var whoName = state.who ? AUDIENCES.filter(function (a) { return a[0] === state.who; })[0][1].toLowerCase().replace(/^an? /, '') : '';
     var parts = [];
     if (state.q) parts.push('matching &ldquo;' + state.q.replace(/</g, '&lt;') + '&rdquo;');
-    if (state.who) parts.push('for ' + AUDIENCES.filter(function (a) { return a[0] === state.who; })[0][1].toLowerCase().replace(/^an? /, ''));
+    if (state.who) parts.push('for ' + whoName);
     statusEl.innerHTML = 'Showing <strong>' + shown + '</strong> of ' + cards.length + ' services' + (parts.length ? ' ' + parts.join(' ') : '');
+    updateBar(shown, best, whoName);
+    syncUrl();
   }
 
   var t;
@@ -166,21 +325,147 @@
     var b = e.target.closest('.svx-who-chip'); if (!b) return;
     var who = b.getAttribute('data-who');
     state.who = state.who === who ? null : who;
-    [].forEach.call(panel.querySelectorAll('.svx-who-chip'), function (x) {
-      x.setAttribute('aria-pressed', x.getAttribute('data-who') === state.who ? 'true' : 'false');
-    });
     apply();
+  });
+  panel.querySelector('.svx-pop').addEventListener('click', function (e) {
+    var b = e.target.closest('.svx-pop-chip'); if (!b) return;
+    var q = b.getAttribute('data-q');
+    input.value = state.q === q ? '' : q; state.q = input.value; apply();
   });
   tabs.querySelector('.svx-tabs').addEventListener('click', function (e) {
     var b = e.target.closest('.svx-tab'); if (!b) return;
     state.cat = b.getAttribute('data-cat');
     apply();
   });
-  empty.querySelector('.svx-reset').addEventListener('click', function () {
-    input.value = ''; state = { q: '', who: null, cat: 'all' };
-    [].forEach.call(panel.querySelectorAll('.svx-who-chip'), function (x) { x.setAttribute('aria-pressed', 'false'); });
-    apply();
+  /* ---------------------------------------------------------- guided wizard */
+  var GOALS = [
+    ['Filing returns or tax planning', { cat: 'tax' }],
+    ['Registering a business, trust or licence', { cat: 'reg' }],
+    ['Reply to a tax notice or appeal', { q: 'notice' }],
+    ['An audit of my accounts', { cat: 'audit' }],
+    ['Keeping books and financial reports', { cat: 'acc' }],
+    ['A loan or project report', { q: 'loan' }]
+  ];
+  var wiz = panel.querySelector('.svx-wizard');
+  var inner = panel.querySelector('.svx-finder-inner');
+  var wizState = { who: null };
+  function wizShow(step) {
+    inner.hidden = step === 0; wiz.hidden = step === 0;
+    if (step === 0) return;
+    var h = '<p class="svx-kicker">Guide me &middot; Step ' + step + ' of 2</p><div class="svx-wiz-bar"><i style="width:' + (step * 50) + '%"></i></div>';
+    if (step === 1) {
+      h += '<h2 class="svx-finder-title">Who is this for?</h2><div class="svx-wiz-opts">' + AUDIENCES.map(function (a) {
+        return '<button type="button" class="svx-wiz-opt" data-who="' + a[0] + '">' + svg(ICON[a[0]]) + '<span>' + a[1] + '</span></button>';
+      }).join('') + '</div>';
+    } else {
+      h += '<h2 class="svx-finder-title">What do you need?</h2><div class="svx-wiz-opts">' + GOALS.map(function (g, i) {
+        return '<button type="button" class="svx-wiz-opt" data-goal="' + i + '"><span>' + g[0] + '</span></button>';
+      }).join('') + '</div>';
+    }
+    h += '<div class="svx-wiz-foot">' + (step === 2 ? '<button type="button" class="svx-wiz-link" data-act="back">&larr; Back</button>' : '') +
+      '<button type="button" class="svx-wiz-link" data-act="close">Close guide</button></div>';
+    wiz.innerHTML = h;
+    var first = wiz.querySelector('.svx-wiz-opt'); if (first) first.focus();
+  }
+  panel.querySelector('.svx-guide-btn').addEventListener('click', function () { wizShow(1); });
+  wiz.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    if (b.getAttribute('data-act') === 'close') return wizShow(0);
+    if (b.getAttribute('data-act') === 'back') return wizShow(1);
+    if (b.hasAttribute('data-who')) { wizState.who = b.getAttribute('data-who'); return wizShow(2); }
+    if (b.hasAttribute('data-goal')) {
+      var g = GOALS[+b.getAttribute('data-goal')][1];
+      state = { q: g.q || '', who: wizState.who, cat: g.cat || 'all' };
+      input.value = state.q;
+      wizShow(0); apply();
+      var target = tabs.getBoundingClientRect().top + window.pageYOffset - 90;
+      window.scrollTo({ top: target, behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
   });
+  wiz.addEventListener('keydown', function (e) { if (e.key === 'Escape') { wizShow(0); panel.querySelector('.svx-guide-btn').focus(); } });
+
+  function resetAll() { input.value = ''; state = { q: '', who: null, cat: 'all' }; apply(); }
+  [].forEach.call(root.querySelectorAll('.svx-reset'), function (b) { b.addEventListener('click', resetAll); });
+
+  // Arrow keys move between results; ArrowUp from the first card returns to search.
+  root.addEventListener('keydown', function (e) {
+    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+    var cur = e.target.closest && e.target.closest('.svx-card'); if (!cur) return;
+    var vis = [].slice.call(root.querySelectorAll('.svx-card:not([hidden])'));
+    var next = vis[vis.indexOf(cur) + (e.key === 'ArrowDown' ? 1 : -1)];
+    e.preventDefault();
+    if (next) next.focus(); else if (e.key === 'ArrowUp') input.focus();
+  });
+
+  if (!reduceMotion) {
+    // Cursor spotlight on cards and the finder panel.
+    root.addEventListener('pointermove', function (e) {
+      var host = e.target.closest && e.target.closest('.svx-card, .svx-finder'); if (!host) return;
+      var r = host.getBoundingClientRect();
+      host.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      host.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+    // Rotating example searches while the box is idle.
+    var pi = 0;
+    setInterval(function () {
+      if (document.activeElement === input || input.value) return;
+      pi = (pi + 1) % PLACEHOLDERS.length;
+      input.placeholder = 'Try “' + PLACEHOLDERS[pi] + '”';
+    }, 2800);
+  }
+
+  // Category bar sticks under the header; mark it once pinned.
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) {
+      tabs.classList.toggle('is-stuck', !en[0].isIntersecting && en[0].boundingClientRect.top < 0);
+    }, { rootMargin: '-72px 0px 0px 0px' }).observe(sentinel);
+  }
+
+  // Restore a shared state from the URL (services.html?q=notice&who=company&cat=tax).
+  location.search.slice(1).split('&').forEach(function (kv) {
+    var a = kv.split('='), v = '';
+    try { v = decodeURIComponent((a[1] || '').replace(/\+/g, ' ')); } catch (err) {}
+    if (a[0] === 'q' && v) { state.q = v.slice(0, 80); input.value = state.q; }
+    if (a[0] === 'who' && WHO_KEYS.indexOf(v) !== -1) state.who = v;
+    if (a[0] === 'cat' && CAT_KEYS.indexOf(v) !== -1) state.cat = v;
+  });
+
+  /* ---------------------------------------------------------- hero stats + reveal */
+  var heroBox = document.querySelector('.page-hero .container');
+  if (heroBox) {
+    var stats = [[cards.length, 'services'], [groups.length, 'practice areas'], [AUDIENCES.length, 'types of client']];
+    var strip = document.createElement('div');
+    strip.className = 'svx-hero-extra';
+    strip.innerHTML = '<ul class="svx-stats">' + stats.map(function (s) {
+      return '<li><b data-to="' + s[0] + '">0</b><span>' + s[1] + '</span></li>';
+    }).join('') + '</ul><a class="btn btn-primary svx-hero-cta" href="#serviceExplorer">' + svg(ICON.search) + 'Find my service</a>';
+    heroBox.appendChild(strip);
+    strip.querySelector('.svx-hero-cta').addEventListener('click', function (e) {
+      e.preventDefault();
+      panel.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+      setTimeout(function () { input.focus({ preventScroll: true }); }, reduceMotion ? 0 : 450);
+    });
+    [].forEach.call(strip.querySelectorAll('b'), function (b) {
+      var to = +b.getAttribute('data-to'), t0 = null;
+      if (reduceMotion) { b.textContent = to; return; }
+      requestAnimationFrame(function step(ts) {
+        if (t0 === null) t0 = ts;
+        var p = Math.min((ts - t0) / 900, 1);
+        b.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
+      });
+    });
+  }
+
+  // Groups fade up as they scroll into view (content stays visible if observers are unavailable).
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    root.classList.add('svx-reveal');
+    var io = new IntersectionObserver(function (en) {
+      en.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('is-vis'); io.unobserve(x.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    groups.forEach(function (g) { io.observe(g); });
+    setTimeout(function () { groups.forEach(function (g) { g.classList.add('is-vis'); }); }, 2500);
+  }
 
   // Deep links such as services.html#svc-gst highlight that card.
   var hash = location.hash.slice(1);
