@@ -49,6 +49,5 @@ practice, we would be happy to hear from you.
 
 ## How to apply
 
-Email your CV to ca.ashishrajput@outlook.com with "Application — Article Assistant" in the subject line. Include
-your name, mobile number and years of experience in the body of the mail. You can also call +91 88025 86988, or
-write to us through caashishrajput.com.
+Apply online with your CV using the button on this page, or email your CV to ca.ashishrajput@outlook.com. You can
+also call +91 88025 86988, or write to us through caashishrajput.com.

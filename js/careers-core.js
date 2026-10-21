@@ -216,6 +216,8 @@ export async function currentSession() {
 
 export async function currentUser() {
   const { data, error } = await sb.auth.getUser();
+  // A signed-out visitor is a normal state, not a failure; callers treat null as "not signed in".
+  if (error && error.name === 'AuthSessionMissingError') return null;
   if (error) throw toCareersError(error);
   return data.user;
 }
