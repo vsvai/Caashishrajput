@@ -57,6 +57,7 @@ const NAV = [
   ['about', 'about.html', 'About'],
   ['blog', 'blog.html', 'Insights'],
   ['resources', 'resources.html', 'Compliance Calendar'],
+  ['career', 'career/index.html', 'Careers'],
   ['contact', 'contact.html', 'Contact']
 ];
 
