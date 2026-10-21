@@ -33,53 +33,64 @@ on conflict (id) do update
 -- -----------------------------------------------------------------------------
 
 -- Applicants may upload into their own folder only: cvs/{their own uid}/...
--- The second path segment is the application id reserved by begin_cv_upload();
+-- Object names are cvs/{user_id}/{application_id}/{file} (the path begin_cv_upload()
+-- returns), so the user id is the SECOND folder segment, after the literal 'cvs'.
+-- The third path segment is the application id reserved by begin_cv_upload();
 -- submit_application() re-checks the full path and the server-side file metadata.
+drop policy if exists "applicants upload own cv" on storage.objects;
 create policy "applicants upload own cv"
   on storage.objects for insert
   to authenticated
   with check (
     bucket_id = 'cvs'
-    and (storage.foldername(name))[1] = (select auth.uid()::text)
+    and (storage.foldername(name))[1] = 'cvs'
+    and (storage.foldername(name))[2] = (select auth.uid()::text)
     and lower(storage.extension(name)) in ('pdf', 'doc', 'docx')
   );
 
 -- Read access: the owner, or an administrator. This is what makes createSignedUrl
 -- work for a CV and what stops one applicant reading another's CV (§22).
+drop policy if exists "applicants read own cv or admins read any cv" on storage.objects;
 create policy "applicants read own cv or admins read any cv"
   on storage.objects for select
   to authenticated
   using (
     bucket_id = 'cvs'
     and (
-      (storage.foldername(name))[1] = (select auth.uid()::text)
+      (storage.foldername(name))[1] = 'cvs'
+    and (storage.foldername(name))[2] = (select auth.uid()::text)
       or public.is_admin()
     )
   );
 
 -- Replace-in-place is confined to the owner's folder.
+drop policy if exists "applicants update own cv" on storage.objects;
 create policy "applicants update own cv"
   on storage.objects for update
   to authenticated
   using (
     bucket_id = 'cvs'
-    and (storage.foldername(name))[1] = (select auth.uid()::text)
+    and (storage.foldername(name))[1] = 'cvs'
+    and (storage.foldername(name))[2] = (select auth.uid()::text)
   )
   with check (
     bucket_id = 'cvs'
-    and (storage.foldername(name))[1] = (select auth.uid()::text)
+    and (storage.foldername(name))[1] = 'cvs'
+    and (storage.foldername(name))[2] = (select auth.uid()::text)
   );
 
 -- Delete: the owner may remove their own file (used to clean up an upload that
 -- failed validation). Administrators may remove any file — that is how
 -- admin_delete_application() clears the CV.
+drop policy if exists "applicants or admins delete cv" on storage.objects;
 create policy "applicants or admins delete cv"
   on storage.objects for delete
   to authenticated
   using (
     bucket_id = 'cvs'
     and (
-      (storage.foldername(name))[1] = (select auth.uid()::text)
+      (storage.foldername(name))[1] = 'cvs'
+    and (storage.foldername(name))[2] = (select auth.uid()::text)
       or public.is_admin()
     )
   );

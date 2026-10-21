@@ -19,14 +19,14 @@
 --     raw database errors never reach a visitor.
 --
 -- ERROR CODES (SQLSTATE, surfaced to the UI for message mapping)
---   AJA001 auth_required             AJA009 cv_invalid_type
---   AJA002 email_not_verified        AJA010 cv_too_large
---   AJA003 vacancy_not_found         AJA011 cv_not_owned
---   AJA004 vacancy_not_published     AJA012 not_found        (IDOR-safe generic)
---   AJA005 vacancy_not_yet_open      AJA013 admin_required
---   AJA006 vacancy_closed            AJA014 rate_limited
---   AJA007 duplicate_application     AJA015 validation_failed
---   AJA008 cv_missing                AJA016 profile_incomplete
+--   AJA01 auth_required             AJA09 cv_invalid_type
+--   AJA02 email_not_verified        AJA10 cv_too_large
+--   AJA03 vacancy_not_found         AJA11 cv_not_owned
+--   AJA04 vacancy_not_published     AJA12 not_found        (IDOR-safe generic)
+--   AJA05 vacancy_not_yet_open      AJA13 admin_required
+--   AJA06 vacancy_closed            AJA14 rate_limited
+--   AJA07 duplicate_application     AJA15 validation_failed
+--   AJA08 cv_missing                AJA16 profile_incomplete
 -- =============================================================================
 
 -- -----------------------------------------------------------------------------
@@ -85,13 +85,13 @@ declare
   v_uid uuid := auth.uid();
 begin
   if v_uid is null then
-    raise exception 'AUTH_REQUIRED' using errcode = 'AJA001';
+    raise exception 'AUTH_REQUIRED' using errcode = 'AJA01';
   end if;
 
   if not exists (
     select 1 from auth.users where id = v_uid and email_confirmed_at is not null
   ) then
-    raise exception 'EMAIL_NOT_VERIFIED' using errcode = 'AJA002';
+    raise exception 'EMAIL_NOT_VERIFIED' using errcode = 'AJA02';
   end if;
 
   return v_uid;
@@ -107,7 +107,7 @@ set search_path = public, pg_temp
 as $$
 begin
   if not public.is_admin() then
-    raise exception 'ADMIN_REQUIRED' using errcode = 'AJA013';
+    raise exception 'ADMIN_REQUIRED' using errcode = 'AJA13';
   end if;
   return auth.uid();
 end;
@@ -142,23 +142,23 @@ set search_path = public, pg_temp
 as $$
 begin
   if p_vacancy.id is null then
-    raise exception 'VACANCY_NOT_FOUND' using errcode = 'AJA003';
+    raise exception 'VACANCY_NOT_FOUND' using errcode = 'AJA03';
   end if;
 
   if p_vacancy.status in ('draft', 'archived') then
-    raise exception 'VACANCY_NOT_PUBLISHED' using errcode = 'AJA004';
+    raise exception 'VACANCY_NOT_PUBLISHED' using errcode = 'AJA04';
   end if;
 
   if p_vacancy.status = 'closed' then
-    raise exception 'VACANCY_CLOSED' using errcode = 'AJA006';
+    raise exception 'VACANCY_CLOSED' using errcode = 'AJA06';
   end if;
 
   if now() < p_vacancy.opening_date then
-    raise exception 'VACANCY_NOT_YET_OPEN' using errcode = 'AJA005';
+    raise exception 'VACANCY_NOT_YET_OPEN' using errcode = 'AJA05';
   end if;
 
   if now() > p_vacancy.closing_date then
-    raise exception 'VACANCY_CLOSED' using errcode = 'AJA006';
+    raise exception 'VACANCY_CLOSED' using errcode = 'AJA06';
   end if;
 end;
 $$;
@@ -183,7 +183,7 @@ declare
   v_recent  integer;
 begin
   if p_limit <= 0 or p_window_seconds <= 0 then
-    raise exception 'VALIDATION_FAILED' using errcode = 'AJA015';
+    raise exception 'VALIDATION_FAILED' using errcode = 'AJA15';
   end if;
 
   -- Serialise concurrent attempts against the same bucket so a burst of
@@ -249,7 +249,7 @@ begin
     left(coalesce(nullif(btrim(new.raw_user_meta_data ->> 'full_name'), ''), 'Applicant'), 120),
     regexp_replace(coalesce(new.raw_user_meta_data ->> 'mobile', ''), '\D', '', 'g'),
     coalesce(new.email, ''),
-    v_experience_type,
+    v_experience_type::public.experience_type,
     v_years,
     nullif(btrim(coalesce(new.raw_user_meta_data ->> 'current_employer', '')), '')
   )
@@ -428,11 +428,11 @@ declare
   v_employer   text := nullif(left(btrim(coalesce(p_current_employer, '')), 150), '');
 begin
   if char_length(v_name) < 2 then
-    raise exception 'VALIDATION_FAILED: full_name' using errcode = 'AJA015';
+    raise exception 'VALIDATION_FAILED: full_name' using errcode = 'AJA15';
   end if;
 
   if v_exp_type not in ('fresher', 'experienced') then
-    raise exception 'VALIDATION_FAILED: experience_type' using errcode = 'AJA015';
+    raise exception 'VALIDATION_FAILED: experience_type' using errcode = 'AJA15';
   end if;
 
   if v_exp_type = 'fresher' then
@@ -440,12 +440,12 @@ begin
   else
     v_years := p_experience_years;
     if v_years is null or v_years <= 0 or v_years > 60 then
-      raise exception 'VALIDATION_FAILED: experience_years' using errcode = 'AJA015';
+      raise exception 'VALIDATION_FAILED: experience_years' using errcode = 'AJA15';
     end if;
   end if;
 
   if v_mobile !~ '^\+?[0-9]{10,15}$' then
-    raise exception 'VALIDATION_FAILED: mobile' using errcode = 'AJA015';
+    raise exception 'VALIDATION_FAILED: mobile' using errcode = 'AJA15';
   end if;
 
   insert into public.applicant_profiles as p (
@@ -520,7 +520,7 @@ as $$
 $$;
 
 -- Single application for the applicant timeline. Ownership is enforced here,
--- and a non-owned id produces the same generic AJA012 as a missing row, so the
+-- and a non-owned id produces the same generic AJA12 as a missing row, so the
 -- endpoint cannot be used to probe for valid application ids (§23, IDOR).
 create or replace function public.get_my_application(p_application_id uuid)
 returns jsonb
@@ -536,7 +536,7 @@ declare
   v_hist jsonb;
 begin
   if p_application_id is null then
-    raise exception 'NOT_FOUND' using errcode = 'AJA012';
+    raise exception 'NOT_FOUND' using errcode = 'AJA12';
   end if;
 
   select * into v_app
@@ -544,7 +544,7 @@ begin
   where id = p_application_id and applicant_id = v_uid;
 
   if v_app.id is null then
-    raise exception 'NOT_FOUND' using errcode = 'AJA012';
+    raise exception 'NOT_FOUND' using errcode = 'AJA12';
   end if;
 
   select * into v_vac from public.vacancies where id = v_app.vacancy_id;
@@ -605,27 +605,27 @@ declare
   v_name    text;
 begin
   if not public.consume_rate_limit('cv_upload', v_uid::text, 20, 3600) then
-    raise exception 'RATE_LIMITED' using errcode = 'AJA014';
+    raise exception 'RATE_LIMITED' using errcode = 'AJA14';
   end if;
 
   select * into v_vac from public.vacancies where id = p_vacancy_id;
   if v_vac.id is null then
-    raise exception 'VACANCY_NOT_FOUND' using errcode = 'AJA003';
+    raise exception 'VACANCY_NOT_FOUND' using errcode = 'AJA03';
   end if;
-  public.assert_vacancy_open(v_vac);
+  perform public.assert_vacancy_open(v_vac);
 
   if exists (
     select 1 from public.applications
     where vacancy_id = p_vacancy_id and applicant_id = v_uid
   ) then
-    raise exception 'DUPLICATE_APPLICATION' using errcode = 'AJA007';
+    raise exception 'DUPLICATE_APPLICATION' using errcode = 'AJA07';
   end if;
 
   -- Sanitise server-side: the browser's filename is never trusted or reused.
   v_name := regexp_replace(coalesce(p_filename, 'cv'), '[^A-Za-z0-9._-]', '_', 'g');
   v_name := left(v_name, 80);
   if v_name !~* '\.(pdf|doc|docx)$' then
-    raise exception 'CV_INVALID_TYPE' using errcode = 'AJA009';
+    raise exception 'CV_INVALID_TYPE' using errcode = 'AJA09';
   end if;
 
   -- §13 path: cvs/{applicant_user_id}/{application_id}/{generated_filename}
@@ -660,21 +660,21 @@ declare
   v_ext        text;
 begin
   if not public.consume_rate_limit('application_submit', v_uid::text, 10, 3600) then
-    raise exception 'RATE_LIMITED' using errcode = 'AJA014';
+    raise exception 'RATE_LIMITED' using errcode = 'AJA14';
   end if;
 
   -- Re-check the vacancy now, not just at upload time. §5 / §29.
   select * into v_vac from public.vacancies where id = p_vacancy_id;
   if v_vac.id is null then
-    raise exception 'VACANCY_NOT_FOUND' using errcode = 'AJA003';
+    raise exception 'VACANCY_NOT_FOUND' using errcode = 'AJA03';
   end if;
-  public.assert_vacancy_open(v_vac);
+  perform public.assert_vacancy_open(v_vac);
 
   select * into v_profile from public.applicant_profiles where user_id = v_uid;
   if v_profile.id is null
      or char_length(btrim(coalesce(v_profile.full_name, ''))) < 2
      or v_profile.mobile !~ '^\+?[0-9]{10,15}$' then
-    raise exception 'PROFILE_INCOMPLETE' using errcode = 'AJA016';
+    raise exception 'PROFILE_INCOMPLETE' using errcode = 'AJA16';
   end if;
 
   -- §10 duplicate guard (the unique constraint below is the real guarantee).
@@ -682,7 +682,7 @@ begin
     select 1 from public.applications
     where vacancy_id = p_vacancy_id and applicant_id = v_uid
   ) then
-    raise exception 'DUPLICATE_APPLICATION' using errcode = 'AJA007';
+    raise exception 'DUPLICATE_APPLICATION' using errcode = 'AJA07';
   end if;
 
   -- §12 / §13: the CV must exist, be owned by this applicant, sit at the
@@ -692,12 +692,12 @@ begin
   v_expected := 'cvs/' || v_uid::text || '/' || p_application_id::text || '/';
 
   if p_cv_path is null or left(p_cv_path, length(v_expected)) <> v_expected then
-    raise exception 'CV_NOT_OWNED' using errcode = 'AJA011';
+    raise exception 'CV_NOT_OWNED' using errcode = 'AJA11';
   end if;
 
   v_ext := lower(regexp_replace(p_cv_path, '^.*\.', ''));
   if v_ext not in ('pdf', 'doc', 'docx') then
-    raise exception 'CV_INVALID_TYPE' using errcode = 'AJA009';
+    raise exception 'CV_INVALID_TYPE' using errcode = 'AJA09';
   end if;
 
   select o.id, o.name, coalesce((o.metadata ->> 'size')::bigint, 0) as size,
@@ -707,15 +707,15 @@ begin
   where o.bucket_id = 'cvs' and o.name = p_cv_path;
 
   if v_obj.id is null then
-    raise exception 'CV_MISSING' using errcode = 'AJA008';
+    raise exception 'CV_MISSING' using errcode = 'AJA08';
   end if;
 
   if v_obj.size <= 0 then
-    raise exception 'CV_MISSING' using errcode = 'AJA008';
+    raise exception 'CV_MISSING' using errcode = 'AJA08';
   end if;
 
   if v_obj.size > 5242880 then
-    raise exception 'CV_TOO_LARGE' using errcode = 'AJA010';
+    raise exception 'CV_TOO_LARGE' using errcode = 'AJA10';
   end if;
 
   v_mime := v_obj.mimetype;
@@ -729,7 +729,7 @@ begin
     or (v_ext = 'docx' and v_mime in ('application/vnd.openxmlformats-officedocument.wordprocessingml.document',
                                       'application/zip', 'application/octet-stream'))
   ) then
-    raise exception 'CV_INVALID_TYPE' using errcode = 'AJA009';
+    raise exception 'CV_INVALID_TYPE' using errcode = 'AJA09';
   end if;
 
   -- Contact and experience data are copied from the verified profile, so an
@@ -782,12 +782,12 @@ begin
   where a.id = p_application_id and a.applicant_id = v_uid;
 
   if v_old is null then
-    raise exception 'NOT_FOUND' using errcode = 'AJA012';
+    raise exception 'NOT_FOUND' using errcode = 'AJA12';
   end if;
 
   if v_old in ('selected', 'rejected', 'withdrawn') then
     raise exception 'VALIDATION_FAILED: status is final and cannot be withdrawn'
-      using errcode = 'AJA015';
+      using errcode = 'AJA15';
   end if;
 
   update public.applications
@@ -823,19 +823,19 @@ declare
   v_uid uuid := auth.uid();
 begin
   select * into v_vac from public.vacancies where id = new.vacancy_id;
-  public.assert_vacancy_open(v_vac);
+  perform public.assert_vacancy_open(v_vac);
 
   if v_uid is not null and new.applicant_id <> v_uid then
-    raise exception 'NOT_FOUND' using errcode = 'AJA012';
+    raise exception 'NOT_FOUND' using errcode = 'AJA12';
   end if;
 
   if new.email is distinct from (select u.email from auth.users u where u.id = new.applicant_id) then
-    raise exception 'VALIDATION_FAILED: email' using errcode = 'AJA015';
+    raise exception 'VALIDATION_FAILED: email' using errcode = 'AJA15';
   end if;
 
   if new.cv_path is null
      or new.cv_path !~ ('^cvs/' || new.applicant_id::text || '/' || new.id::text || '/') then
-    raise exception 'CV_NOT_OWNED' using errcode = 'AJA011';
+    raise exception 'CV_NOT_OWNED' using errcode = 'AJA11';
   end if;
 
   return new;
@@ -896,7 +896,7 @@ begin
   perform public.require_admin();
   select * into v from public.vacancies where id = p_id;
   if v.id is null then
-    raise exception 'NOT_FOUND' using errcode = 'AJA012';
+    raise exception 'NOT_FOUND' using errcode = 'AJA12';
   end if;
   return to_jsonb(v);
 end;
@@ -904,10 +904,10 @@ $$;
 
 create or replace function public.admin_upsert_vacancy(
   p_id                    uuid default null,
-  p_title                 text,
-  p_slug                  text,
-  p_description           text,
-  p_location              text,
+  p_title                 text default null,
+  p_slug                  text default null,
+  p_description           text default null,
+  p_location              text default null,
   p_employment_type       text default null,
   p_experience_requirement text default null,
   p_stipend_or_salary     text default null,
@@ -915,8 +915,8 @@ create or replace function public.admin_upsert_vacancy(
   p_skills_required       text default null,
   p_qualification         text default null,
   p_benefits              text default null,
-  p_opening_date          timestamptz,
-  p_closing_date          timestamptz,
+  p_opening_date          timestamptz default null,
+  p_closing_date          timestamptz default null,
   p_status                text default 'draft'
 )
 returns jsonb
@@ -933,19 +933,19 @@ begin
   perform public.require_admin();
 
   if v_slug !~ '^[a-z0-9]+(-[a-z0-9]+)*$' then
-    raise exception 'VALIDATION_FAILED: slug' using errcode = 'AJA015';
+    raise exception 'VALIDATION_FAILED: slug' using errcode = 'AJA15';
   end if;
 
   if v_status not in ('draft', 'published', 'closed', 'archived') then
-    raise exception 'VALIDATION_FAILED: status' using errcode = 'AJA015';
+    raise exception 'VALIDATION_FAILED: status' using errcode = 'AJA15';
   end if;
 
   if p_opening_date is null or p_closing_date is null or p_closing_date <= p_opening_date then
-    raise exception 'VALIDATION_FAILED: closing_date must be after opening_date' using errcode = 'AJA015';
+    raise exception 'VALIDATION_FAILED: closing_date must be after opening_date' using errcode = 'AJA15';
   end if;
 
   if char_length(btrim(coalesce(p_title, ''))) < 3 then
-    raise exception 'VALIDATION_FAILED: title' using errcode = 'AJA015';
+    raise exception 'VALIDATION_FAILED: title' using errcode = 'AJA15';
   end if;
 
   -- The two cases must not share one statement. An INSERT ... ON CONFLICT
@@ -955,14 +955,14 @@ begin
   if p_id is not null then
     -- ---- update an existing vacancy -------------------------------------
     if not exists (select 1 from public.vacancies where id = p_id) then
-      raise exception 'VACANCY_NOT_FOUND' using errcode = 'AJA003';
+      raise exception 'VACANCY_NOT_FOUND' using errcode = 'AJA03';
     end if;
 
     -- Refuse a slug that another vacancy already owns, rather than failing
     -- later with a raw unique_violation the UI cannot explain.
     if exists (select 1 from public.vacancies where slug = v_slug and id <> p_id) then
       raise exception 'VALIDATION_FAILED: slug "%" is already used by another vacancy', v_slug
-        using errcode = 'AJA015';
+        using errcode = 'AJA15';
     end if;
 
     update public.vacancies
@@ -1025,7 +1025,7 @@ begin
   end if;
 
   if v_id is null then
-    raise exception 'VALIDATION_FAILED: could not save vacancy' using errcode = 'AJA015';
+    raise exception 'VALIDATION_FAILED: could not save vacancy' using errcode = 'AJA15';
   end if;
 
   return public.admin_get_vacancy(v_id);
@@ -1044,13 +1044,13 @@ begin
   perform public.require_admin();
 
   if v_status not in ('draft', 'published', 'closed', 'archived') then
-    raise exception 'VALIDATION_FAILED: status' using errcode = 'AJA015';
+    raise exception 'VALIDATION_FAILED: status' using errcode = 'AJA15';
   end if;
 
   update public.vacancies set status = v_status::public.vacancy_status where id = p_id;
 
   if not found then
-    raise exception 'NOT_FOUND' using errcode = 'AJA012';
+    raise exception 'NOT_FOUND' using errcode = 'AJA12';
   end if;
 
   return public.admin_get_vacancy(p_id);
@@ -1072,11 +1072,11 @@ begin
 
   select * into v_source from public.vacancies where id = p_id;
   if v_source.id is null then
-    raise exception 'NOT_FOUND' using errcode = 'AJA012';
+    raise exception 'NOT_FOUND' using errcode = 'AJA12';
   end if;
 
   if v_slug !~ '^[a-z0-9]+(-[a-z0-9]+)*$' then
-    raise exception 'VALIDATION_FAILED: slug' using errcode = 'AJA015';
+    raise exception 'VALIDATION_FAILED: slug' using errcode = 'AJA15';
   end if;
 
   -- A duplicate always starts life as a draft so it cannot silently accept
@@ -1114,14 +1114,14 @@ begin
   from public.applications where vacancy_id = p_id;
 
   if v_count > 0 then
-    raise exception 'VALIDATION_FAILED: vacancy has ' || v_count || ' application(s); archive it instead'
-      using errcode = 'AJA015';
+    raise exception 'VALIDATION_FAILED: vacancy has % application(s); archive it instead', v_count
+      using errcode = 'AJA15';
   end if;
 
   delete from public.vacancies where id = p_id;
 
   if not found then
-    raise exception 'NOT_FOUND' using errcode = 'AJA012';
+    raise exception 'NOT_FOUND' using errcode = 'AJA12';
   end if;
 
   return jsonb_build_object('deleted', true);
@@ -1173,8 +1173,12 @@ begin
       or a.cv_path    ilike '%' || v_search || '%'
     );
 
-  select coalesce(
-    jsonb_agg(
+  -- ORDER BY / LIMIT inside an aggregate call is not valid SQL, so page the
+  -- rows in a subquery first and aggregate them in the same order.
+  select coalesce(jsonb_agg(pg.obj order by pg.rn), '[]'::jsonb)
+  into v_rows
+  from (
+    select
       jsonb_build_object(
         'id', a.id,
         'full_name', a.full_name,
@@ -1196,8 +1200,8 @@ begin
         'location', v.location,
         'employment_type', v.employment_type,
         'cover_letter', a.cover_letter
-      )
-      order by
+      ) as obj,
+      row_number() over (order by
         case when p_sort = 'full_name' and p_dir = 'asc'  then a.full_name end asc nulls last,
         case when p_sort = 'full_name' and p_dir = 'desc' then a.full_name end desc nulls last,
         case when p_sort = 'status'   and p_dir = 'asc'  then a.status::text end asc nulls last,
@@ -1208,25 +1212,25 @@ begin
         case when p_sort = 'applied_at' and p_dir = 'asc'  then a.applied_at end asc nulls last,
         a.applied_at desc,
         a.id
-      limit p_limit offset p_offset
-    ),
-    '[]'::jsonb
-  ) into v_rows
-  from public.applications a
-  join public.vacancies v on v.id = a.vacancy_id
-  where (p_vacancy_id is null or a.vacancy_id = p_vacancy_id)
-    and (p_status is null or a.status::text = p_status)
-    and (p_experience_type is null or a.experience_type::text = p_experience_type)
-    and (p_date_from is null or (a.applied_at at time zone 'Asia/Kolkata')::date >= p_date_from)
-    and (p_date_to   is null or (a.applied_at at time zone 'Asia/Kolkata')::date <= p_date_to)
-    and (
-      v_search is null
-      or a.full_name ilike '%' || v_search || '%'
-      or a.email     ilike '%' || v_search || '%'
-      or a.mobile    ilike '%' || v_search || '%'
-      or v.title     ilike '%' || v_search || '%'
-      or a.cv_path   ilike '%' || v_search || '%'
-    );
+      ) as rn
+    from public.applications a
+    join public.vacancies v on v.id = a.vacancy_id
+    where (p_vacancy_id is null or a.vacancy_id = p_vacancy_id)
+      and (p_status is null or a.status::text = p_status)
+      and (p_experience_type is null or a.experience_type::text = p_experience_type)
+      and (p_date_from is null or (a.applied_at at time zone 'Asia/Kolkata')::date >= p_date_from)
+      and (p_date_to   is null or (a.applied_at at time zone 'Asia/Kolkata')::date <= p_date_to)
+      and (
+        v_search is null
+        or a.full_name ilike '%' || v_search || '%'
+        or a.email     ilike '%' || v_search || '%'
+        or a.mobile    ilike '%' || v_search || '%'
+        or v.title     ilike '%' || v_search || '%'
+        or a.cv_path   ilike '%' || v_search || '%'
+      )
+    order by rn
+    limit p_limit offset p_offset
+  ) pg;
 
   return jsonb_build_object(
     'total', v_total,
@@ -1253,7 +1257,7 @@ begin
 
   select * into v_app from public.applications where id = p_id;
   if v_app.id is null then
-    raise exception 'NOT_FOUND' using errcode = 'AJA012';
+    raise exception 'NOT_FOUND' using errcode = 'AJA12';
   end if;
 
   select * into v_vac from public.vacancies where id = v_app.vacancy_id;
@@ -1324,11 +1328,11 @@ declare
 begin
   select * into v_app from public.applications where id = p_application_id;
   if v_app.id is null then
-    raise exception 'NOT_FOUND' using errcode = 'AJA012';
+    raise exception 'NOT_FOUND' using errcode = 'AJA12';
   end if;
 
   if v_status <> '' and not (v_status = any (v_valid)) then
-    raise exception 'VALIDATION_FAILED: status' using errcode = 'AJA015';
+    raise exception 'VALIDATION_FAILED: status' using errcode = 'AJA15';
   end if;
 
   -- Notes can be saved without touching the status, and vice versa.
@@ -1391,7 +1395,7 @@ begin
 
   select cv_path into v_path from public.applications where id = p_application_id;
   if v_path is null then
-    raise exception 'NOT_FOUND' using errcode = 'AJA012';
+    raise exception 'NOT_FOUND' using errcode = 'AJA12';
   end if;
 
   delete from storage.objects

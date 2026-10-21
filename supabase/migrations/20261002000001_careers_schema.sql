@@ -150,7 +150,8 @@ create table public.applicant_profiles (
     )
 );
 
-create unique index applicant_profiles_user_id_key on public.applicant_profiles (user_id);
+-- user_id is already unique via the inline UNIQUE constraint above (which
+-- creates applicant_profiles_user_id_key); a second index of the same name fails.
 
 comment on table public.applicant_profiles is
   'One profile per authenticated Supabase user. Populated by a trigger on auth.users so the email always originates from the verified auth account (§8).';
