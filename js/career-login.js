@@ -8,7 +8,7 @@
 import {
   sb, RATE_LIMITS, isConfigured,
   $, alertBox, clearAlert, fieldError, setBusy, requireConfigured,
-  currentUser, nextTarget, toCareersError, rateLimit
+  currentUser, nextTarget, toCareersError, rateLimit, emailHasAccount, registerHref
 } from './careers-core.js';
 
 const form = $('#login-form');
@@ -92,6 +92,7 @@ async function onSubmit(event) {
     redirectAfterAuth(user);
   } catch (err) {
     const friendly = toCareersError(err);
+    if (friendly.code === 'BAD_CREDENTIALS' && await showNoAccountIfUnregistered(email)) return;
     alertBox(alert, friendly.message, 'error');
     if (friendly.field === 'password') fieldError('password', '');
     if (friendly.field === 'email') fieldError('email', '');
@@ -99,6 +100,27 @@ async function onSubmit(event) {
   } finally {
     setBusy(submitBtn, false);
   }
+}
+
+// A failed sign-in could mean a wrong password or no account at all. Tell the
+// visitor which, so an unregistered address is pointed at "Create an account".
+async function showNoAccountIfUnregistered(email) {
+  let registered = true;
+  try {
+    registered = await emailHasAccount(email);
+  } catch (e) {
+    return false; // lookup unavailable or throttled: fall back to the generic message
+  }
+  if (registered) return false;
+
+  alertBox(alert, 'No account is registered with ' + email + '. ', 'error');
+  const link = document.createElement('a');
+  link.href = registerHref();
+  link.textContent = 'Create an account';
+  alert.appendChild(link);
+  alert.appendChild(document.createTextNode(' to apply, or check the spelling of your email address.'));
+  emailInput.focus();
+  return true;
 }
 
 function redirectAfterAuth(user) {

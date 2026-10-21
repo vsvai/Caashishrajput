@@ -1121,3 +1121,23 @@ a.count-link:hover { color: var(--accent-text); }
   .detail-pane, .table-wrap { border: 1px solid #ccc; box-shadow: none; }
   body { color: #000; }
 }
+/* Sign-in help links, password-reset page */
+.auth-help {
+  margin: 0.5rem 0 0;
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+.auth-card .auth-h2 {
+  font-size: 1.1rem;
+  margin: 0 0 0.25rem;
+  color: var(--primary);
+}
+.auth-card form + .auth-help,
+.auth-card .auth-help + .form-alert { margin-top: 0.75rem; }
+.auth-divider {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 1.75rem 0;
+}
+.form-alert a { font-weight: 600; text-decoration: underline; }

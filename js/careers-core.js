@@ -183,6 +183,18 @@ export async function rateLimit(action, key, limit, windowSeconds) {
   return data === true;
 }
 
+/**
+ * True when an account exists for the email. Used by the sign-in and reset
+ * pages to say "no account found" instead of a generic failure. Throttled in
+ * the database (email_has_account) because it reveals whether an address is
+ * registered.
+ */
+export async function emailHasAccount(email) {
+  const { data, error } = await sb.rpc('email_has_account', { p_email: email });
+  if (error) throw toCareersError(error);
+  return data === true;
+}
+
 /* ===========================================================================
    Session helpers
    =========================================================================== */

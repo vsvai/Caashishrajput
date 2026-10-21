@@ -13,6 +13,8 @@
 /career                       /career/index.html          301
 /career/                      /career/index.html          301
 /career/login                 /career/login.html           301
+/career/forgot-password       /career/forgot-password.html 301
+/career/reset-password        /career/reset-password.html  301
 /career/register              /career/register.html        301
 /career/apply                 /career/apply.html           301
 /career/dashboard             /career/dashboard.html       301
